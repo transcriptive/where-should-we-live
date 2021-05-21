@@ -67,12 +67,7 @@ export default function NavBar(props) {
                    Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
                 </div> */}
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  <span className="sr-only">Login</span>
-                  <LoginIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
+              
                 { loggedIn ?  
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -154,7 +149,15 @@ export default function NavBar(props) {
                   )}
                 </Menu>
               </div>
-              : null }
+              : 
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                
+                <button className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <span className="sr-only">Login</span>
+                  <LoginIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div> 
+              }
             </div>
           </div>
 
