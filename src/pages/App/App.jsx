@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
-import Users from "../Users/Users"
 import authService from "../../services/authService"
 import "./App.css";
 
@@ -26,12 +25,12 @@ class App extends Component {
     const {user} = this.state
     return (
       <>
-        <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
+        <NavBar user={user} handleLogout={this.handleLogout}/>
         <Route
           exact
           path="/"
           render={() => (
-            <h1></h1>
+            <h1>hello</h1>
           )}
         />
         <Route
@@ -54,13 +53,7 @@ class App extends Component {
             />
           )}
         />
-        <Route 
-          exact
-          path="/users"
-          render={({ history}) =>
-            user ? <Users /> : <Redirect to="/login" />
-          }
-        />
+        
       </>
     );
   }

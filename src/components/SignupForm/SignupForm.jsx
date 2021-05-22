@@ -1,23 +1,22 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import authService from "../../services/authService";
+import { useForm } from '../../hooks/useForm'
 
-class SignupForm extends Component {
-  state = {
+function SignupForm (props) {
+  const [message, updateMessage] = useState('')
+  const [formInvalid, setValidForm] = useState(true)
+  const history = useHistory();
+  const formRef = useRef();
+  const [formValue, handleChange] = useForm({
+    name: "",
     email: "",
     password: "",
     passwordConf: "",
-  };
+  });
 
-  handleChange = (e) => {
-    this.props.updateMessage("");
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  handleSubmit = async (e) => {
-    const { history, updateMessage, handleSignupOrLogin } = this.props;
+  const handleSubmit = async (e) => {
+    const { handleSignupOrLogin } = this.props;
     e.preventDefault();
     try {
       await authService.signup(this.state);
@@ -28,13 +27,11 @@ class SignupForm extends Component {
     }
   };
 
-  isFormInvalid() {
-    const { email, password, passwordConf } = this.state;
-    return !(email && password === passwordConf);
-  }
-
-  render() {
-    const {email, password, passwordConf } = this.state;
+  useEffect(() => {
+    formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
+    updateMessage('');
+  }, [formValue]);
+  
     return (
       <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -49,7 +46,25 @@ class SignupForm extends Component {
           <div className="mt-8">
        
             <div className="mt-6">
-              <form autocomplete='off' onSumbit={this.handleSubmit}className="space-y-6">          
+              <form ref={formRef} autoComplete='off' onSumbit={handleSubmit}className="space-y-6">  
+              <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      autoComplete="on"
+                      onChange={handleChange}
+                      value={formValue.name}
+                      required
+                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                     Email address
@@ -59,9 +74,9 @@ class SignupForm extends Component {
                       id="email"
                       name="email"
                       type="email"
-                      autoComplete="off"
-                      onChange={this.handleChange}
-                      value={email}
+                      autoComplete="on"
+                      onChange={handleChange}
+                      value={formValue.email}
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
@@ -78,8 +93,8 @@ class SignupForm extends Component {
                       name="password"
                       type="password"
                       autoComplete="off"
-                      onChange={this.handleChange}
-                      value={password}
+                      onChange={handleChange}
+                      value={formValue.password}
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
@@ -96,8 +111,8 @@ class SignupForm extends Component {
                       name="passwordConf"
                       type="password"
                       autoComplete="off"
-                      onChange={this.handleChange}
-                      value={passwordConf}
+                      onChange={handleChange}
+                      value={formValue.passwordConf}
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
@@ -128,7 +143,7 @@ class SignupForm extends Component {
 
                 <div>
                   <button
-                    disabled={this.isFormInvalid()}
+                    disabled={formInvalid}
                     type="submit"
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
@@ -153,6 +168,6 @@ class SignupForm extends Component {
     </div>
     );
   }
-}
+
 
 export default SignupForm;
