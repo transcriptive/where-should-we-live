@@ -30,7 +30,7 @@ export default function NavBar(props) {
   }, [props.user]);
 
   return (
-    <Disclosure as="nav" className="bg-gray-50 shadow-md">
+    <Disclosure as="nav" className="bg-gray-100 shadow-md">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
