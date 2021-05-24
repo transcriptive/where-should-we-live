@@ -133,7 +133,7 @@ export default function NavBar(props) {
                             {({ active }) => (
                               <a
                                 href="/"
-                                onClick={props.handleLougout}
+                                onClick={props.handleLogout}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
@@ -151,11 +151,12 @@ export default function NavBar(props) {
               </div>
               : 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                
-                <button className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <a href='/login'>
+                <button  className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <span className="sr-only">Login</span>
                   <LoginIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+                </a>
               </div> 
               }
             </div>
