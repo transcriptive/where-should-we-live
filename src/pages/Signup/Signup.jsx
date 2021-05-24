@@ -4,12 +4,11 @@ import authService from "../../services/authService";
 import { useForm } from '../../hooks/useForm'
 
 export default function Signup (props) {
-  const [message, updateMessage] = useState('')
-  const [formInvalid, setValidForm] = useState(true)
   const history = useHistory();
   const formRef = useRef();
+  const [message, updateMessage] = useState('')
+  const [formInvalid, setValidForm] = useState(true)
   const [formValue, handleChange] = useForm({
-    name: "",
     email: "",
     password: "",
     passwordConf: "",
@@ -22,6 +21,7 @@ export default function Signup (props) {
   
   const handleSubmit = async (e) => {
     const { handleSignupOrLogin } = props;
+    console.log('handling submit')
     e.preventDefault();
     try {
       if(formValue.password !== formValue.passwordConf)
@@ -34,8 +34,6 @@ export default function Signup (props) {
     }
   };
 
-  
-  
     return (
       <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -50,26 +48,8 @@ export default function Signup (props) {
           <div className="mt-8">
        
             <div className="mt-6">
-              <form ref={formRef} autoComplete='off' onSumbit={handleSubmit}className="space-y-6">  
+              <form ref={formRef} autoComplete='off' onSubmit={handleSubmit}className="space-y-6">  
               {message && <p>{message}</p>}
-              <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      autoComplete="on"
-                      onChange={handleChange}
-                      value={formValue.name}
-                      required
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                     Email address
@@ -157,7 +137,7 @@ export default function Signup (props) {
               </form>
               &nbsp;&nbsp;
               <Link to='/login'>
-              <h3>Already have an account? <a className='text-red-500 font-bold' href='/login'>Log in</a></h3>
+              <h3>Already have an account? <p className='text-red-500 font-bold' href='/login'>Log in</p></h3>
               </Link>
             </div>
           </div>
