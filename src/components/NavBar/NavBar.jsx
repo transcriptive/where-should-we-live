@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { LoginIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link, useHistory } from "react-router-dom";
 import './NavBar.css';
 
 const navigation = [
@@ -48,7 +49,9 @@ export default function NavBar(props) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
+                  <Link to='/'>
                   <img width="250" src="/images/Auto-Mastery-logo-v.2.png" alt='logo'/>
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.filter(item => item.loggedIn.includes(loggedIn)).map((item, idx) => (
