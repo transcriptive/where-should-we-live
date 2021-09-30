@@ -27,7 +27,7 @@ function App (props) {
           exact
           path="/"
           render={() => (
-            <h1>hello</h1>
+            <h1>This is the template homepage</h1>
           )}
         />
         <Route

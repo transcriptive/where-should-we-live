@@ -5,9 +5,9 @@ import { Link, useHistory } from "react-router-dom";
 import './NavBar.css';
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: false, loggedIn: [true]},
-  { name: 'Sales', href: '/sales', current: false, loggedIn: [true]},
-  { name: 'Goals', href: '/goals', current: false, loggedIn: [true] },
+  { name: 'Link-1', href: '/link-1', current: false, loggedIn: [true]},
+  { name: 'Link-2', href: '/link-2', current: false, loggedIn: [true]},
+  { name: 'Link-3', href: '/link-3', current: false, loggedIn: [true] },
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
   { name: 'KPI', href: '/kpi', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
@@ -50,7 +50,7 @@ export default function NavBar(props) {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
                   <Link to='/'>
-                  <img width="250" src="/images/Auto-Mastery-logo-v.2.png" alt='logo'/>
+                  <img width="250" src="/images/placeholder-logo.png" alt='logo'/>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
