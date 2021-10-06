@@ -3,6 +3,7 @@ import { Route, Redirect, useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
+import Main from "../Main/Main";
 import authService from "../../services/authService"
 import "./App.css";
 
@@ -45,6 +46,16 @@ function App (props) {
           path="/login"
           render={({ history }) => (
             <Login
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/main"
+          render={({ history }) => (
+            <Main
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
             />
