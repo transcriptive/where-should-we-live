@@ -3,6 +3,7 @@ import { Route, Redirect, useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
+import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService"
 import "./App.css";
 
@@ -47,6 +48,16 @@ function App (props) {
             <Login
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+         <Route
+          exact
+          path="/profile"
+          render={({ history }) => (
+            <UserProfile
+              history={history}
+              
             />
           )}
         />
