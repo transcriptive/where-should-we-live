@@ -23,15 +23,26 @@ export default function FormResults (props) {
             <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-gray-400">
                 <div className="mx-auto w-full max-w-sm lg:w-96">
                     <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Results List</h2>
-                    <div className="flex justify-center">
-                        
-                    </div>
                 </div>
             </div>
-            {/*---------------------Search------------------------*/}
             {/*---------------------Map Div------------------------*/}
-            <div className="hidden lg:block relative w-0 flex-1 bg-blue-300">
+            <div className="hidden lg:block relative w-0 flex flex-1 bg-blue-300">
                 <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Map</h2>
+            {/*---------------------Search------------------------*/}
+                <div className="flex justify-left">
+                    <div className="shadow flex">
+                        <input className="w-full rounded p-2" type="text" placeholder="Search"/>
+                        <button className="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400">
+                            <i className="material-icons">search</i>
+                        </button>
+                    </div>  
+                </div>
+            {/*---------------------Form Return------------------------*/}
+                <div className="flex justify-end items-end">
+                    <button className="bg-red-500 w-auto rounded p-2 absolute">
+                        Redo Form
+                    </button>
+                </div>
             </div>
 
         </div>
