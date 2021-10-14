@@ -7,6 +7,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
 import "./App.css";
+import SearchForm from "../form/SearchForm";
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -62,7 +63,16 @@ function App (props) {
             />
           )}
         />
-        <Route
+         <Route
+          exact
+          path="/search"
+          render={({ history }) => (
+            <SearchForm
+              history={history}
+            />
+          )}
+        />
+         <Route
           exact
           path="/main"
           render={({ history }) => (
