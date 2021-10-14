@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService"
 import "./App.css";
+import SearchForm from "../form/SearchForm";
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -58,6 +59,15 @@ function App (props) {
             <UserProfile
               history={history}
               
+            />
+          )}
+        />
+          <Route
+          exact
+          path="/search"
+          render={({ history }) => (
+            <SearchForm
+              history={history}
             />
           )}
         />
