@@ -164,7 +164,7 @@ export default function NavBar(props) {
                 <a href='/login'>
                 <button  className="p-1 text-asphalt rounded-full">
                   <span className="sr-only">Login</span>
-                  <img className="h-8 w-8 bg-blue-100 rounded-full " src="../images/DefaultUserImage.png"  alt="Login"/>
+                  <img className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100" src="../images/DefaultUserImage.png"  alt="Login"/>
                 </button>
                 <p>Login</p>
                 </a>
