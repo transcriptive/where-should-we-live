@@ -12,6 +12,7 @@ const navigation = [
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
+  { name: 'Log In', href: '/login', current: false, loggedIn: [false] },
 ]
 
 
