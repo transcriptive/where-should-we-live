@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { LoginIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css"
 
@@ -12,7 +12,6 @@ const navigation = [
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
-  { name: 'Log In', href: '/login', current: false, loggedIn: [false] },
 ]
 
 
@@ -161,12 +160,13 @@ export default function NavBar(props) {
                 </Menu>
               </div>
               : 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 leading-none">
                 <a href='/login'>
-                <button  className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button  className="p-1 text-asphalt rounded-full">
                   <span className="sr-only">Login</span>
-                  <LoginIcon className="h-6 w-6" aria-hidden="true" />
+                  <img className="h-8 w-8 bg-blue-100 rounded-full " src="../images/DefaultUserImage.png"  alt="Login"/>
                 </button>
+                <p>Login</p>
                 </a>
               </div> 
               }
