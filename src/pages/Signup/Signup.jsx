@@ -40,7 +40,7 @@ export default function Signup (props) {
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="flex justify-center">
           <img width="150" 
-          src="/images/placeholder-logo.png" 
+          src="/images/ConnectUsLogo.png" 
           alt='logo'
           />
           </div>

@@ -8,6 +8,7 @@ import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
 import "./App.css";
 import SearchForm from "../form/SearchForm";
+import Footer from "../../components/Footer/Footer";
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -82,6 +83,7 @@ function App (props) {
             />
           )}
         />
+        <Footer />
         
       </>
     );
