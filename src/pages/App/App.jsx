@@ -4,9 +4,11 @@ import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import UserProfile from "../UserProfile/UserProfile";
+import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
 import "./App.css";
 import SearchForm from "../form/SearchForm";
+import Footer from "../../components/Footer/Footer";
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -62,7 +64,7 @@ function App (props) {
             />
           )}
         />
-          <Route
+         <Route
           exact
           path="/search"
           render={({ history }) => (
@@ -71,6 +73,17 @@ function App (props) {
             />
           )}
         />
+         <Route
+          exact
+          path="/main"
+          render={({ history }) => (
+            <FormResults
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Footer />
         
       </>
     );

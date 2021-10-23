@@ -1,13 +1,14 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { LoginIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link, useHistory } from "react-router-dom";
-import './NavBar.css';
+import "./NavBar.css"
 
 const navigation = [
   { name: 'Link-1', href: '/link-1', current: false, loggedIn: [true]},
   { name: 'Link-2', href: '/link-2', current: false, loggedIn: [true]},
   { name: 'Link-3', href: '/link-3', current: false, loggedIn: [true] },
+  { name: 'Form Results', href: '/main', current: false, loggedIn: [false] },
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
@@ -34,7 +35,7 @@ export default function NavBar(props) {
     <Disclosure as="nav" className="bg-white shadow-md">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  bg-primary font-montserrat-semibold text-white ">
             <div className="relative flex justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
@@ -47,10 +48,10 @@ export default function NavBar(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+              <div className="md:flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="connect flex-shrink-0 md:flex-1 items-center">
                   <Link to='/'>
-                  <img width="250" src="/images/placeholder-logo.png" alt='logo'/>
+                    <img src="../images/ConnectUsLogo.png" alt="Connect.Us"/>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -58,7 +59,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-gray-900 text-white' : 'border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                            item.current ? 'bg-asphalt text-white' : 'text-white inline-flex items-center px-1 pt-1 text-lg font-normal leading-snug'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
@@ -159,12 +160,13 @@ export default function NavBar(props) {
                 </Menu>
               </div>
               : 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 leading-none">
                 <a href='/login'>
-                <button  className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button  className="p-1 text-asphalt rounded-full">
                   <span className="sr-only">Login</span>
-                  <LoginIcon className="h-6 w-6" aria-hidden="true" />
+                  <img className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100" src="../images/DefaultUserImage.png"  alt="Login"/>
                 </button>
+                <p>Login</p>
                 </a>
               </div> 
               }
