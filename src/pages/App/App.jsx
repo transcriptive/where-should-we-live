@@ -7,7 +7,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
 import "./App.css";
-import SearchForm from "../form/SearchForm";
+import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../../components/Footer/Footer";
 
 function App (props) {
