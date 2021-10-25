@@ -32,3 +32,19 @@ button {
 .sliderLeft {
   margin-right: 100px;
 }
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  width: 100%;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.align-mid {
+  text-align: center;
+}
