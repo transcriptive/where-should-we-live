@@ -5,7 +5,7 @@ import authService from "../../services/authService";
 import "./SearchForm.css";
 
 export default function SearchForm(props) {
-    const [modelData, SetModelData] = useState([]);
+    const [modelData, SetModelData] = useState();
 
     useEffect(() => {
       async function fetchData() {
@@ -15,30 +15,48 @@ export default function SearchForm(props) {
               );
               const data = await response.json();
               console.log(data, 'json data')
-              SetModelData(data.model_results.county);
-              console.log(data.model_results, 'model data')
 
-              // .map(it => it.data)
-              // SetModelData(json.results.county.map(it => it.data));
+              const results = Object.entries(data.model_results.county).map(
+                ([key, val]) => Object.fromEntries([
+                  ['row_number', key],
+                  ['county', val]
+                ]))
+              console.log(results, "results")
+              SetModelData(results);
           } catch (e) {
               console.error(e);
           }
       };
       fetchData();
   }, []);
-  
-    return (
-    <div className="container">
+
+    
+  return (
+        <div className="container">
+      
+      
+      <div>
+          {modelData ? modelData.map((value, index) => {
+                    return (<div key={index}>
+                            <p>{value.county}</p>
+                            </div>)
+                  }): "searching..."
+          }
+      </div>
+
+      {/* <div>
+          {modelData?.model_results.county ? 
+             modelData?.model_results.county.map((key, value) => {
+                    return (<p>{value}</p>)
+                  }): "searching..."
+          }
+      </div>  */}
+
+
+      
+        
         <div className="mapPic">
-        <div>
-          {modelData.map(item => (
-            // <div key={item}>
-              <p>{item}</p>
-            // </div>
-          ))}
         </div>
-        <div><p>{modelData[1]}</p></div>
-    </div>
     <div id="container" className="w-4/5 mx-auto">
       <div className="searchDiv flex flex-col sm:flex-row">
 
