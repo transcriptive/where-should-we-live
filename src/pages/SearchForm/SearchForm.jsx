@@ -6,6 +6,9 @@ import "./SearchForm.css";
 
 export default function SearchForm(props) {
 
+
+
+  
     return (
     <div className="container">
         <div className="mapPic">
