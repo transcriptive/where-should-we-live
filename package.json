@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "start-api": "cd .. && backend && us_census_product_club flask run --no-debugger",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
@@ -42,7 +43,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
