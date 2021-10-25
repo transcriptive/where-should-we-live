@@ -5,13 +5,37 @@ import authService from "../../services/authService";
 import "./SearchForm.css";
 
 export default function SearchForm(props) {
+    const [modelData, SetModelData] = useState([]);
 
-
-
+    useEffect(() => {
+      async function fetchData() {
+          try {
+              const response = await fetch(
+                  `/model`
+              );
+              const data = await response.json();
+              console.log(data, 'json data')
+              SetModelData(data.model_results.county);
+              // .map(it => it.data)
+              // SetModelData(json.results.county.map(it => it.data));
+          } catch (e) {
+              console.error(e);
+          }
+      };
+      fetchData();
+  }, []);
   
     return (
     <div className="container">
         <div className="mapPic">
+        {/* <div>
+          {modelData.map(item => (
+            // <div key={item}>
+              <p>{item}</p>
+            // </div>
+          ))}
+        </div> */}
+        <div><p>{modelData[1]}</p></div>
     </div>
     <div id="container" class="w-4/5 mx-auto">
       <div class="searchDiv flex flex-col sm:flex-row">

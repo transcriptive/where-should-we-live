@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-api": "cd backend && env/bin/flask run --no-debugger",
+    "start-api": "cd .. && backend && us_census_product_club flask run --no-debugger",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
