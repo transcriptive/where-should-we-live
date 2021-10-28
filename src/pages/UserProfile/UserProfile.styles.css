@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: block;
     margin: 0 auto;
 
@@ -36,4 +36,34 @@
     background-color: lightgray;
     margin-top: 10px;
     padding-left: .5em;
+} */
+.lifestyleSection{
+    position: absolute;
+    width: 148px;
+    left: 190px;
+}
+.lifestyle{
+    /* position: absolute;
+    width: 102px;
+    height: 32px;
+    left: 219px;
+    top: 1044px; */
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+}
+.options{
+    /* position: absolute;
+    width: 146px;
+    height: 31px;
+    left: 219px;
+    top: 1095px; */
+    font-style: normal;
+    font-weight: 300;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
 }

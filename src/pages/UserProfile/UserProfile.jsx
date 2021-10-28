@@ -7,28 +7,43 @@ import "./UserProfile.styles.css";
 export default function UserProfile (props) {
 
     return (
-        <div className="container">
-            <h1 className="title">Profile</h1>
-            <p className="click-btn"> Back to Home</p>
-            <h2 className="section-title">Personal Info</h2>
-            <div className="change-item" >
-                <h3 className="menu-item">Name</h3> 
-                    <p className="click-btn">Edit</p>
-                <h3 className="menu-item">Email</h3>
-                    <p className="click-btn">Edit</p>
-                <h3 className="menu-item">Saved Searches</h3> 
-                    <p className="click-btn">Manage</p>
+        <div className="userInformation">
+            <img className="absolute w-188 h-188 left-70 top-227" src="../images/DefaultUserImage.png" alt="User Image" />
+            <p className=" absolute w-94 h-34 left-266 top-321 text-28">Name: </p>
+            <p className="absolute  w-196 h-34 left-266 top-365 text-28">Moving From: </p>
+            <div className="recentHistory">
+                <p className="absolute w-80 h-14 left-28 top-561 text-36">Recently <br/> Browsed</p>
+                <ol className="absolute w-1397 h-1260">
+                    <li>
+                        <img alt="Recently Browsed"/>
+                        <p> Name of Place </p>
+                    </li>
+                </ol>
             </div>
-            
-            <h2 className="section-title">Manage Account</h2>
-            <div className="change-item">
-                <h3 className="menu-item">Password</h3> 
-                    <p className="click-btn">Change</p>
+            <div>
+                <p className="absolute w-311 h-63 left-121 top-933 text-52">Preferences</p>
+                <div className="lifestyleSection">
+                    <p className="lifestyle">Lifestyle</p>
+                    <div className="options flex flex-col">
+                        <input type="checkbox" name="Arts" />
+                        <label >Arts & Entertainment</label>
+                        <input type="checkbox" name="Healthy"/>
+                        <label>Healthy Living</label>
+                        <input type="checkbox" name="NightLife"/>
+                        <label>Nightlife</label>
+                        <input type="checkbox" name="Restaurants"/>
+                        <label>Restaurants</label>
+                        <input type="checkbox" name="TakeOut"/>
+                        <label>Take Out</label>
+                        <input type="checkbox" name="Entrepreneurs"/>
+                        <label>Entrepreneurs</label>
+                        <input type="checkbox" name="kids"/>
+                        <label>Good For Kids</label>
+                        <input type="checkbox" name="wheelchair"/>
+                        <label>Wheelchair Accessible</label>
+                    </div>
+                </div>
             </div>
-
-            <h4 className="deactivate">Deactivate My Account</h4>
-            <button className="click-btn">Deactivate Account</button>
-
         </div>
     )
 }
