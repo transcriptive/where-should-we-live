@@ -5,10 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css"
 
 const navigation = [
-  { name: 'Link-1', href: '/link-1', current: false, loggedIn: [true]},
-  { name: 'Link-2', href: '/link-2', current: false, loggedIn: [true]},
-  { name: 'Link-3', href: '/link-3', current: false, loggedIn: [true] },
-  { name: 'Form Results', href: '/main', current: false, loggedIn: [false] },
+  { name: 'Results', href: '/main', current: false, loggedIn: [true] },
+  { name: 'About', href: '/about', current: false, loggedIn: [true] },
+  { name: 'Resources', href: '/resources', current: false, loggedIn: [true] },
+  { name: 'Results', href: '/main', current: false, loggedIn: [false] },
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
