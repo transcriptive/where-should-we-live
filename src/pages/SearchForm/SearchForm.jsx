@@ -6,6 +6,9 @@ import "./SearchForm.css";
 
 export default function SearchForm(props) {
     const [modelData, SetModelData] = useState();
+    const [incomeRangeVal, setIncomeRangeVal] = useState(null);
+    const [climateRangeVal, setClimateRangeVal] = useState(null);
+    const [popRangeVal, setPopRangeVal] = useState(null);
 
     useEffect(() => {
       async function fetchData() {
@@ -66,8 +69,9 @@ export default function SearchForm(props) {
             </div>
           <div className="slidecontainer">
           <h2 className="text-xl font-medium text-gray-700">Median Income</h2>
-            <input type="range" min="1" max="100" value="50" className="slider" id="myRange" />
-            <p><span className="sliderLeft">&#36;</span><span>&#36;&#36;&#36;</span></p>
+          <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setIncomeRangeVal(event.target.value)} />
+            <p><span className="sliderLeft">&#36;</span><span id="demo"></span><span>&#36;&#36;&#36;</span></p>
+            <p>{incomeRangeVal}</p>
           </div>
         </div>
       </div>
@@ -78,8 +82,9 @@ export default function SearchForm(props) {
           </div>
           <div className="slidecontainer">
           <h2 className="text-xl font-medium text-gray-700">Climate</h2>
-            <input type="range" min="1" max="100" value="50" className="slider" id="myRange" />
+          <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setClimateRangeVal(event.target.value)} />
             <p><span className="sliderLeft">0&#176;F</span><span>100&#176;F</span></p>
+            <p>{climateRangeVal}</p>
           </div>
         </div>
       </div>
@@ -90,9 +95,9 @@ export default function SearchForm(props) {
           </div>
           <div className="slidecontainer">
           <h2 className="text-xl font-medium text-gray-700">Population</h2>
-            <input type="range" min="1" max="100" value="50" className="slider" id="myRange" />
-            <p><span className="sliderLeft">	
-&#128100;</span><span>&#128101;</span></p>
+          <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setPopRangeVal(event.target.value)} />
+            <p><span className="sliderLeft">&#128100;</span><span>&#128101;</span></p>
+            <p>{popRangeVal}</p>
           </div>
         </div>
       </div>
