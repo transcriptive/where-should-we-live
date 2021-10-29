@@ -152,7 +152,7 @@ export default function Signup (props) {
       </div>
     </div>
     );
-  }
+}
 
 
 
