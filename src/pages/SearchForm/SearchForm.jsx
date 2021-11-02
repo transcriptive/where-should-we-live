@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import authService from "../../services/authService";
+import modelService, { getModelResults } from "../../services/modelService"
 
 import "./SearchForm.css";
 
@@ -10,30 +11,57 @@ export default function SearchForm(props) {
     const [climateRangeVal, setClimateRangeVal] = useState(null);
     const [popRangeVal, setPopRangeVal] = useState(null);
 
-    useEffect(() => {
-      async function fetchData() {
-          try {
-              const response = await fetch(
-                  `/model`
-              );
-              const data = await response.json();
-              console.log(data, 'json data')
+  //   useEffect(() => {
+  //     async function fetchData() {
+  //         try {
+  //             const response = await fetch(
+  //                 `/model`
+  //             );
+  //             const data = await response.json();
+  //             console.log(data, 'json data')
 
-              const results = Object.entries(data.model_results.county).map(
-                ([key, val]) => Object.fromEntries([
-                  ['row_number', key],
-                  ['county', val]
-                ]))
-              console.log(results, "results")
-              SetModelData(results);
-          } catch (e) {
-              console.error(e);
-          }
-      };
-      fetchData();
-  }, []);
+  //             const results = Object.entries(data.model_results.county).map(
+  //               ([key, val]) => Object.fromEntries([
+  //                 ['row_number', key],
+  //                 ['county', val]
+  //               ]))
+  //             console.log(results, "results")
+  //             SetModelData(results);
+  //         } catch (e) {
+  //             console.error(e);
+  //         }
+  //     };
+  //     fetchData();
+  // }, []);
 
-    
+  // var test = 123
+
+  // fetch(`/model/${test}`)
+  // .then(function (response) {
+  //     return response.json();
+  // }).then(function (text) {
+  //     console.log('GET response:');
+  //     console.log(text.greeting); 
+  // });
+
+
+  async function handleSubmit() {
+    fetch('/model', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(modelData),
+    })
+    .then(response => response.json())
+    .then(modelData => {
+      console.log('Success:', modelData);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
   return (
         <div className="container">
       
@@ -47,20 +75,11 @@ export default function SearchForm(props) {
           }
       </div>
 
-      {/* <div>
-          {modelData?.model_results.county ? 
-             modelData?.model_results.county.map((key, value) => {
-                    return (<p>{value}</p>)
-                  }): "searching..."
-          }
-      </div>  */}
-
-
-      
         
         <div className="mapPic">
         </div>
     <div id="container" className="w-4/5 mx-auto">
+    <form ref={formRef} onSubmit={handleSubmit}>
       <div className="searchDiv flex flex-col sm:flex-row">
 
         <div className="sm:w-1/3 p-2">
@@ -128,6 +147,7 @@ export default function SearchForm(props) {
       <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
       </div>
+    </form>
   </div>
         </div>
     )
