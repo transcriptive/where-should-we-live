@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import authService from "../../services/authService";
+import React from "react";
 
 import "./UserProfile.styles.css";
 

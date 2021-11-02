@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, setState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import authService from "../../services/authService";
+import React, { useState } from "react";
+
 
 import "./SearchForm.css";
 
