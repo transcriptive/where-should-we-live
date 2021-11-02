@@ -116,7 +116,7 @@ export default function NavBar(props) {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/"
+                                href="/profile"
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
@@ -126,7 +126,7 @@ export default function NavBar(props) {
                               </a>
                             )}
                           </Menu.Item>
-                          <Menu.Item>
+                          {/* <Menu.Item>
                             {({ active }) => (
                               <a
                                 href="/"
@@ -138,11 +138,11 @@ export default function NavBar(props) {
                                 Settings
                               </a>
                             )}
-                          </Menu.Item>
+                          </Menu.Item> */}
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="/"
+                                href="/signout"
                                 onClick={props.handleLogout}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
