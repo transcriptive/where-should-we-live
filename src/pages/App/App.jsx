@@ -30,8 +30,10 @@ function App (props) {
         <Route
           exact
           path="/"
-          render={() => (
-            <h1>This is the template homepage</h1>
+          render={({ history }) => (
+            <SearchForm
+              history={history}
+            />
           )}
         />
         <Route
@@ -61,15 +63,6 @@ function App (props) {
             <UserProfile
               history={history}
               
-            />
-          )}
-        />
-         <Route
-          exact
-          path="/search"
-          render={({ history }) => (
-            <SearchForm
-              history={history}
             />
           )}
         />

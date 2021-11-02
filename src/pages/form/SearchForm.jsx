@@ -24,7 +24,7 @@ export default function SearchForm(props) {
           <h2 class="text-xl font-medium text-gray-700">Median Income</h2>
             <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setIncomeRangeVal(event.target.value)} />
             <p><span className="sliderLeft">&#36;</span><span id="demo"></span><span>&#36;&#36;&#36;</span></p>
-            <p>{incomeRangeVal}</p>
+            <p>Income: {incomeRangeVal}</p>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ export default function SearchForm(props) {
           <h2 class="text-xl font-medium text-gray-700">Climate</h2>
             <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setClimateRangeVal(event.target.value)} />
             <p><span className="sliderLeft">0&#176;F</span><span>100&#176;F</span></p>
-            <p>{climateRangeVal}</p>
+            <p>Temperature: {climateRangeVal}</p>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function SearchForm(props) {
           <h2 class="text-xl font-medium text-gray-700">Population</h2>
             <input type="range" min="1" max="100" defaultValue="50" className="slider" id="myRange" onChange={(event) => setPopRangeVal(event.target.value)} />
             <p><span className="sliderLeft">&#128100;</span><span>&#128101;</span></p>
-            <p>{popRangeVal}</p>
+            <p>Population: {popRangeVal}</p>
           </div>
         </div>
       </div>
