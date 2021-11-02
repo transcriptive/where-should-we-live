@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Redirect, useHistory } from "react-router-dom";
+import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
 import About from "../About/About";
 import Signup from "../Signup/Signup";
@@ -7,8 +8,8 @@ import Login from "../Login/Login";
 import UserProfile from "../UserProfile/UserProfile";
 import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
-import "./App.css";
 import SearchForm from "../SearchForm/SearchForm";
+import ProfileConfirmDelete from "../ProfileConfirmDelete/ProfileConfirmDelete";
 import Footer from "../../components/Footer/Footer";
 
 function App (props) {
@@ -83,6 +84,16 @@ function App (props) {
           render={({ history }) => (
             <About
               history={history}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/deleteuser"
+          render={({ history }) => (
+            <ProfileConfirmDelete
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
             />
           )}
         />
