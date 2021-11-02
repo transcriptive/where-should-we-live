@@ -35,7 +35,7 @@ export default function Signup (props) {
   };
 
     return (
-      <div className="min-h-screen bg-white flex">
+      <div className="min-h-screen bg-white flex max-w-7xl font-montserrat-bold mx-auto">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="flex justify-center">
@@ -137,7 +137,7 @@ export default function Signup (props) {
               </form>
               &nbsp;&nbsp;
               <Link to='/login'>
-              <h3>Already have an account? <p className='text-red-500 font-bold' href='/login'>Log in</p></h3>
+              <h3>Already have an account? <p className='text-red-500 font-bold hover:underline' href='/login'>Log in</p></h3>
               </Link>
             </div>
           </div>
