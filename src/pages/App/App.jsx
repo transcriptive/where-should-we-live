@@ -97,6 +97,15 @@ function App (props) {
             />
           )}
         />
+        <Route
+          exact
+          path="/about"
+          render={({ history }) => (
+            <About
+              history={history}
+            />
+          )}
+        />
         <Footer />
         
       </>
