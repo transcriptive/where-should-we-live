@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Redirect, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import About from "../About/About";
 import Signup from "../Signup/Signup";
