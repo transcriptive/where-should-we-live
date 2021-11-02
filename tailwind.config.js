@@ -30,15 +30,17 @@ module.exports = {
 
     },
     fontSize:{
+      '24':['24px','36px'],
       '28':'1.75rem',
-      '36':'2.25rem',
-      '18':'',
+      '36':['36px','44px'],
+      '52':['52px','64px'],
 
     },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         montserrat: ['Montserrat'],
+        roboto: ['Roboto'],
       },
     },
   },

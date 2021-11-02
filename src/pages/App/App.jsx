@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route, Redirect, useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
+import About from "../About/About";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import UserProfile from "../UserProfile/UserProfile";
@@ -80,6 +81,15 @@ function App (props) {
             <FormResults
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/about"
+          render={({ history }) => (
+            <About
+              history={history}
             />
           )}
         />
