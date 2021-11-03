@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import authService from "../../services/authService";
+import { useForm } from '../../hooks/useForm'
 import {fetchData} from "../../services/modelService"
 
 import "./SearchForm.css";
@@ -10,13 +9,16 @@ export default function SearchForm(props) {
     const [incomeRangeVal, setIncomeRangeVal] = useState(500000);
     const [climateRangeVal, setClimateRangeVal] = useState(50);
     const [popRangeVal, setPopRangeVal] = useState(500000);
+    const [state, handleChange] = useForm({
+      income: 100000,
+      climate: 75,  
+      pop: 500000,
+  })
 
-  //   async function handleSubmit(e) {
-
-  // }
+  // handleSubmit function takes in input values, then uses modelService fetchData API call to submit values to data model running on flask backend. Flask sends back a response after model runs with county names as a result, and those values are stored in modelData state. -cm
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const json = await fetchData(incomeRangeVal, climateRangeVal, popRangeVal)
+    const json = await fetchData(state)
     console.log(json, "json data")
     const results = Object.entries(json.model_results.county).map(
                     ([key, val]) => ({
@@ -54,15 +56,17 @@ export default function SearchForm(props) {
           <h2 className="text-xl font-medium text-gray-700">Median Income</h2>
             <input 
               type="range" 
+              name="income"
               min="50000" 
               max="1000000" 
               defaultValue="500000" 
               className="slider" 
               id="myRange" 
-              onChange={(event) => setIncomeRangeVal(event.target.value)} 
+              onChange={handleChange} 
+              value={state.income}
             />
             <p><span className="sliderLeft">&#36;</span><span id="demo"></span><span>&#36;&#36;&#36;</span></p>
-            <p>{incomeRangeVal}</p>
+            <p>{state.income}</p>
           </div>
         </div>
       </div>
@@ -73,16 +77,19 @@ export default function SearchForm(props) {
           </div>
           <div className="slidecontainer">
           <h2 className="text-xl font-medium text-gray-700">Climate</h2>
-            <input type="range" 
+            <input 
+              type="range"
+              name="climate" 
               min="1" 
               max="100" 
               defaultValue="50" 
               className="slider" 
               id="myRange" 
-              onChange={(event) => setClimateRangeVal(event.target.value)} 
+              onChange={handleChange} 
+              value={state.climate}
             />
             <p><span className="sliderLeft">0&#176;F</span><span>100&#176;F</span></p>
-            <p>{climateRangeVal}</p>
+            <p>{state.climate}</p>
           </div>
         </div>
       </div>
@@ -93,16 +100,19 @@ export default function SearchForm(props) {
           </div>
           <div className="slidecontainer">
           <h2 className="text-xl font-medium text-gray-700">Population</h2>
-            <input type="range" 
+            <input 
+              type="range"
+              name="pop" 
               min="10000" 
               max="1000000" 
               defaultValue="500000" 
               className="slider" 
               id="myRange" 
-              onChange={(event) => setPopRangeVal(event.target.value)} 
+              onChange={handleChange}
+              value={state.pop} 
             />
             <p><span className="sliderLeft">&#128100;</span><span>&#128101;</span></p>
-            <p>{popRangeVal}</p>
+            <p>{state.pop}</p>
           </div>
         </div>
       </div>

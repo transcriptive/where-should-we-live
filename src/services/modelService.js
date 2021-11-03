@@ -1,37 +1,15 @@
 const BASE_URL = '/model'
 
-
-export function fetchData(incomeRangeVal, climateRangeVal, popRangeVal) {
+// fetchData() posts a request to the data model with user input values on SearchForm. Flask backend, locally at port 5000, processes values through county(), sends the results back as the response, converts to json, returns result to handleSubmit()
+export function fetchData(state) {
+  console.log(state)
   return fetch(BASE_URL, {
     method:"POST", 
     cache: "no-cache", 
     headers:{
       "Content-Type":"application/json", 
     }, 
-    body:JSON.stringify({incomeRangeVal,climateRangeVal,popRangeVal})
+    body:JSON.stringify({state})
   })
   .then(response => response.json())
 }
-
-
-// useEffect(() => {
-//   async function fetchData() {
-//       try {
-//           const response = await fetch(
-//               `/model`
-//           );
-//           const data = await response.json();
-//           console.log(data, 'json data')
-
-//           const results = Object.entries(data.model_results.county).map(
-//             ([key, val]) => Object.fromEntries([
-//               ['row_number', key],
-//               ['county', val]
-//             ]))
-//           console.log(results, "results")
-//           SetModelData(results);
-//       } catch (e) {
-//           console.error(e);
-//       }
-//   };
-//   fetchData();
