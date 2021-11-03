@@ -21,15 +21,15 @@ function create(req, res) {
 //     .catch(err => {res.json(err)})
 // }
 
-// return all profiles created by the current user
-function indexCurrentUser(req, res) {                   
+// return profile created by the current user
+function getCurrentProfile(req, res) {                   
   Profile.findOne({addedBy: req.params.userid})
     .then(profiles => res.json(profiles))
     .catch(err => {res.json(err)})
 }
 
 // return one profile by document id
-function getOneAccount(req, res) {                        
+function getOneProfile(req, res) {                        
   Profile.findById(req.params.id)
     .then(profile => res.json(profile))
     .catch(err => res.json(err))
@@ -50,8 +50,8 @@ function deleteOne(req, res) {
 module.exports = {
   create,                                                                       
   // index, awaiting further clarification
-  indexCurrentUser,
-  getOneAccount,     
+  getCurrentProfile,
+  getOneProfile,     
   update,                                                                      
   delete: deleteOne                                                                     
 }
