@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import authService from "../../services/authService";
+import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm'
 
 export default function FormResults (props) {
