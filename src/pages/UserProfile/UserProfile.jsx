@@ -8,7 +8,7 @@ export default function UserProfile (props) {
         <div className="container">
             <h1 className="title">Profile</h1>
             <p className="click-btn"> Back to Home</p>
-            <h2 className="section-title">Personal Info</h2>
+            <h2 className="section-title">Account Info</h2>
             <div className="change-item" >
                 <h3 className="menu-item">Name</h3> 
                     <p className="click-btn">Edit</p>
@@ -24,8 +24,13 @@ export default function UserProfile (props) {
                     <p className="click-btn">Change</p>
             </div>
 
-            <h4 className="deactivate">Deactivate My Account</h4>
-            <button className="click-btn">Deactivate Account</button>
+            {/* <h4 className="deactivate">Delete My Account</h4> */}
+            {/* <button className="click-btn">Deactivate Account</button> */}
+            <Link to="/deleteuser">
+            <button className="bg-red-600 w-auto rounded p-2">
+                Delete Account
+            </button>
+            </Link>
 
         </div>
     )

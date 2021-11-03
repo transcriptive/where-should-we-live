@@ -43,10 +43,18 @@ function login(creds) {
   .then(({ token }) => tokenService.setToken(token));
 }
 
+function deleteUser(user) {
+  return fetch(BASE_URL + "deleteuser", {
+    method: "DELETE",
+    headers: new Headers({ "Content-Type": "application/json" }),
+  })
+}
+
 // eslint-disable-next-line
 export default {
   signup,
   getUser,
   logout,
   login,
+  deleteUser,
 };
