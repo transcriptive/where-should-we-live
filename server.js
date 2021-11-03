@@ -6,7 +6,7 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 
-const userRouter = require('./routes/users');
+const profileRouter = require('./routes/profiles');
 const authRouter = require('./routes/auth');
 
 const cors = require('cors')
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api/auth', authRouter);
-app.use('/api/users', userRouter);
+app.use('/api/users', profileRouter);
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
