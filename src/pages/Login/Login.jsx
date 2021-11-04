@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import authService from "../../services/authService";
-import { useForm } from '../../hooks/useForm'
+import { useForm } from "../../hooks/useForm";
 
-export default function Login (props) {
+export default function Login(props) {
   const history = useHistory();
   // const formRef = useRef();
-  const [message, updateMessage] = useState('')
+  const [message, updateMessage] = useState("");
   // const [formInvalid, setValidForm] = useState(true)
   const [loginValue, handleChange] = useForm({
     email: "",
@@ -17,38 +17,43 @@ export default function Login (props) {
   //   formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
   //   updateMessage('');
   // }, [formValue]);
-  
+
   const handleSubmit = async (e) => {
     const { handleSignupOrLogin } = props;
-    console.log(loginValue.email, loginValue.password)
+    console.log(loginValue.email, loginValue.password);
     e.preventDefault();
     try {
       await authService.login(loginValue);
-      handleSignupOrLogin()
+      handleSignupOrLogin();
       history.push("/");
     } catch (err) {
       updateMessage(err.message);
     }
   };
 
-    return (
-      <div className="min-h-screen bg-white flex">
+  return (
+    <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="flex justify-center">
-          <img width="150" 
-          src="/images/ConnectUsLogo.png" 
-          alt='logo'
-          />
+            <img width="150" src="/images/Connect.us-trans.png" alt="logo" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Login to your account</h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            Login to your account
+          </h2>
           <div className="mt-8">
-       
             <div className="mt-6">
-              <form autoComplete='off' onSubmit={handleSubmit}className="space-y-6">  
-              {message && <p>{message}</p>}
+              <form
+                autoComplete="off"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {message && <p>{message}</p>}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Email address
                   </label>
                   <div className="mt-1">
@@ -66,7 +71,10 @@ export default function Login (props) {
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Password
                   </label>
                   <div className="mt-1">
@@ -93,8 +101,11 @@ export default function Login (props) {
                 </div>
               </form>
               &nbsp;&nbsp;
-              <Link to='/signup'>
-              <h3>Don't have an account?<p className='text-red-500 font-bold'>Sign Up</p></h3>
+              <Link to="/signup">
+                <h3>
+                  Don't have an account?
+                  <p className="text-red-500 font-bold">Sign Up</p>
+                </h3>
               </Link>
             </div>
           </div>
@@ -108,8 +119,5 @@ export default function Login (props) {
         />
       </div>
     </div>
-    );
+  );
 }
-
-
-
