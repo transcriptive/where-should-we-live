@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm'
+import Map from "../../components/Map/Map";
 
 import "./FormResults.css"
 
@@ -18,10 +19,9 @@ export default function FormResults(props) {
     return (
       <div>
         <div className="grid grid-cols-3">
-          <div className="col-span-2 result-map-div">
-            <h1>Search Results </h1>
+          <div className="col-span-3 result-map-div">
+            <Map />
             <div className="mt-6">
-              <h2 className="font-bold">Check boxes to save results</h2>
               {props.modelData
                 ? props.modelData.map((value, index) => {
                     return (
@@ -35,23 +35,6 @@ export default function FormResults(props) {
                   })
                 : "searching..."}
             </div>
-          </div>
-          <div className="col-span-1 result-info-div">
-            <h1>
-              <strong>Results</strong>
-            </h1>
-            <h3>
-              <strong>Income Needed:</strong>
-            </h3>
-            <h3>
-              <strong>Approximate Population:</strong>
-            </h3>
-            <h3>
-              <strong>Business Investment:</strong>
-            </h3>
-            <h3>
-              <strong>Natural Disaster Index:</strong>
-            </h3>
           </div>
         </div>
         <div className="grid grid-cols-2">

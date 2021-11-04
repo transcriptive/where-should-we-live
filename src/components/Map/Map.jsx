@@ -1,23 +1,38 @@
 import React, { useState } from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-function setMap() {
-    return (
-        <GoogleMap 
-            defaultZoom={10}
-            defaultCenter={{ lat: 37.0902, lng: 95.7129}}
-        />
-    )
-}
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
 
-const fullMap = withScriptjs(withGoogleMap(setMap));
+export default function Map() {
+    const [map, setMap] = React.useState(null)
 
-export default function Map(props) {
-    return (
-        <>
-            <fullMap
-                googleMapURL={""}
-            />
-        </>
-    )
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyD1c4mX7C-TnzTVLqniOxXIqyuncIfEjUI"
+    })
+
+
+    const onLoad = React.useCallback(function callback(map) {
+        const bounds = new window.google.maps.LatLngBounds();
+        map.fitBounds(bounds);
+        setMap(map)
+    }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        <></>
+      </GoogleMap>
+  ) : <></>
 }
