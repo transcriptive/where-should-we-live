@@ -118,7 +118,7 @@ export default function SearchForm(props) {
     </form>
     </div>
     <div className='mt-12'>
-    <FormResults modelData={modelData} />
+    <FormResults modelData={modelData} user={props.user}/>
       
     
     

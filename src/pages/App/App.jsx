@@ -33,6 +33,7 @@ function App (props) {
           render={({ history }) => (
             <SearchForm
               history={history}
+              user={user}
             />
           )}
         />
