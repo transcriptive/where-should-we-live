@@ -1,0 +1,35 @@
+.col-span-1 {
+  border: 1px solid black;
+}
+
+.col-span-2 {
+  border: 1px solid black;
+}
+
+.col-span-3 {
+  border: 1px solid black;
+}
+
+.result-map-div {
+  height: 300px;
+}
+
+.result-info-div {
+  text-align: left;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.result-info-div {
+  text-align: left;
+}
+
+.surrounding-div {
+  height: 500px;
+}
+
+.recent-div {
+  height: 200px;
+}

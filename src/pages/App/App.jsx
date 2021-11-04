@@ -5,8 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import UserProfile from "../UserProfile/UserProfile";
-import FormResults from "../FormResults/FormResults";
-import authService from "../../services/authService"
+import authService from "../../services/authService";
 import SearchForm from "../SearchForm/SearchForm";
 import ProfileConfirmDelete from "../ProfileConfirmDelete/ProfileConfirmDelete";
 import Footer from "../../components/Footer/Footer";
@@ -34,6 +33,7 @@ function App (props) {
           render={({ history }) => (
             <SearchForm
               history={history}
+              user={user}
             />
           )}
         />
@@ -57,23 +57,13 @@ function App (props) {
             />
           )}
         />
-         <Route
+        <Route
           exact
           path="/profile"
           render={({ history }) => (
             <UserProfile
               history={history}
               
-            />
-          )}
-        />
-         <Route
-          exact
-          path="/main"
-          render={({ history }) => (
-            <FormResults
-              history={history}
-              handleSignupOrLogin={handleSignupOrLogin}
             />
           )}
         />

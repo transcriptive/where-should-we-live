@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useForm } from '../../hooks/useForm'
 import {fetchData} from "../../services/modelService"
+import FormResults from "../../components/FormResults/FormResults";
 
 import "./SearchForm.css";
 
@@ -34,14 +35,7 @@ export default function SearchForm(props) {
 
   return (
     <div className="container">
-      <div>
-          {modelData ? modelData.map((value, index) => {
-                    return (<div key={index}>
-                            <p>{value.county}</p>
-                            </div>)
-                  }): "searching..."
-          }
-      </div>   
+        
       <div className="mapPic">
       </div>
       <div id="container" className="w-4/5 mx-auto">
@@ -129,4 +123,10 @@ export default function SearchForm(props) {
       </div>
     </div>
   )
+    <div className='mt-12'>
+    <FormResults modelData={modelData} user={props.user}/>
+    
+    </div>
+  </div>
+    )
 }
