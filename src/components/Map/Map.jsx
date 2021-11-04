@@ -6,6 +6,11 @@ const center = {
   lng: -38.523
 };
 
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
+
 export default function Map() {
     const [map, setMap] = React.useState(null)
 
@@ -27,6 +32,7 @@ export default function Map() {
 
   return isLoaded ? (
       <GoogleMap
+        mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
         onLoad={onLoad}

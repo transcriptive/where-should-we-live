@@ -47,6 +47,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"

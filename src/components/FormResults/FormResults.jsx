@@ -18,9 +18,10 @@ export default function FormResults(props) {
 
     return (
       <div>
+        <Map />
         <div className="grid grid-cols-3">
           <div className="col-span-3 result-map-div">
-            <Map />
+            
             <div className="mt-6">
               {props.modelData
                 ? props.modelData.map((value, index) => {
