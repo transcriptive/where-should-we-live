@@ -9,6 +9,7 @@ import authService from "../../services/authService";
 import SearchForm from "../SearchForm/SearchForm";
 import ProfileConfirmDelete from "../ProfileConfirmDelete/ProfileConfirmDelete";
 import Footer from "../../components/Footer/Footer";
+import Profile from "../../pages/Profile/Profile"
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -57,11 +58,22 @@ function App (props) {
             />
           )}
         />
-        <Route
+        {/* <Route
           exact
           path="/profile"
           render={({ history }) => (
             <UserProfile
+              history={history}
+              
+            />
+          )}
+        /> */}
+        {/* christians profile routing below */}
+        <Route
+          exact
+          path="/profile"
+          render={({ history }) => (
+            <Profile
               history={history}
               
             />

@@ -6,6 +6,8 @@ import "./UserProfile.styles.css";
 
 export default function UserProfile (props) {
 
+
+  
     return (
         <div className="container">
             <h1 className="title">Profile</h1>
