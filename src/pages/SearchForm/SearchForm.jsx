@@ -117,16 +117,10 @@ export default function SearchForm(props) {
           </div>
         </form>
       </div>
-      {/*---------------------Map Div------------------------*/}
-      <div className="hidden lg:block relative w-0 flex flex-1 bg-blue-300">
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Map</h2>
+      <div className='mt-12'>
+      <FormResults modelData={modelData} user={props.user}/>
+    
       </div>
     </div>
   )
-    <div className='mt-12'>
-    <FormResults modelData={modelData} user={props.user}/>
-    
-    </div>
-  </div>
-    )
 }
