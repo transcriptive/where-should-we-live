@@ -58,12 +58,12 @@ export default function FormResults(props) {
           <div className="col-span-1 surrounding-div">Surrounding Towns</div>
           <div className="col-span-1 saved-div">
             <h1>Saved Cities</h1>
+            {/* conditional render for logged in/out users */}
             {props.user ? 
             <div>Pull in saved cities to display here</div>
-            
             : 
             <div className="mt-14  text-xl italic">
-              <Link className='text-blue-500 underline'>Sign up</Link> to save your county results
+              <Link to="/profile" className='text-blue-500 underline'>Sign up</Link> to save your county results
             </div>
             }
           </div>
