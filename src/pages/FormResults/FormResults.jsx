@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm'
 
+import "./FormResults.css"
+
 export default function FormResults (props) {
     const history = useHistory();
     const formRef = useRef();
@@ -17,34 +19,24 @@ export default function FormResults (props) {
     }
 
     return (
-        <div className="min-h-screen bg-white flex">
-            {/*---------------------List Div------------------------*/}
-            <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-gray-400">
-                <div className="mx-auto w-auto max-w-sm lg:w-96">
-                    <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Results List</h2>
-                    <iframe src="url" title="description"></iframe>
+        <div>
+            <div className="grid grid-cols-3">
+                <div className="col-span-2 result-map-div">Map Results</div>
+                <div className="col-span-1 result-info-div">
+                    <h1><strong>Results</strong></h1>
+                    <h3><strong>Income Needed:</strong></h3>
+                    <h3><strong>Approximate Population:</strong></h3>
+                    <h3><strong>Business Investment:</strong></h3>
+                    <h3><strong>Natural Disaster Index:</strong></h3>
                 </div>
             </div>
-            {/*---------------------Map Div------------------------*/}
-            <div className="hidden lg:block relative w-0 flex flex-1 bg-blue-300">
-                <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Map</h2>
-            {/*---------------------Search------------------------*/}
-                <div className="flex justify-left">
-                    <div className="shadow flex">
-                        <input className="w-full rounded p-2" type="text" placeholder="Search"/>
-                        <button className="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400">
-                            <i className="material-icons">search</i>
-                        </button>
-                    </div>  
-                </div>
-            {/*---------------------Form Return------------------------*/}
-                <div className="flex justify-end items-end">
-                    <button className="bg-red-500 w-auto rounded p-2 absolute">
-                        Redo Form
-                    </button>
-                </div>
+            <div className="grid grid-cols-2">
+                <div className="col-span-1 surrounding-div">Surrounding Towns</div>
+                <div className="col-span-1 saved-div">Saved Cities</div>
             </div>
-
+            <div className="grid grid-cols-1">
+                <div className="col-span-1 recent-div">Recently Browsed</div>
+            </div>
         </div>
     )
 }
