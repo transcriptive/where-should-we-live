@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
+import About from "../About/About";
 import UserProfile from "../UserProfile/UserProfile";
 import FormResults from "../FormResults/FormResults";
 import authService from "../../services/authService"
@@ -74,6 +75,15 @@ function App (props) {
             <FormResults
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/about"
+          render={({ history }) => (
+            <About
+              history={history}
             />
           )}
         />
