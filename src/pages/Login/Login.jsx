@@ -94,7 +94,7 @@ export default function Login (props) {
               </form>
               &nbsp;&nbsp;
               <Link to='/signup'>
-              <h3>Don't have an account?<p className='text-red-500 font-bold'>Sign Up</p></h3>
+              <h3>Don't have an account?<p className='text-red-500 font-bold hover:underline'>Sign Up</p></h3>
               </Link>
             </div>
           </div>
