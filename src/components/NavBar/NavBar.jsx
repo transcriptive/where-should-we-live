@@ -5,11 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css"
 
 const navigation = [
-  { name: 'Results', href: '/main', current: false, loggedIn: [true] },
+  { name: 'Where to Start', href: '/', current: false, loggedIn: [true] },
   { name: 'About', href: '/about', current: false, loggedIn: [true] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [true] },
-  { name: 'Results', href: '/main', current: false, loggedIn: [false] },
+  { name: 'Where to Start', href: '/', current: false, loggedIn: [false] },
   { name: 'About', href: '/about', current: false, loggedIn: [false] },
+  { name: 'Trends', href: '/trends', current: false, loggedIn: [false] },
   { name: 'Resources', href: '/resources', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
@@ -59,7 +60,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-asphalt text-white' : 'text-white inline-flex items-center px-1 pt-1 text-lg font-normal leading-snug'
+                            item.current ? 'bg-asphalt text-white' : 'text-white inline-flex items-center px-1 pt-1 pl-8 text-lg font-normal leading-snug hover:underline'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
