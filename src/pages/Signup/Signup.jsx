@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import authService from "../../services/authService";
-import { useForm } from '../../hooks/useForm'
+import { useForm } from "../../hooks/useForm";
 
-export default function Signup (props) {
+export default function Signup(props) {
   const history = useHistory();
   const formRef = useRef();
-  const [message, updateMessage] = useState('')
-  const [formInvalid, setValidForm] = useState(true)
+  const [message, updateMessage] = useState("");
+  const [formInvalid, setValidForm] = useState(true);
   const [formValue, handleChange] = useForm({
     email: "",
     password: "",
@@ -16,42 +16,48 @@ export default function Signup (props) {
 
   useEffect(() => {
     formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
-    updateMessage('');
+    updateMessage("");
   }, [formValue]);
-  
+
   const handleSubmit = async (e) => {
     const { handleSignupOrLogin } = props;
-    console.log(formValue.email, formValue.password)
+    console.log(formValue.email, formValue.password);
     e.preventDefault();
     try {
-      if(formValue.password !== formValue.passwordConf)
-        throw Error("Passwords must match")
+      if (formValue.password !== formValue.passwordConf)
+        throw Error("Passwords must match");
       await authService.signup(formValue);
-      handleSignupOrLogin()
+      handleSignupOrLogin();
       history.push("/");
     } catch (err) {
       updateMessage(err.message);
     }
   };
 
-    return (
-      <div className="min-h-screen bg-white flex">
+  return (
+    <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="flex justify-center">
-          <img width="150" 
-          src="/images/ConnectUsLogo.png" 
-          alt='logo'
-          />
+            <img width="150" src="/images/Connect.us-trans.png" alt="logo" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Sign Up for an account</h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+            Sign Up for an account
+          </h2>
           <div className="mt-8">
-       
             <div className="mt-6">
-              <form ref={formRef} autoComplete='off' onSubmit={handleSubmit}className="space-y-6">  
-              {message && <p>{message}</p>}
+              <form
+                ref={formRef}
+                autoComplete="off"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {message && <p>{message}</p>}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Email address
                   </label>
                   <div className="mt-1">
@@ -69,7 +75,10 @@ export default function Signup (props) {
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Password
                   </label>
                   <div className="mt-1">
@@ -87,7 +96,10 @@ export default function Signup (props) {
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="passwordConf" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="passwordConf"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Confirm Password
                   </label>
                   <div className="mt-1">
@@ -136,8 +148,13 @@ export default function Signup (props) {
                 </div>
               </form>
               &nbsp;&nbsp;
-              <Link to='/login'>
-              <h3>Already have an account? <p className='text-red-500 font-bold' href='/login'>Log in</p></h3>
+              <Link to="/login">
+                <h3>
+                  Already have an account?{" "}
+                  <p className="text-red-500 font-bold" href="/login">
+                    Log in
+                  </p>
+                </h3>
               </Link>
             </div>
           </div>
@@ -151,8 +168,5 @@ export default function Signup (props) {
         />
       </div>
     </div>
-    );
+  );
 }
-
-
-
