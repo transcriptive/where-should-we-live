@@ -4,7 +4,7 @@ import { useForm } from '../../hooks/useForm'
 
 import "./FormResults.css"
 
-export default function FormResults (props) {
+export default function FormResults(props) {
     const history = useHistory();    
     const [list, setList] = useState([])
     const [formValue, handleChange] = useForm({
