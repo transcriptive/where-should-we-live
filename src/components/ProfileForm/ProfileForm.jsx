@@ -20,7 +20,7 @@ export default function ProfileForm(props) {
   }
   
   const deleteProfile = () => profileService.deleteOne(props.account._id);
-  
+
   const dummyData = [
     "Tarrant County, TX",
     "Dallas County, TX",
@@ -52,7 +52,7 @@ export default function ProfileForm(props) {
 
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
                 <label
-                  htmlFor="first-name"
+                  htmlFor="email"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
                   Email
@@ -71,7 +71,7 @@ export default function ProfileForm(props) {
 
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
                 <label
-                  htmlFor="first-name"
+                  htmlFor="movingFrom"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
                   Moving From:
@@ -94,7 +94,7 @@ export default function ProfileForm(props) {
               <div className="sm:items-start">
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                   <label
-                    htmlFor="street-address"
+                    htmlFor="recently-browsed"
                     className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                   >
                     Recently Browsed Counties
@@ -142,7 +142,7 @@ export default function ProfileForm(props) {
 
             <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
               <label
-                htmlFor="country"
+                htmlFor="language"
                 className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
               >
                 Language
@@ -169,9 +169,9 @@ export default function ProfileForm(props) {
               </label>
               <div className="mt-1 sm:mt-0 sm:col-span-2">
                 <select
-                  id="leaderRatio"
-                  name="leaderRatio"
-                  value={state.leaderRatio}
+                  id="dateFormat"
+                  name="dateFormat"
+                  value={state.dateFormat}
                   onChange={handleChange}
                   className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                 >
