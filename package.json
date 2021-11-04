@@ -19,6 +19,7 @@
     "morgan": "^1.10.0",
     "react": "^17.0.2",
     "react-dom": "^16.13.1",
+    "react-google-maps": "^9.4.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3"
   },
