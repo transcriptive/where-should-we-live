@@ -5,10 +5,7 @@ import { useForm } from '../../hooks/useForm'
 import "./FormResults.css"
 
 export default function FormResults (props) {
-    const history = useHistory();
-    const formRef = useRef();
-    const [message, updateMessage] = useState('')
-    const [formInvalid, setValidForm] = useState(true)
+    const history = useHistory();    
     const [list, setList] = useState([])
     const [formValue, handleChange] = useForm({
         
@@ -21,7 +18,14 @@ export default function FormResults (props) {
     return (
         <div>
             <div className="grid grid-cols-3">
-                <div className="col-span-2 result-map-div">Map Results</div>
+                <div className="col-span-2 result-map-div">Map Results 
+                    {props.modelData ? props.modelData.map((value, index) => {
+                        return (<div key={index}>
+                                <p>{value.county}</p>
+                                </div>)
+                      }): "searching..."
+                    }     
+                </div>
                 <div className="col-span-1 result-info-div">
                     <h1><strong>Results</strong></h1>
                     <h3><strong>Income Needed:</strong></h3>
