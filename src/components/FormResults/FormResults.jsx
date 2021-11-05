@@ -3,32 +3,19 @@ import { Link,  } from "react-router-dom";
 import Map from "../../components/Map/Map";
 import TestMap from "../../components/TestMap/TestMap";
 import "./FormResults.css"
-var axios = require('axios');
-const sampleCounty = "Tarrant County, TX"
-
-const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES_API_KEY
-
-const BASE_URL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Tarrant County &inputtype=textquery&key=${GOOGLE_API}`
-
-function fetchPlace() {
-  console.log()
-  return fetch(BASE_URL, {
-    method:"GET",
-    cache: "no-cache",
-    headers:{
-      "Content-Type":"application/json",
-    
-      "Access-Control-Allow-Credentials": true,
-    },
-    mode:"no-cors"
-  })
-  .then(response => console.log(response.json()))
-}
+import { fetchCounty } from "../../services/googleService";
 
 
 export default function FormResults(props) {
-  
+    const [quickFacts, SetQuickFacts] = useState(null)
 
+
+    const getFacts = async (e) => {
+
+      const countyFACTS = await fetchCounty(props.modelData[1].county)
+      console.log(countyFACTS, "return first county")
+      SetQuickFacts(countyFACTS)
+    }
 
 
     return (
@@ -61,7 +48,7 @@ export default function FormResults(props) {
                 </div>
               <div className="facts-div">
                 <h1>Quick Facts</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p></p>
               </div>
               <div className="save-favs-div">
                 <h1>Saved to favorites</h1>
