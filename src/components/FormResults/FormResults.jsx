@@ -1,30 +1,56 @@
-import React, { useState, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useForm } from '../../hooks/useForm'
+import React, { useState } from "react";
+import { Link,  } from "react-router-dom";
 import Map from "../../components/Map/Map";
 import TestMap from "../../components/TestMap/TestMap";
 import "./FormResults.css"
+var axios = require('axios');
+const sampleCounty = "Tarrant County, TX"
+
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES_API_KEY
+
+const BASE_URL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Tarrant County &inputtype=textquery&key=${GOOGLE_API}`
+
+function fetchPlace() {
+  console.log()
+  return fetch(BASE_URL, {
+    method:"GET",
+    cache: "no-cache",
+    headers:{
+      "Content-Type":"application/json",
+    
+      "Access-Control-Allow-Credentials": true,
+    },
+    mode:"no-cors"
+  })
+  .then(response => console.log(response.json()))
+}
+
 
 export default function FormResults(props) {
-    const history = useHistory();    
-    const [list, setList] = useState([])
-    const [formValue, handleChange] = useForm({
-        
-    });
+  
 
-    const handleSubmit = async (e) => {
 
-    }
 
     return (
       <div>
-        {/* <TestMap countyResults={props.modelData}/> */}
         <div className="grid grid-cols-1">
           <div className="results-div">Your results</div>
+          {props.modelData
+                ? props.modelData.map((value, index) => {
+                    return (
+                      <div className="" key={index}>
+                        <p>
+                          {value.county}
+                          <input className="ml-4" type="checkbox"></input>
+                        </p>
+                      </div>
+                    );
+                  })
+                : "searching..."}
         </div>
         <div className="grid grid-cols-3">
           <div className="col-span-2 result-map-div">
-            <Map countyResults={props.modelData} />
+            <TestMap countyResults={props.modelData} />
             </div>
             <div className="result-info-div col-span-1">
               <div className="info-div">
@@ -43,18 +69,7 @@ export default function FormResults(props) {
                 <p>DUmmy Data: 2</p>
                 <p>Dummy Data: 3</p>
               </div>
-              {/* {props.modelData
-                ? props.modelData.map((value, index) => {
-                    return (
-                      <div className="" key={index}>
-                        <p>
-                          {value.county}
-                          <input className="ml-4" type="checkbox"></input>
-                        </p>
-                      </div>
-                    );
-                  })
-                : "searching..."} */}
+              
             </div>
         </div>
         <div className="grid grid-cols-1">

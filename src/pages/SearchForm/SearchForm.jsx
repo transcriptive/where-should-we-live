@@ -7,9 +7,7 @@ import "./SearchForm.css";
 
 export default function SearchForm(props) {
     const [modelData, SetModelData] = useState([]);
-    const [incomeRangeVal, setIncomeRangeVal] = useState(500000);
-    const [climateRangeVal, setClimateRangeVal] = useState(50);
-    const [popRangeVal, setPopRangeVal] = useState(500000);
+
     const [state, handleChange] = useForm({
       income: 250000,
       climate: 75,  
