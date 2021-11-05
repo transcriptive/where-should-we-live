@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from '../../hooks/useForm'
 import Map from "../../components/Map/Map";
-
+import TestMap from "../../components/TestMap/TestMap";
 import "./FormResults.css"
 
 export default function FormResults(props) {
@@ -18,7 +18,7 @@ export default function FormResults(props) {
 
     return (
       <div>
-        <Map />
+        <TestMap countyResults={props.modelData}/>
         <div className="grid grid-cols-3">
           <div className="col-span-3 result-map-div">
             
