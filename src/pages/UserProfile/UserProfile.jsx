@@ -34,7 +34,7 @@ export default function UserProfile (props) {
                         </svg>
                         <span className="text-base ml-3">Cities<br/>Explored</span>
                     </div>
-                    <div className="flex justify-center mt-5">
+                    <div className="flex justify-center mt-5 mb-5">
                         <svg className=" self-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
@@ -44,20 +44,31 @@ export default function UserProfile (props) {
                     </div>
                 </div>
             </div>
-
-            <div className='border-b border-black'></div>
-
-            <div className="top-96">
-                <span className=" w-80 h-14 left-28 top-561 text-36-bold">Recently <br/> Browsed</span>
-                <ol className=" w-1397 h-1260">
-                    <li>
-                        <a href="#" alt="Recently Browsed">Name of Place</a>
-                        {/* Add Maps Image of Place */}
-                    </li>
-                </ol>
+     
+            <div className="bg-white p-3 shadow-sm rounded-sm ">
+                <div className="flex items-center leading-8">
+                    <span className="font-bold text-24">Recently<br/>Browsed</span>
+                </div>
+                    {/* If havent browsed, add link to homepage */}
+                   
+                <div className="grid md:grid-cols-2 text-sm">
+                    <ol className="px-4 py-2 grid grid-cols-2 font-thin ">
+                        <li className=" hover:bg-gray-200">
+                            <a href="#" alt="Recently Browsed">New York City, NY</a>
+                            {/* Add Maps Image of Place in Update */}
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <a href="#" alt="Recently Browsed">Detroit, MI</a>
+                            {/* Add Maps Image of Place in Update */}
+                        </li>
+                        <li className="hover:bg-gray-200">
+                            <a href="#" alt="Recently Browsed">Seattle,WA</a>
+                            {/* Add Maps Image of Place in Update */}
+                        </li>
+                    </ol>
+                </div>
             </div>
-
-            <div class="border-b border-gray-300"></div>
+            <div class="my-4"></div>
 
             <div className='flex top-933 w-311 h-63 left-121'>
                 <span className="flex text-52">Preferences</span>
