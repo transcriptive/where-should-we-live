@@ -20,45 +20,41 @@ export default function FormResults(props) {
       <div>
         {/* <TestMap countyResults={props.modelData}/> */}
         <div className="grid grid-cols-1">
-          <div className="results-div">
-            <h1>Your results</h1>
-            <p>{props.modelData
+        </div>
+
+              <div className="results-div grid grid-flow-col">{props.modelData
                 ? props.modelData.map((value, index) => {
                     return (
-                      <div className="" key={index}>
-                        <p>
-                          {value.county}
+                      <div  className="county-card col-span-1" key={index}>
+                          <p className="smallMap"></p>
+                          <p>{value.county}</p>
                           <input className="ml-4" type="checkbox"></input>
-                        </p>
                       </div>
                     );
                   })
-                : "searching..."}</p>
-          </div>
-        </div>
+                : "searching..."}
+                </div>
+
         <div className="grid grid-cols-3">
           <div className="col-span-2 result-map-div">
-            <Map countyResults={props.modelData} />
+            <TestMap countyResults={props.modelData} />
             </div>
             <div className="result-info-div col-span-1">
               <div className="info-div">
-                <h1>Info</h1>
-                <p>Dummy Data: 1</p>
-                <p>DUmmy Data: 2</p>
-                <p>Dummy Data: 3</p>
+                <h1>County Info</h1>
+                <p>Income Needed: .0025M</p>
+                <p>Approx Ethnicity: </p>
+                <p>Business: 10%</p>
+                <p>Natural Disasters: 18%</p>
                 </div>
               <div className="facts-div">
                 <h1>Quick Facts</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-              </div>
-              <div className="save-favs-div">
-                <h1>Saved to favorites</h1>
-                <p>Dummy Data: 1</p>
-                <p>DUmmy Data: 2</p>
-                <p>Dummy Data: 3</p>
+                <p><button className="bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
               </div>
             </div>
         </div>
+
         <div className="grid grid-cols-1">
           <div className="col-span-1 pics-div">
             <h1>Pics Carousel</h1>

@@ -12,7 +12,6 @@
 
 .results-div {
   border: 1px solid orange;
-  height: 200px;
 }
 
 .result-map-div {
@@ -29,14 +28,15 @@
 }
 
 .facts-div {
+  text-align: center;
   border: 1px solid blue;
-  height: 200px;
+  max-height: 400px;
 }
 
-.save-favs-div {
+/* .save-favs-div {
   border: 1px solid green;
   height: 200px;
-}
+} */
 
 h1 {
   font-size: 30px;
@@ -60,4 +60,20 @@ h1 {
 
 .no-idea {
   border: 1px solid red;
+}
+
+.results-card {
+  border: 1px solid green;
+}
+
+.county-card {
+  border: 1px solid blue;
+  height: 100%;
+  text-align: center;
+}
+
+.smallMap {
+  background: url(stockMapOne.jpg) no-repeat;
+  background-position: center;
+  height: 25vh;
 }

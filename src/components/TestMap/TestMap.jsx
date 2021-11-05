@@ -1,10 +1,10 @@
 import React from 'react'
 import { GoogleMap, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
-const GOOGLE_API = process.env.GOOGLE_API;
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_API;
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '100%',
+  height: '100%'
 };
 
 const center = {
