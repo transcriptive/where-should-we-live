@@ -5,14 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css";
 
 const navigation = [
-  { name: "Results", href: "/main", current: false, loggedIn: [true] },
-  { name: "About", href: "/about", current: false, loggedIn: [true] },
-  { name: "Resources", href: "/resources", current: false, loggedIn: [true] },
-  { name: "Results", href: "/main", current: false, loggedIn: [false] },
-  { name: "About", href: "/about", current: false, loggedIn: [false] },
-  { name: "Resources", href: "/resources", current: false, loggedIn: [false] },
-  { name: "Sign Up", href: "/signup", current: false, loggedIn: [false] },
-];
+  { name: 'Where to Start', href: '/', current: false, loggedIn: [true, false] },
+  { name: 'About', href: '/about', current: false, loggedIn: [true, false] },
+  { name: 'Resources', href: '/resources', current: false, loggedIn: [true, false] },
+  { name: 'Trends', href: '/trends', current: false, loggedIn: [false] },
+  { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
+]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -57,22 +55,17 @@ export default function NavBar(props) {
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation
-                    .filter((item) => item.loggedIn.includes(loggedIn))
-                    .map((item, idx) => (
-                      <a
-                        key={idx}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-asphalt text-white"
-                            : "text-white inline-flex items-center px-1 pt-1 text-lg font-normal leading-snug"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                  {navigation.filter(item => item.loggedIn.includes(loggedIn)).map((item, idx) => (
+                        <a key={idx}
+                          href={item.href}
+                          className={classNames(
+                            item.current ? 'bg-asphalt text-white' : 'text-white inline-flex items-center px-1 pt-1 pl-8 text-lg font-normal leading-snug hover:underline'
+                          )}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
                 </div>
                 {/*<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                    Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 

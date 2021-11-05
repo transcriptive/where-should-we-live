@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
+import About from "../About/About";
 import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService";
 import SearchForm from "../SearchForm/SearchForm";
@@ -76,6 +77,15 @@ function App (props) {
             <Profile
               history={history}
               
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/about"
+          render={({ history }) => (
+            <About
+              history={history}
             />
           )}
         />
