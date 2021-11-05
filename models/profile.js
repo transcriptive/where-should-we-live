@@ -14,7 +14,6 @@ const profileSchema = new Schema(
       type: [String],
       enum: ["DD-MM-YYYY", "MM-DD-YYYY", ],
     },
-    timezoneAuto: Boolean,
     groups: [String],
     byUser: [{type: Schema.Types.ObjectId, ref: 'User'}],    
   },

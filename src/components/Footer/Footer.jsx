@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Footer=() =>(
-    <div className="max-w-7xl mx-auto bg-primary font-montserrat-semibold text-asphalt bottom-0 ">
-        <div className="relative flex justify-between h-1/4">    
-            <div className="w-1/5  flex-initial m-auto self-center">
-                <img src="../images/ConnectUsLogo.png" alt="Connect.Us"/>     
-            </div>
-        </div>
+const Footer = () => (
+  <div className="max-w-7xl mx-auto bg-primary font-montserrat-semibold text-asphalt bottom-0 ">
+    <div className="relative flex justify-between h-1/4">
+      <div className="w-1/5  flex-initial m-auto self-center">
+        <img src="../images/Connect.us-trans.png" alt="Connect.Us" />
+      </div>
     </div>
-)
+  </div>
+);
 export default Footer;
