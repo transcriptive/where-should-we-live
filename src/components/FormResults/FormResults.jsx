@@ -18,12 +18,32 @@ export default function FormResults(props) {
 
     return (
       <div>
-        <TestMap countyResults={props.modelData}/>
+        {/* <TestMap countyResults={props.modelData}/> */}
+        <div className="grid grid-cols-1">
+          <div className="results-div">Your results</div>
+        </div>
         <div className="grid grid-cols-3">
-          <div className="col-span-3 result-map-div">
-            
-            <div className="mt-6">
-              {props.modelData
+          <div className="col-span-2 result-map-div">
+            <Map countyResults={props.modelData} />
+            </div>
+            <div className="result-info-div col-span-1">
+              <div className="info-div">
+                <h1>Dummy data div</h1>
+                <p>Dummy Data: 1</p>
+                <p>DUmmy Data: 2</p>
+                <p>Dummy Data: 3</p>
+                </div>
+              <div className="facts-div">
+                <h1>Quick Facts</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              </div>
+              <div className="save-favs-div">
+                <h1>Saved to favorites</h1>
+                <p>Dummy Data: 1</p>
+                <p>DUmmy Data: 2</p>
+                <p>Dummy Data: 3</p>
+              </div>
+              {/* {props.modelData
                 ? props.modelData.map((value, index) => {
                     return (
                       <div className="" key={index}>
@@ -34,12 +54,14 @@ export default function FormResults(props) {
                       </div>
                     );
                   })
-                : "searching..."}
+                : "searching..."} */}
             </div>
-          </div>
         </div>
-        <div className="grid grid-cols-2">
-          <div className="col-span-1 surrounding-div">Surrounding Towns</div>
+        <div className="grid grid-cols-1">
+          <div className="col-span-1 pics-div">
+            <h1>Pics Carousel</h1>
+            
+            </div>
           <div className="col-span-1 saved-div">
             <h1>Saved Cities</h1>
             {/* conditional render for logged in/out users */}
@@ -52,9 +74,9 @@ export default function FormResults(props) {
             }
           </div>
         </div>
-        <div className="grid grid-cols-1">
+        {/* <div className="grid grid-cols-1">
           <div className="col-span-1 recent-div">Recently Browsed</div>
-        </div>
+        </div> */}
       </div>
     );
 }
