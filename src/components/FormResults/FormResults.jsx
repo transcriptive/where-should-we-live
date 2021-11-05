@@ -1,49 +1,28 @@
-import React, { useState, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useForm } from '../../hooks/useForm'
+import React, { useState } from "react";
+import { Link,  } from "react-router-dom";
 import Map from "../../components/Map/Map";
 import TestMap from "../../components/TestMap/TestMap";
 import "./FormResults.css"
+import { fetchCounty } from "../../services/googleService";
+
 
 export default function FormResults(props) {
-    const history = useHistory();    
-    const [list, setList] = useState([])
-    const [formValue, handleChange] = useForm({
-        
-    });
+    const [quickFacts, SetQuickFacts] = useState(null)
 
-    const handleSubmit = async (e) => {
 
+    const getFacts = async (e) => {
+
+      const countyFACTS = await fetchCounty(props.modelData[1].county)
+      console.log(countyFACTS, "return first county")
+      SetQuickFacts(countyFACTS)
     }
+
 
     return (
       <div>
-        {/* <TestMap countyResults={props.modelData}/> */}
         <div className="grid grid-cols-1">
           <div className="results-div">Your results</div>
-        </div>
-        <div className="grid grid-cols-3">
-          <div className="col-span-2 result-map-div">
-            <Map countyResults={props.modelData} />
-            </div>
-            <div className="result-info-div col-span-1">
-              <div className="info-div">
-                <h1>Dummy data div</h1>
-                <p>Dummy Data: 1</p>
-                <p>DUmmy Data: 2</p>
-                <p>Dummy Data: 3</p>
-                </div>
-              <div className="facts-div">
-                <h1>Quick Facts</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-              </div>
-              <div className="save-favs-div">
-                <h1>Saved to favorites</h1>
-                <p>Dummy Data: 1</p>
-                <p>DUmmy Data: 2</p>
-                <p>Dummy Data: 3</p>
-              </div>
-              {/* {props.modelData
+          {props.modelData
                 ? props.modelData.map((value, index) => {
                     return (
                       <div className="" key={index}>
@@ -54,7 +33,30 @@ export default function FormResults(props) {
                       </div>
                     );
                   })
-                : "searching..."} */}
+                : "searching..."}
+        </div>
+        <div className="grid grid-cols-3">
+          <div className="col-span-2 result-map-div">
+            <TestMap countyResults={props.modelData} />
+            </div>
+            <div className="result-info-div col-span-1">
+              <div className="info-div">
+                <h1>Dummy data div</h1>
+                <p>Dummy Data: 1</p>
+                <p>DUmmy Data: 2</p>
+                <p>Dummy Data: 3</p>
+                </div>
+              <div className="facts-div">
+                <h1>Quick Facts</h1>
+                <p></p>
+              </div>
+              <div className="save-favs-div">
+                <h1>Saved to favorites</h1>
+                <p>Dummy Data: 1</p>
+                <p>DUmmy Data: 2</p>
+                <p>Dummy Data: 3</p>
+              </div>
+              
             </div>
         </div>
         <div className="grid grid-cols-1">
