@@ -7,8 +7,8 @@ const center = {
 };
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '850px',
+  height: '599px'
 };
 
 export default function Map(props) {
