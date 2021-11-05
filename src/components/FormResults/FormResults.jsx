@@ -20,7 +20,21 @@ export default function FormResults(props) {
       <div>
         {/* <TestMap countyResults={props.modelData}/> */}
         <div className="grid grid-cols-1">
-          <div className="results-div">Your results</div>
+          <div className="results-div">
+            <h1>Your results</h1>
+            <p>{props.modelData
+                ? props.modelData.map((value, index) => {
+                    return (
+                      <div className="" key={index}>
+                        <p>
+                          {value.county}
+                          <input className="ml-4" type="checkbox"></input>
+                        </p>
+                      </div>
+                    );
+                  })
+                : "searching..."}</p>
+          </div>
         </div>
         <div className="grid grid-cols-3">
           <div className="col-span-2 result-map-div">
@@ -28,7 +42,7 @@ export default function FormResults(props) {
             </div>
             <div className="result-info-div col-span-1">
               <div className="info-div">
-                <h1>Dummy data div</h1>
+                <h1>Info</h1>
                 <p>Dummy Data: 1</p>
                 <p>DUmmy Data: 2</p>
                 <p>Dummy Data: 3</p>
@@ -43,18 +57,6 @@ export default function FormResults(props) {
                 <p>DUmmy Data: 2</p>
                 <p>Dummy Data: 3</p>
               </div>
-              {/* {props.modelData
-                ? props.modelData.map((value, index) => {
-                    return (
-                      <div className="" key={index}>
-                        <p>
-                          {value.county}
-                          <input className="ml-4" type="checkbox"></input>
-                        </p>
-                      </div>
-                    );
-                  })
-                : "searching..."} */}
             </div>
         </div>
         <div className="grid grid-cols-1">
