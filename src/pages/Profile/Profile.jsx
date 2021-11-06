@@ -55,19 +55,70 @@ export default function Profile(props) {
   ]
 
   return (
-    <main className="w-5/6 mt-10 mx-auto">
-      {/* FORM START */}
+    <main className="w-5/6 mx-auto flex justify-center items-center">
+    {/* Left User Info Section */}
+      <div className="bg-primary bg-opacity-30 rounded-lg p-5">
+        <div className="w-full flex flex-col justify-start gap-6 ">
+          <div className="image drop-shadow">
+            <img className="h-48 w-48 rounded-full object-cover mx-auto" 
+                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="User Image" />
+          </div>
+
+          <div className=" ">
+            <div className="">
+                <span className="text-28 font-bold leading-8 ">Hi, Carolina! </span>
+            </div>
+
+            <div className=" pt-2 ">
+                <span className="text-base">Hometown: </span>
+                <span className="text-base">Santiago, Chile</span>
+                <div className='border-b border-black w-1/2 mx-auto mt-2'></div>
+            </div>   
+
+            <div className="flex justify-center mt-5 ">
+                <svg className=" self-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/>
+                    <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"/>
+                </svg>
+                <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
+                <span className="text-base">Cities<br/>Explored</span>
+            </div>
+            <div className="flex justify-center mt-5 mb-2">
+                <svg className="self-center " xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
+                <span className="text-base ">Groups<br/>Explored</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Edit Button */}
+        <div class="w-1/5 h-auto mb-0 float-right">
+          <div class="flex-1 h-full">
+            <div class="flex items-center justify-center flex-1 h-full p-2 text-white shadow rounded-lg bg-primary hover:bg-yolk focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yolk">
+              <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black-800" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+   {/* FORM START */}
       <form ref={formRef} onSubmit={handleSubmit}
-        className="space-y-8 divide-y divide-gray-500"
+        className=""
       >
         {/* Styling for FORM divs begins */}
 
-        <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
+        <div className="">
           {/* For simplicity, each section is seperated by its own empty div */}
-          <div className="space-y-6 sm:space-y-5">
+          <div className="">
             {/* TOP SECTION  */}
-            <div>
-              <div className="sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:pt-5">
+              {/* <div className="sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:pt-5">
                 <h1 className="mt-1 sm:mt-0 sm:col-span-2">
                   Welcome insert name, 
                 </h1>
@@ -112,8 +163,8 @@ export default function Profile(props) {
                     className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
-              </div>
-            </div>
+              </div> */}
+            
             {/*  RECENTLY BROWSED SECTION */}
             {/* using dummy data and simple stlying to get work started */}
             <div>
@@ -121,23 +172,23 @@ export default function Profile(props) {
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                   <label
                     htmlFor="recently-browsed"
-                    className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                    className="block text-24 font-medium text-gray-700 sm:mt-px sm:pt-2"
                   >
-                    Recently Browsed Counties
+                    Recently Browsed 
                   </label>
                   
                 </div>
 
                 {/* Map over recentCountries db field for user */}
-                <div className="mt-4 sm:mt-4 sm:col-span-1 flex justify-center ">
+                <div className="mt-4 sm:mt-4 sm:col-span-1 flex justify-center">
                 { dummyData ? dummyData.map((item, key) => {
                     return (
-                      <div className="py-2 px-2 ml-6 w-1/5 h-28 border border-black" key={key}>
-                        <p className=''>{item}</p>
+                      <div className="py-2 px-2 ml-6 w-1/5 h-28 border border-black hover:underline" key={key}>
+                        <p className='mt-20'>{item}</p>
                       </div>
                     );
                   })
-                : "No recently browsed counties"
+                : "Search for an ideal area HERE."
                 }  
                 </div>
               </div>
