@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+
 
 const containerStyle = {
   width: '100%',
@@ -19,7 +21,7 @@ function TestMap() {
 
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDD6p-ZVUZ6NEM4m365ERb0MgpFPnTas74"
+      googleMapsApiKey={GOOGLE_API}
       libraries={libraries}
     >
       <GoogleMap
