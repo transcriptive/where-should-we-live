@@ -9,7 +9,7 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 40,
+  lat: 50,
   lng: -101
 };
 
@@ -21,13 +21,13 @@ function TestMap() {
 
   return (
     <LoadScript
-      googleMapsApiKey={GOOGLE_API}
+      googleMapsApiKey='AIzaSyDD6p-ZVUZ6NEM4m365ERb0MgpFPnTas74'
       libraries={libraries}
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={7}
+        zoom={5}
       >
         <StandaloneSearchBox
         onLoad={setSearchResult}
