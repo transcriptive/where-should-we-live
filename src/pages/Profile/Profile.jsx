@@ -55,9 +55,10 @@ export default function Profile(props) {
   ]
 
   return (
-    <main className="max-w-7xl  mx-auto flex justify-center items-center">
+    <main className="mx-auto flex justify-center items-center">
       {/* Left User Info Section */}
-      <div className="bg-primary bg-opacity-30 rounded-lg p-5 mt-2 mb-2">
+      <div className="grid grid-flow-col gap-4 ">
+      <div className="bg-primary bg-opacity-30 rounded-lg p-5 mb-2 mt-3 row-span-3">
         <div className="w-full flex flex-col justify-start gap-4 ">
           <div className="image drop-shadow">
             <img className="h-48 w-48 rounded-full object-cover mx-auto" 
@@ -67,25 +68,19 @@ export default function Profile(props) {
           <div className=" ">
             <span className="md:text-sm text-28 font-bold leading-8 ">Hi, Carolina! </span>
 
-            <div className=" pt-2">
+            <div className="md:text-xs pt-2">
                 <span className="text-base md:text-xs">Hometown: </span>
                 <span className="text-base md:text-xs">Santiago, Chile</span>
                 <div className='border-b border-black w-1/2 mx-auto mt-2'></div>
             </div>   
 
             <div className="flex justify-center mt-5 ">
-                <svg className=" self-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/>
-                    <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"/>
-                </svg>
-                <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
-                <span className="text-base">Cities<br/>Explored</span>
+              <img className="w-10 h-10" src="https://img.icons8.com/ios/100/000000/city-block.png"/>
+              <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
+              <span className="text-base">Cities<br/>Explored</span>
             </div>
             <div className="flex justify-center mt-5 mb-2">
-                <svg className="self-center " xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+            <img className="w-10 h-10" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-group-advertising-kiranshastry-lineal-kiranshastry.png"/>
                 <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
                 <span className="text-base ">Groups<br/>Explored</span>
             </div>
@@ -108,12 +103,12 @@ export default function Profile(props) {
       </div>
       {/*  RECENTLY BROWSED SECTION */}
       {/* using dummy data and simple stlying to get work started */}
-      <div className="w-5/6 order-1 flex flex-col justify-start gap-7">
-        <div className="flex justify-start gap-7 bg-primary bg-opacity-30 rounded-lg p-5 ml-2 ">
-          <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+      <div className="col-span-2">
+        <div className="flex bg-primary bg-opacity-30 rounded-lg p-3 mt-3">
+          <div className="flex justify-start">
             <label
               htmlFor="recently-browsed"
-              className="block text-24 font-medium text-black self-center"
+              className="text-24 font-bold"
             >
               Recently Browsed 
             </label>
@@ -134,9 +129,9 @@ export default function Profile(props) {
         </div>
       <div>
       {/* Preference Section */}
-        <div className="flex justify-start bg-primary bg-opacity-30 rounded-lg p-1 ml-2 order-2 ">
-          <div className='flex justify-start '>
-                <span className="text-24 font-medium">Preferences</span>
+        <div className="bg-primary bg-opacity-30 rounded-lg p-3 col-span-2 mt-3 ">
+          <div className='flex justify-start'>
+                <span className="text-24 font-bold">Preferences</span>
                 <div className="grid grid-cols-3 gap-36">
                     <div className="mt-5 flex ">
                       <fieldset className="mb-10 mt-5">
@@ -220,8 +215,46 @@ export default function Profile(props) {
               </div>
             </div>
         </div>
+        {/* GROUPS SECTION */}
+        <div className="col-span-2 mt-3 h-max">
+          <div className="grid grid-cols-2 place-content-center gap-x-3">
+            <div className="justify-center bg-primary bg-opacity-30 rounded-lg"> 
+              <div className="flex justify-center mt-5 ">
+                <img className="w-8 h-8" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-group-advertising-kiranshastry-lineal-kiranshastry.png"/>
+                <p className="text-24 font-bold"> Groups </p>
+                </div>
+                <ul className="flex flex-col p-4">
+
+                  <li className=" mb-2 items-center items-start">
+                    <div className="bg-gray-200 w-full">
+                        <span className="font-medium p-2">Venezuelans in Miami</span>
+                    </div>
+                  </li>
+
+                  <li className=" mb-2 items-center items-start">
+                    <div className="bg-gray-200 w-full">
+                        <span className="font-medium p-2">Job Seekers in Miami</span>
+                    </div>
+                  </li>
+
+                  <li className=" mb-2 items-center items-start">
+                    <div className="bg-gray-200 w-full">
+                        <span className="font-medium p-2">Healthcare</span>
+                    </div>
+                  </li>
+
+                </ul>
+            </div>
+              <div className="bg-primary bg-opacity-30 rounded-lg ">
+                <div className="flex justify-center mt-5 mb-2">
+                  <img className="w-8 h-8" src="https://img.icons8.com/ios/100/000000/binoculars.png"/>
+                  <p className="text-24 font-bold"> Saved Searches </p>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
       </div>
-   
     </main>
   );
 }
