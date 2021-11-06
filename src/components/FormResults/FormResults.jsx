@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link,  } from "react-router-dom";
-import Map from "../../components/Map/Map";
-import TestMap from "../../components/TestMap/TestMap";
+import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
 import { fetchCounty } from "../../services/googleService";
 
@@ -50,7 +49,7 @@ export default function FormResults(props) {
 
         <div className="grid grid-cols-3">
           <div className="col-span-2 result-map-div">
-            <TestMap countyResults={props.modelData} />
+            <GoogleMap countyResults={props.modelData} />
             </div>
             <div className="result-info-div col-span-1">
               <div className="info-div">
