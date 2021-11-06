@@ -3,6 +3,7 @@ import { Link,  } from "react-router-dom";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
 import { fetchCountyID } from "../../services/googleService";
+import { fetchCountyInfo } from "../../services/wikiService";
 
 
 export default function FormResults(props) {
