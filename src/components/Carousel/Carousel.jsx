@@ -1,5 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "./Carousel.css"
 
 const responsive = {
   desktop: {
@@ -18,26 +19,74 @@ const responsive = {
     slidesToSlide: 1 // optional, default to 1.
   }
 };
-<Carousel
-  swipeable={false}
-  draggable={false}
-  showDots={true}
-  responsive={responsive}
-  ssr={true} // means to render carousel on server-side.
-  infinite={true}
-  autoPlay={this.props.deviceType !== "mobile" ? true : false}
-  autoPlaySpeed={1000}
-  keyBoardControl={true}
-  customTransition="all .5"
-  transitionDuration={500}
-  containerClass="carousel-container"
-  removeArrowOnDeviceType={["tablet", "mobile"]}
-  deviceType={this.props.deviceType}
-  dotListClass="custom-dot-list-style"
-  itemClass="carousel-item-padding-40-px"
->
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
-</Carousel>;
+
+const Image = ({ url, alt }) => (
+  <img draggable={false} style={{padding: '1rem', width: '100%', height: '100%',position: 'relative'}} src={url} alt={alt} />
+)
+
+const images = [
+  "https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1549396535-c11d5c55b9df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550133730-695473e544be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550338861-b7cfeaf8ffd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550223640-23097fc71cb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550353175-a3611868086b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550330039-a54e15ed9d33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1549737328-8b9f3252b927?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1549985908-597a09ef0a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+];
+
+
+const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
+  const { carouselState: { currentSlide } } = rest;
+  return (
+    <div className="carousel-button-group"> 
+      <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} />
+      <button onClick={() => next()} />
+    </div>
+    );
+  };
+
+
+
+export default function ResultsCarousel(props) {
+
+  return(
+      <div className='outside-container'>
+        <Carousel
+          swipeable={false}
+          draggable={false}
+          showDots={true}
+          responsive={responsive}
+          ssr={false} // means to render carousel on server-side.
+          infinite={true}
+          autoPlay={false}
+          autoPlaySpeed={0}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          // deviceType={this.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          customButtonGroup={<ButtonGroup />}
+          renderButtonGroupOutside={true}
+        >
+        {images.slice(0, 5).map(image => {
+                return (
+                  <div>
+                  <Image 
+                    url={image}
+                  />
+                  </div>
+                );
+        })} 
+
+        </Carousel>
+    </div>
+  )
+}

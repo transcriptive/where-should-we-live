@@ -4,7 +4,7 @@ import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
 import { fetchCountyID } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
-
+import ResultsCarousel from "../../components/Carousel/Carousel"
 
 export default function FormResults(props) {
     const [selectedID, SetSelectedID] = useState(null)
@@ -29,18 +29,21 @@ export default function FormResults(props) {
               <h1>Your County Results</h1>
               <h2>Click to preview </h2>
             </div>
-
-            <div className="results-div grid grid-flow-col">{props.modelData
-              ? props.modelData.map((value, index) => {
-                  return (
-                    <div  className="county-card col-span-1" key={index}>
-                        <p className="smallMap"></p>
-                        <p>{value.county}</p>
-                    </div>
-                  );
-                })
-              : "searching..."}
+            <div className='my-10'>
+            <ResultsCarousel results={props.modelData}/>
             </div>
+            
+              {/* <div className="results-div grid grid-flow-col">{props.modelData
+               ? props.modelData.map((value, index) => {
+                   return ( 
+                     <div  className="county-card col-span-1" key={index}>
+                         <p className="smallMap"></p>
+                         <p>{value.county}</p>
+                     </div>
+                   );
+                 })
+               : "searching..."}
+             </div> */}
 
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
