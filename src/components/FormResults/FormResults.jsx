@@ -9,7 +9,7 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 export default function FormResults(props) {
     const [selectedID, SetSelectedID] = useState(null)
 
-    // console.log(props.modelData, 'form result props')
+    console.log(props.modelData, 'form result props')
     const countyTEST = "Tarrant County, TX"
     // console.log(selectedID, "Waiting for ID...")
 
@@ -24,16 +24,18 @@ export default function FormResults(props) {
 
     return (
       <div>
+        
         <div className="grid grid-cols-1">
-            <div className="results-div mb-2">
+            <div className=" mb-2">
               <h1>Your County Results</h1>
               <h2>Click to preview </h2>
             </div>
-            <div className='my-10'>
+            <div className='results-div my-10'>
             <ResultsCarousel results={props.modelData}/>
             </div>
             
-              {/* <div className="results-div grid grid-flow-col">{props.modelData
+              {/* <div className="results-div grid grid-flow-col">
+              {props.modelData
                ? props.modelData.map((value, index) => {
                    return ( 
                      <div  className="county-card col-span-1" key={index}>
