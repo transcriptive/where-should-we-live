@@ -2,21 +2,27 @@ import React, { useState } from "react";
 import { Link,  } from "react-router-dom";
 import Map from "../../components/Map/Map";
 import TestMap from "../../components/TestMap/TestMap";
-import "./FormResults.css"
 import { fetchCounty } from "../../services/googleService";
+import { fetchCountyInfo } from "../../services/wikiService";
+import "./FormResults.css"
 
 
 export default function FormResults(props) {
-    const [quickFacts, SetQuickFacts] = useState(null)
+  const [quickFacts, SetQuickFacts] = useState(null)
 
+  // const getFacts = async (e) => {
 
-    const getFacts = async (e) => {
+  //   const countyFACTS = await fetchCounty(props.modelData[1].county)
+  //   console.log(countyFACTS, "return first county")
+  //   SetQuickFacts(countyFACTS)
+  // }
 
-      const countyFACTS = await fetchCounty(props.modelData[1].county)
-      console.log(countyFACTS, "return first county")
-      SetQuickFacts(countyFACTS)
-    }
-
+  const getFacts = async () => {
+    console.log(props.modelData);
+    const countyFacts = await fetchCountyInfo(props.modelData[0].county)
+    console.log(countyFacts);
+    SetQuickFacts(countyFacts)
+  }
 
     return (
       <div>
@@ -48,7 +54,7 @@ export default function FormResults(props) {
                 </div>
               <div className="facts-div">
                 <h1>Quick Facts</h1>
-                <p></p>
+                <p>{ quickFacts }</p>
               </div>
               <div className="save-favs-div">
                 <h1>Saved to favorites</h1>

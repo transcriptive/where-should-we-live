@@ -11,7 +11,6 @@ export function fetchCounty(selectedCounty) {
     cache: "no-cache",
     headers:{
       "Content-Type":"application/json",
-    
       "Access-Control-Allow-Credentials": true,
     },
     mode:"no-cors"
