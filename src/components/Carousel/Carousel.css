@@ -1,0 +1,13 @@
+.county-card {
+  height: 100%;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.smallMap {
+  background: url(stockMapOne.jpg) no-repeat;
+  background-position: center;
+  height: 25vh;
+}

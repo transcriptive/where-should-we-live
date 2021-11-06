@@ -9,18 +9,18 @@ import { fetchCountyInfo } from "../../services/wikiService";
 export default function FormResults(props) {
     const [selectedID, SetSelectedID] = useState(null)
 
-
+    // console.log(props.modelData, 'form result props')
     const countyTEST = "Tarrant County, TX"
-    console.log(selectedID, "Waiting for ID...")
+    // console.log(selectedID, "Waiting for ID...")
 
-    useEffect(() => {
-      async function getPlaceID() {
-        const countyPlaceID = await fetchCountyID(countyTEST)
-        console.log(countyPlaceID, "returning county Place ID")
-        SetSelectedID(countyPlaceID)
-      }
-      getPlaceID()
-    }, [])
+    // useEffect(() => {
+    //   async function getPlaceID() {
+    //     const countyPlaceID = await fetchCountyID(countyTEST)
+    //     console.log(countyPlaceID, "returning county Place ID")
+    //     SetSelectedID(countyPlaceID)
+    //   }
+    //   getPlaceID()
+    // }, [])
 
     return (
       <div>
@@ -63,7 +63,7 @@ export default function FormResults(props) {
             </div>
 
             <div className="grid grid-cols-1">
-              <div className="col-span-1 pics-div">
+              {/* <div className="col-span-1 pics-div">
               <div className="carousel relative shadow-2xl bg-white">
                 <div className="carousel-inner relative overflow-hidden w-full">
 
@@ -102,10 +102,10 @@ export default function FormResults(props) {
                     </li>
                   </ol>
 
-              </div>
-              </div>
-                
                 </div>
+                </div>
+                
+                </div> */}
               <div className="col-span-1 saved-div">
                 <h1>Saved Cities</h1>
                 {/* conditional render for logged in/out users */}
