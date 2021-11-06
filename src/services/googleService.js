@@ -4,7 +4,7 @@ const BASE_URL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/j
 
 const EXT_URL = `&inputtype=textquery&key=${GOOGLE_API}`
 
-export function fetchCounty(selectedCounty) {
+export function fetchCountyID(selectedCounty) {
   console.log()
   return fetch(BASE_URL + selectedCounty + EXT_URL, {
     method:"GET",
