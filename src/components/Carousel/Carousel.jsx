@@ -1,6 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "./Carousel.css"
+import "./Carousel.css";
+import MapOne from './stockMapOne.jpg';
 
 const responsive = {
   desktop: {
@@ -21,7 +22,7 @@ const responsive = {
 };
 
 const Image = ({ url, alt }) => (
-  <img draggable={false} style={{padding: '1rem', width: '100%', height: '100%',position: 'relative'}} src={url} alt={alt} />
+  <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
 )
 
 const images = [
@@ -50,16 +51,19 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
     );
   };
 
+  const arr = [1,2,3,4,5,6,7,8]
 
 
 export default function ResultsCarousel(props) {
 
   return(
-      <div className='outside-container'>
+      // <div className='outside-container w-full'>
         <Carousel
+          centerMode={true}
+          arrows={true}	
           swipeable={false}
           draggable={false}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={false} // means to render carousel on server-side.
           infinite={true}
@@ -74,9 +78,9 @@ export default function ResultsCarousel(props) {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
           customButtonGroup={<ButtonGroup />}
-          renderButtonGroupOutside={true}
+          renderButtonGroupOutside={false}
         >
-        {images.slice(0, 5).map(image => {
+        {/* {images.slice(0, 5).map(image => {
                 return (
                   <div>
                   <Image 
@@ -84,9 +88,39 @@ export default function ResultsCarousel(props) {
                   />
                   </div>
                 );
-        })} 
+        })}  */}
+
+        {/* const Image = ({ url, alt }) => (
+          <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
+        ) */}
+
+
+        {arr.map((value, index) => {
+          return (
+            <div className={"px-4"}>
+              <img 
+                src={MapOne}
+                className={'single-result'}
+                alt={index} 
+                key={index} 
+              ></img>
+              <p className={'ml-4 flex justify-start'}>County {value}</p>
+            </div>
+          )
+        })}
+
+
+         {props.modelData?.county.map((value, index) => {
+            return ( 
+              <div className="single-result" key={index}>
+                  <p>{value.county}</p>
+              </div>
+                   );
+                 })
+          }
+                
 
         </Carousel>
-    </div>
+    // </div>
   )
 }

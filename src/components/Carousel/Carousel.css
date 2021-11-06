@@ -1,21 +1,21 @@
 .carousel-container {
   height: 200px;
-  width: 90vw;
+  /* width: 7/8; */
   border: 2px;
   border-color: rgb(238, 0, 0);
+  margin: auto;
 }
 
-.outside-container {
- 
-}
 
 .single-result {
-  background: url(stockMapOne.jpg) no-repeat;
+  background: no-repeat; 
   background-position: center;
-  height: 100vh;
+  position: relative; 
+  padding: 0px; 
+  margin: auto; 
+  height: 180px;
 }
 
 .carousel-button-group {
   position: absolute;
-  width: 100%;
 }
