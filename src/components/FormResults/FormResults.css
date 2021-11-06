@@ -1,20 +1,3 @@
-.col-span-1 {
-  border: 1px solid black;
-}
-
-.col-span-2 {
-  border: 1px solid black;
-}
-
-.col-span-3 {
-  border: 1px solid black;
-}
-
-.results-div {
-  border: 1px solid orange;
-  height: 200px;
-}
-
 .result-map-div {
   height: 600px;
 }
@@ -24,18 +7,15 @@
 }
 
 .info-div {
-  border: 1px solid red;
   height: 200px;
+  text-align: center;
+  margin: 15px;
 }
 
 .facts-div {
-  border: 1px solid blue;
-  height: 200px;
-}
-
-.save-favs-div {
-  border: 1px solid green;
-  height: 200px;
+  text-align: center;
+  max-height: 400px;
+  margin: 15px;
 }
 
 h1 {
@@ -58,6 +38,74 @@ h1 {
   height: 200px;
 }
 
-.no-idea {
-  border: 1px solid red;
+.results-card {
+  border: 1px solid green;
+}
+
+.county-card {
+  height: 100%;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.smallMap {
+  background: url(stockMapOne.jpg) no-repeat;
+  background-position: center;
+  height: 25vh;
+}
+
+.fav-btn {
+  margin-top: 25px;
+}
+
+.carousel {
+  height: 300px;
+}
+
+.carousel-open {
+  border: 1px solid purple;
+}
+
+.carousel-open:checked + .carousel-item {
+  position: static;
+  opacity: 100;
+}
+.carousel-item {
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
+}
+#carousel-1:checked ~ .control-1,
+#carousel-2:checked ~ .control-2,
+#carousel-3:checked ~ .control-3 {
+  display: block;
+}
+.carousel-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+#carousel-1:checked
+  ~ .control-1
+  ~ .carousel-indicators
+  li:nth-child(1)
+  .carousel-bullet,
+#carousel-2:checked
+  ~ .control-2
+  ~ .carousel-indicators
+  li:nth-child(2)
+  .carousel-bullet,
+#carousel-3:checked
+  ~ .control-3
+  ~ .carousel-indicators
+  li:nth-child(3)
+  .carousel-bullet {
+  color: #2b6cb0; /*Set to match the Tailwind colour you want the active one to be */
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_API;
+
 
 const containerStyle = {
   width: '100%',
