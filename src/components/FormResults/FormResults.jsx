@@ -1,25 +1,39 @@
-import React, { useState, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useForm } from '../../hooks/useForm'
+import React, { useState } from "react";
+import { Link,  } from "react-router-dom";
 import Map from "../../components/Map/Map";
 import TestMap from "../../components/TestMap/TestMap";
 import "./FormResults.css"
+import { fetchCounty } from "../../services/googleService";
+
 
 export default function FormResults(props) {
-    const history = useHistory();    
-    const [list, setList] = useState([])
-    const [formValue, handleChange] = useForm({
-        
-    });
+    const [quickFacts, SetQuickFacts] = useState(null)
 
-    const handleSubmit = async (e) => {
 
+    const getFacts = async (e) => {
+
+      const countyFACTS = await fetchCounty(props.modelData[1].county)
+      console.log(countyFACTS, "return first county")
+      SetQuickFacts(countyFACTS)
     }
+
 
     return (
       <div>
-        {/* <TestMap countyResults={props.modelData}/> */}
         <div className="grid grid-cols-1">
+          <div className="results-div">Your results</div>
+          {props.modelData
+                ? props.modelData.map((value, index) => {
+                    return (
+                      <div className="" key={index}>
+                        <p>
+                          {value.county}
+                          <input className="ml-4" type="checkbox"></input>
+                        </p>
+                      </div>
+                    );
+                  })
+                : "searching..."}
         </div>
 
               <div className="results-div grid grid-flow-col">{props.modelData
