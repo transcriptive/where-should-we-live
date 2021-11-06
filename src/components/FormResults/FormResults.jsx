@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { Link,  } from "react-router-dom";
+import Map from "../../components/Map/Map";
+import TestMap from "../../components/TestMap/TestMap";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
-import "./FormResults.css"
 import { fetchCounty } from "../../services/googleService";
+import { fetchCountyInfo } from "../../services/wikiService";
+import "./FormResults.css"
 
 
 export default function FormResults(props) {
-    const [quickFacts, SetQuickFacts] = useState(null)
+  const [quickFacts, SetQuickFacts] = useState(null)
 
+  // const getFacts = async (e) => {
 
-    const getFacts = async (e) => {
+  //   const countyFACTS = await fetchCounty(props.modelData[1].county)
+  //   console.log(countyFACTS, "return first county")
+  //   SetQuickFacts(countyFACTS)
+  // }
 
-      const countyFACTS = await fetchCounty(props.modelData[1].county)
-      console.log(countyFACTS, "return first county")
-      SetQuickFacts(countyFACTS)
-    }
-
+  const getFacts = async () => {
+    console.log(props.modelData);
+    const countyFacts = await fetchCountyInfo(props.modelData[0].county)
+    console.log(countyFacts);
+    SetQuickFacts(countyFacts)
+  }
 
     return (
       <div>
@@ -61,7 +69,7 @@ export default function FormResults(props) {
                 </div>
               <div className="facts-div">
                 <h1>Quick Facts</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>{ quickFacts }</p>
                 <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
               </div>
             </div>
