@@ -1,0 +1,21 @@
+.carousel-container {
+  height: 200px;
+  /* width: 7/8; */
+  border: 2px;
+  border-color: rgb(238, 0, 0);
+  margin: auto;
+}
+
+
+.single-result {
+  background: no-repeat; 
+  background-position: center;
+  position: relative; 
+  padding: 0px; 
+  margin: auto; 
+  height: 180px;
+}
+
+.carousel-button-group {
+  position: absolute;
+}
