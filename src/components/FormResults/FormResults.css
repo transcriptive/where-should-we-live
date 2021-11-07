@@ -10,12 +10,32 @@
   border: 1px solid black;
 }
 
+.results-div {
+  border: 1px solid orange;
+  height: 200px;
+}
+
 .result-map-div {
-  height: 300px;
+  height: 600px;
 }
 
 .result-info-div {
   text-align: left;
+}
+
+.info-div {
+  border: 1px solid red;
+  height: 200px;
+}
+
+.facts-div {
+  border: 1px solid blue;
+  height: 200px;
+}
+
+.save-favs-div {
+  border: 1px solid green;
+  height: 200px;
 }
 
 h1 {
@@ -26,10 +46,18 @@ h1 {
   text-align: left;
 }
 
-.surrounding-div {
-  height: 500px;
+.pics-div {
+  height: 300px;
+}
+
+.saved-div {
+  height: 200px;
 }
 
 .recent-div {
   height: 200px;
+}
+
+.no-idea {
+  border: 1px solid red;
 }

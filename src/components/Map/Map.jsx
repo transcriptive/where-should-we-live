@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 40,
+  lng: -101
 };
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '850px',
+  height: '599px'
 };
 
-export default function Map() {
+export default function Map(props) {
     const [map, setMap] = React.useState(null)
 
     const { isLoaded } = useJsApiLoader({
@@ -29,16 +29,22 @@ export default function Map() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
+  
 
   return isLoaded ? (
+      <>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
-        onLoad={onLoad}
+        zoom={5}
+        // onLoad={onLoad}
+        onLoad={map => {
+          const bounds = new window.google.maps.LatLngBounds();
+          map.fitBounds(bounds);
+        }}
         onUnmount={onUnmount}
       >
-        <></>
       </GoogleMap>
+      </>
   ) : <></>
 }
