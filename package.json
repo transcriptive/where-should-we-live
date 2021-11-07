@@ -22,6 +22,7 @@
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
     "react-google-places-autocomplete": "^3.3.2",
+    "react-multi-carousel": "^2.6.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "use-places-autocomplete": "^1.10.0"
