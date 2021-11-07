@@ -8,18 +8,23 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 
 export default function FormResults(props) {
     const [selectedID, SetSelectedID] = useState(null)
+    const [quickFacts, SetQuickFacts] = useState(null)
 
-    console.log(props.modelData, 'form result props')
+    // console.log(props.modelData, 'form result props')
     const countyTEST = "Tarrant County, TX"
     // console.log(selectedID, "Waiting for ID...")
 
 
-  // const getFacts = async () => {
-  //   console.log(props.modelData);
-  //   const countyFacts = await fetchCountyInfo("Howard County")
-  //   console.log(countyFacts);
-  //   SetQuickFacts(countyFacts)
-  // }
+  
+  useEffect(() => {
+    const getFacts = async () => {
+    // console.log(props.modelData);
+      const countyFacts = await fetchCountyInfo(countyTEST)
+      console.log(countyFacts);
+      SetQuickFacts(countyFacts)
+    }
+    getFacts()
+    }, [])
 
     // useEffect(() => {
     //   async function getPlaceID() {
@@ -69,7 +74,8 @@ export default function FormResults(props) {
                   </div>
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>{ quickFacts }</p>
+                    {/* <button onClick={getFacts()}>See Facts</button> */}
                     <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
                 </div>
