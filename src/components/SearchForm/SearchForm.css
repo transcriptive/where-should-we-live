@@ -10,6 +10,7 @@ input {
   background: url(usMap.webp) no-repeat;
   background-position: center;
   height: 50vh;
+  zoom: 140%;
 }
 
 .searchDiv {
@@ -22,7 +23,7 @@ input {
 
 .buttonDiv {
   background-color: lightgray;
-  text-align: right;
+  text-align: center;
 }
 
 button {
