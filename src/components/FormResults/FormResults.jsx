@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link,  } from "react-router-dom";
-import Map from "../../components/Map/Map";
-import TestMap from "../../components/TestMap/TestMap";
+// import Map from "../../components/Map/Map";
+// import TestMap from "../../components/TestMap/TestMap";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
-import { fetchCounty } from "../../services/googleService";
+// import { fetchCounty } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
 import "./FormResults.css"
 
@@ -20,7 +20,7 @@ export default function FormResults(props) {
 
   const getFacts = async () => {
     console.log(props.modelData);
-    const countyFacts = await fetchCountyInfo(props.modelData[0].county)
+    const countyFacts = await fetchCountyInfo("Howard County")
     console.log(countyFacts);
     SetQuickFacts(countyFacts)
   }
