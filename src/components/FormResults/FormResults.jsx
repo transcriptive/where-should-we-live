@@ -8,36 +8,29 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 
 export default function FormResults(props) {
     const [selectedID, SetSelectedID] = useState(null)
-    const [quickFacts, SetQuickFacts] = useState(null)
+    const [countyFacts, SetCountyFacts] = useState(null)
 
     // console.log(props.modelData, 'form result props')
-    const countyTEST = "Tarrant County, TX"
+    const countyTEST = "Tarrant County,"
     // console.log(selectedID, "Waiting for ID...")
 
-
-  
-  useEffect(() => {
-    const getFacts = async () => {
-    // console.log(props.modelData);
-      const countyFacts = await fetchCountyInfo(countyTEST)
-      console.log(countyFacts);
-      SetQuickFacts(countyFacts)
+    useEffect(() => {
+    const fetchWiki = async() => {
+      const searchQuery = countyTEST
+      try {
+        const results = await fetchCountyInfo(searchQuery);
+        SetCountyFacts(results);
+      } catch (err) {
+        console.log(err);
+        alert('Failed to search wikipedia');
+      }
     }
-    getFacts()
+      fetchWiki()
     }, [])
 
-    // useEffect(() => {
-    //   async function getPlaceID() {
-    //     const countyPlaceID = await fetchCountyID(countyTEST)
-    //     console.log(countyPlaceID, "returning county Place ID")
-    //     SetSelectedID(countyPlaceID)
-    //   }
-    //   getPlaceID()
-    // }, [])
-
+    
     return (
       <div>
-        
         <div className="grid grid-cols-1">
             <div className=" mb-2">
               <h1>Your County Results</h1>
@@ -74,7 +67,7 @@ export default function FormResults(props) {
                   </div>
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p>{ quickFacts }</p>
+                    <p></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
