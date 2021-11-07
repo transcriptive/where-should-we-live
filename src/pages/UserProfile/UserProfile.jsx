@@ -1,160 +1,236 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import * as profileService from "../../services/profileService";
 
 import "./UserProfile.styles.css";
 
-export default function UserProfile (props) {
-
-
+export default function UserProfile(props) {
+    //  allow us history access for routing
+    const history = useHistory();
+    // initialize form as invalid
+    const [formInvalid, setValidForm] = useState(true);
+    // initialize object for form validation
+    const formRef = useRef();
+    //  custom hook to initialize state
+    const [state, handleChange] = useForm({
+      email: "",
+      movingFrom: "", 
+      language: "",
+      recentCounties: [],
+      dateFormat: "DD-MM-YYYY",
+      groups: [],
+    });
   
+    // function to handle profile create via api
+    async function handleAddProfile(newProfileData) {
+      const newProfile = await profileService.create(newProfileData);
+      console.log(newProfile)
+      history.push("/");
+    }
+    
+    // function to determine if user has profile already, if yes, redirect to edit page
+    // useEffect(() => {
+    //   const hasProfile = async () => {
+    //     const hasData = await profileService.getAllByCurrentUser(props.user._id)
+    //     if (hasData?.name)history.push('/account/edit')
+    //   } 
+    //   hasProfile()
+    // }, []);
+  
+    // hook to check form validity
+    // useEffect(() => {
+    //   formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
+    // }, [state]);
+  
+    // pass form data via submit to handleAddprofile func
+    async function handleSubmit(e) {
+      e.preventDefault();
+      handleAddProfile(state);
+    }
+  
+    const dummyData = [
+      "Tarrant County, TX",
+      "Dallas County, TX",
+      "Los Angeles County, CA",
+      "New York County, NY"
+    ]
     return (
-        <div className="container mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="w-full mx-2 p-3 mt-10 md:w-3/12 md:mx-2 items-center border-2 border-indigo-500">
-                <div className="image drop-shadow">
-                     <img className="h-auto w-3/4 rounded-full mx-auto" 
-                    src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="User Image" />
-                </div>
+       <div>
+        {/* FORM START */}
+        <form ref={formRef} onSubmit={handleSubmit}
+        className=""
+        >
+        {/* Styling for FORM divs begins */}
 
-                <div className=" pt-2 ">
-                    <div className="">
-                        <span className="text-28 font-bold leading-8 ">Hi, Carolina! </span>
-                    </div>
-
-                    <div className=" pt-2 ">
-                        <span className="text-base">Hometown: </span>
-                        <span className="text-base">Santiago, Chile</span>
-                        <div className='border-b border-black w-1/2 mx-auto mt-2'></div>
-                    </div>   
-
-                    <div className="flex justify-center mt-5 ">
-                        <svg className=" self-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/>
-                            <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"/>
-                        </svg>
-                        <span className="text-base ml-3">Cities<br/>Explored</span>
-                    </div>
-                    <div className="flex justify-center mt-5 mb-5">
-                        <svg className=" self-center" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        <span className="text-base ml-3">Groups<br/>Explored</span>
-                        {/* Need to Add Notification Icon */}
-                    </div>
+        <div className="">
+        {/* For simplicity, each section is seperated by its own empty div */}
+        <div className="">
+            {/* TOP SECTION  */}
+            <div className="sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:pt-5">
+                <h1 className="mt-1 sm:mt-0 sm:col-span-2">
+                Welcome insert name, 
+                </h1>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                Edit your account details below 
                 </div>
             </div>
-     
-            <div className="bg-white p-3 shadow-sm rounded-sm ">
-                <div className="flex items-center leading-8">
-                    <span className="font-bold text-24">Recently<br/>Browsed</span>
-                </div>
-                    {/* If havent browsed, add link to homepage */}
-                   
-                <div className="grid md:grid-cols-2 text-sm">
-                    <ol className="px-4 py-2 grid grid-cols-2 font-thin ">
-                        <li className=" hover:bg-gray-200">
-                            <a href="#" alt="Recently Browsed">New York City, NY</a>
-                            {/* Add Maps Image of Place in Update */}
-                        </li>
-                        <li className="hover:bg-gray-200">
-                            <a href="#" alt="Recently Browsed">Detroit, MI</a>
-                            {/* Add Maps Image of Place in Update */}
-                        </li>
-                        <li className="hover:bg-gray-200">
-                            <a href="#" alt="Recently Browsed">Seattle,WA</a>
-                            {/* Add Maps Image of Place in Update */}
-                        </li>
-                    </ol>
+
+            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
+                <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                Email
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    value={state.email}
+                    onChange={handleChange}
+                    className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                />
                 </div>
             </div>
-            <div class="my-4"></div>
 
-            <div className='flex top-933 w-311 h-63 left-121'>
-                <span className="flex text-52">Preferences</span>
-                <div className="grid grid-cols-3 gap-54">
-                    <div className="mt-5 flex ">
-                        <span className="relative left-121  underline">Lifestyle</span>
-                        <fieldset className="mb-5 mt-5">
-                            <legend className="sr-only">Lifestyle</legend>
-
-                            <div className="flex items-center items-start mb-4">
-                                <input id="checkbox-1" aria-describedby="checkbox-1" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-1" class="text-sm ml-3 font-medium text-gray-900">Arts & Entertainment</label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-2" aria-describedby="checkbox-2" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-2" class="text-sm ml-3 font-medium text-gray-900">Good For Kids</label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-3" class="text-sm ml-3 font-medium text-gray-900">Entrepreneurs</label>
-                            </div>
-                            
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-4" aria-describedby="checkbox-4" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-4" class="text-sm ml-3 font-medium text-gray-900">Restaurants</label>
-                            </div>
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-5" aria-describedby="checkbox-5" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-5" class="text-sm ml-3 font-medium text-gray-900">Faith Services</label>
-                            </div>
-                        </fieldset>
-                    </div>
-              
-                    <div className="flex mt-5 ">
-                        <span className="relative left-121 underline">Distance to Work</span>
-                        <fieldset className="mb-5">
-                            <legend className="sr-only">Distance to Work</legend>
-
-                            <div className="flex items-center items-start mb-4">
-                                <input id="checkbox-6" aria-describedby="checkbox-6" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-6" class="text-sm ml-3 font-medium text-gray-900">Less than 1 mile</label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-7" aria-describedby="checkbox-7" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-7" class="text-sm ml-3 font-medium text-gray-900">Less than 10 miles</label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-8" aria-describedby="checkbox-8" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-8" class="text-sm ml-3 font-medium text-gray-900">20 - 30 miles </label>
-                            </div>
-                        
-                        </fieldset>
-                    </div>
-                    <div className="flex mt-5 ">
-                        <span className="relative left-121 underline">Transit Options</span>
-                        <fieldset className="mb-5">
-                            <legend className="sr-only">Transit</legend>
-
-                            <div className="flex items-center items-start mb-4">
-                                <input id="checkbox-9" aria-describedby="checkbox-9" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-9" class="text-sm ml-3 font-medium text-gray-900">Walking </label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-10" aria-describedby="checkbox-10" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-10" class="text-sm ml-3 font-medium text-gray-900">Bike</label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-11" aria-describedby="checkbox-11" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-11" class="text-sm ml-3 font-medium text-gray-900"> City Bus </label>
-                            </div>
-
-                            <div className="flex items-start items-center mb-4">
-                                <input id="checkbox-12" aria-describedby="checkbox-12" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-12" class="text-sm ml-3 font-medium text-gray-900"> Taxi </label>
-                            </div>
-                        
-                        </fieldset>
-                    </div>
+            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
+                <label
+                htmlFor="movingFrom"
+                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                Moving From:
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                <input
+                    type="text"
+                    name="movingFrom"
+                    id="movingFrom"
+                    value={state?.movingFrom}
+                    onChange={handleChange}
+                    className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                />
                 </div>
+            </div>
+            
+            {/*  RECENTLY BROWSED SECTION */}
+            {/* using dummy data and simple stlying to get work started */}
+            <div>
+            <div className="sm:items-start">
+                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                <label
+                    htmlFor="recently-browsed"
+                    className="block text-24 font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                    Recently Browsed 
+                </label>
+                
+                </div>
+
+                {/* Map over recentCountries db field for user */}
+                <div className="mt-4 sm:mt-4 sm:col-span-1 flex justify-center">
+                { dummyData ? dummyData.map((item, key) => {
+                    return (
+                    <div className="py-2 px-2 ml-6 w-1/5 h-28 border border-black hover:underline" key={key}>
+                        <p className='mt-20'>{item}</p>
+                    </div>
+                    );
+                })
+                : "Search for an ideal area HERE."
+                }  
+                </div>
+            </div>
+            </div>
+            {/* GROUP SECTION  */}
+            {/* need to create list of groups to join with checkbox save feature */}
+            <div>
+            <div className="sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 h-auto">
+                <div>
+                <h3 className="mt-4 text-lg leading-6 font-medium text-gray-900">
+                    Groups
+                </h3>
+                <p className="mt-2 mx-auto max-w-2xl text-sm text-gray-500">
+                    Choose the options that best represents you (This information may be shared publicly)
+                </p>
+                </div>
+            </div>
+            </div>
+            {/* PREFERENCES SECTION  */}
+            <div>
+            <div className="sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5 h-auto">
+            <div>
+                <h3 className="mt-4 text-lg leading-6 font-medium text-gray-900">
+                Preferences
+                </h3>
+            </div>
+            </div>
+
+            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
+            <label
+                htmlFor="language"
+                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            >
+                Language
+            </label>
+            <div className="mt-1 sm:mt-0 sm:col-span-2">
+                <input
+                        type="text"
+                        name="language"
+                        id="language"
+                        placeholder="English"
+                        value={state?.language}
+                        onChange={handleChange}
+                        className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    />
+            </div>
+            </div>
+
+            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label
+                htmlFor="country"
+                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            >
+                Date Format
+            </label>
+            <div className="mt-1 sm:mt-0 sm:col-span-2">
+                <select
+                id="dateFormat"
+                name="dateFormat"
+                value={state.dateFormat}
+                onChange={handleChange}
+                className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                >
+                <option value='DD-MM-YYYY'>DD-MM-YYYY</option>
+                <option value='MM-DD-YYYY'>MM-DD-YYYY</option>
+                </select>
+            </div>
+            </div>   
             </div>
         </div>
-    )
-}
+        </div>
+        {/*  BUTTON SECTION  */}
+        <div>
+        <div className="pt-5">
+            <div className="flex justify-center mb-10">
+            <button
+                type="button"
+                className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+                Cancel
+            </button>
+            <button
+                type="submit"
+                disabled={formInvalid}
+                className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+                Save
+            </button>
+            </div>
+        </div>
+        </div>
+        {/* Styling for FORM divs ends */}
+        </form>
+        {/* FORM END */}
+    </div>
+    )}
