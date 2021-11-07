@@ -9,7 +9,9 @@ export function fetchData(state) {
     cache: "no-cache", 
     headers:{
       "Content-Type":"application/json", 
+      "Access-Control-Allow-Credentials": true,
     }, 
+    mode: "no-cors",
     body:JSON.stringify({state})
   })
   .then(response => response.json())

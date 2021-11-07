@@ -13,6 +13,14 @@ export default function FormResults(props) {
     const countyTEST = "Tarrant County, TX"
     // console.log(selectedID, "Waiting for ID...")
 
+
+  const getFacts = async () => {
+    console.log(props.modelData);
+    const countyFacts = await fetchCountyInfo("Howard County")
+    console.log(countyFacts);
+    SetQuickFacts(countyFacts)
+  }
+
     // useEffect(() => {
     //   async function getPlaceID() {
     //     const countyPlaceID = await fetchCountyID(countyTEST)
