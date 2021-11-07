@@ -6,7 +6,6 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import About from "../About/About";
 import Team from "../Team/Team";
-import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService";
 import Search from "..//Search/Search";
 import Footer from "../../components/Footer/Footer";
@@ -76,7 +75,6 @@ function App (props) {
           render={({ history }) => (
             <Profile
               history={history}
-              
             />
           )}
         />

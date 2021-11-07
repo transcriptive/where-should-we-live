@@ -5,9 +5,8 @@ export default function SearchForm({slider, handleChange, handleSubmit}) {
    
 
   return (
-    <div className="container">
-        
-      <div className="mapPic -my-12"></div>
+    <div className="container mx-auto">
+      <div className="mapPic -my-6"></div>
       <div id="container" className="mx-auto">
         <div className='mb-6'>
           <h1>Use the sliders to search for a county</h1>
