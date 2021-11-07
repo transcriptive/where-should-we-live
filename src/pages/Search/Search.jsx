@@ -9,9 +9,12 @@ import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
 
 export default function Search() {
-  const [modelData, SetModelData] = useState([]);
-  const [loading, setLoading] = useState(undefined);
-  const [completed, setCompleted] = useState(undefined);
+  const [modelData, setModelData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [completed, setCompleted] = useState(false);
+
+  console.log(loading, 'loading ')
+  console.log(completed, 'completed ')
 
   const [state, handleChange] = useForm({
     income: 250000,
@@ -20,38 +23,29 @@ export default function Search() {
     elevation: 100
   })
 
+  const handleSubmit = async (e) => {
+    e.preventDefault() 
+    setCompleted(false)
+    setLoading(true)
+    const json = await fetchData(state) 
+    console.log(json, 'json returned')
+    const arr = Object.entries(json.model_results)
+    const results = []
+      for (const i in Object.entries(arr[0][1])) {
+        const entry = arr.reduce((acc, item) => {
+          acc[item[0]] = item[1][i]
+          return acc
+        }, {})
+        results.push(entry)
+      }
+    setCompleted(true)
+    setModelData(results)
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }
 
-  // fetchData submits slider values to data model on flask backend. Flask returns response with all county information, values stored in modelData -cm
-  useEffect(() =>  {
-    async function updateResults() {
-      const json = await fetchData(state) 
-      console.log(json, 'json returned')
-      const arr = Object.entries(json.model_results)
-      const results = []
-        for (const i in Object.entries(arr[0][1])) {
-          const entry = arr.reduce((acc, item) => {
-            acc[item[0]] = item[1][i]
-            return acc
-          }, {})
-          results.push(entry)
-        }
-      SetModelData(results)
-    }
-      updateResults().catch(error => console.log(error))
-  }, [state])
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    SetModelData(modelData)
-    console.log(state, 'state')
-    console.log(modelData, 'modeldata')
-  };
-
-     
- 
-
-
+  
   return (
     <>
         
@@ -61,29 +55,32 @@ export default function Search() {
         handleSubmit={handleSubmit} 
         handleChange={handleChange}
       />
+
       {!completed ? (
         <>
           {!loading ? (
-            <PreLoader data={MapPinLocation} />
+            <></>
           ) : (
-            <PreLoader data={Success} />
+            <PreLoader data={MapPinLocation} key={'map'} />     
           )}
         </>
       ) : (
         <>
-          <ResultsCarousel 
-            results={modelData}
-          />
-          <FormResults 
-             results={modelData}
-          />
+          {!loading ? (
+          <>
+            <ResultsCarousel 
+              results={modelData}
+            />
+            <FormResults 
+              results={modelData}
+            />
+          </>
+          ) : (
+            <PreLoader data={Success} key={'success'}/> 
+          )}
+          
         </>
       )}
-
-     
-   
-     
-
     </>
   )
 }
