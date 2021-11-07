@@ -20,14 +20,31 @@ export default function SearchForm(props) {
     e.preventDefault();
     const json = await fetchData(state)
     console.log(json, "json data")
-    const results = Object.entries(json.model_results.county).map(
-                    ([key, val]) => ({
-                      'row_number': key,
-                      'county': val
-                    }))      
-    SetModelData(results)
-    console.log(modelData, "model data in state")
+    
+    const arr = Object.entries(json.model_results)
+    const results = []
+    for (const i in Object.entries(arr[0][1])) {
+      const entry = arr.reduce((acc, item) => {
+        acc[item[0]] = item[1][i]
+        return acc
+      }, {})
+    results.push(entry)
+  
   }
+    console.log(results, 'results from loop') 
+    SetModelData(results)
+  }
+
+
+
+    // const results = Object.entries(json.model_results.county).map(
+    //                 ([key, val]) => ({
+    //                   'index': key,
+    //                   'county': val
+    //                 }))      
+  //   SetModelData(results)
+  //   console.log(modelData, "model data in state")
+  // }
 
 
   return (

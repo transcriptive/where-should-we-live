@@ -38,6 +38,10 @@ h1 {
   height: 200px;
 }
 
+.results-div {
+  height: 250px;
+}
+
 .results-card {
   border: 1px solid green;
 }
