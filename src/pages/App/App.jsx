@@ -6,12 +6,10 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import About from "../About/About";
 import Team from "../Team/Team";
-import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService";
-import SearchForm from "../SearchForm/SearchForm";
-import ProfileConfirmDelete from "../ProfileConfirmDelete/ProfileConfirmDelete";
+import Search from "..//Search/Search";
 import Footer from "../../components/Footer/Footer";
-import Profile from "../../pages/Profile/Profile"
+import Profile from "../Profile/Profile"
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -34,7 +32,7 @@ function App (props) {
           exact
           path="/"
           render={({ history }) => (
-            <SearchForm
+            <Search
               history={history}
               user={user}
             />
@@ -77,7 +75,6 @@ function App (props) {
           render={({ history }) => (
             <Profile
               history={history}
-              
             />
           )}
         />
@@ -87,16 +84,6 @@ function App (props) {
           render={({ history }) => (
             <About
               history={history}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/deleteuser"
-          render={({ history }) => (
-            <ProfileConfirmDelete
-              history={history}
-              handleSignupOrLogin={handleSignupOrLogin}
             />
           )}
         />

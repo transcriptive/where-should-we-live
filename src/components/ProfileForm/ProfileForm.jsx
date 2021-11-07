@@ -5,7 +5,7 @@ import * as profileService from "../../services/profileService";
 export default function ProfileForm(props) {
   const formRef = useRef();
   const [formInvalid, setValidForm] = useState(true);
-  const [state, setState] = useForm(props.account);
+  const [state, handleChange] = useForm({});
 
   // // hook to check form validity 
   // useEffect(() => {
@@ -19,7 +19,7 @@ export default function ProfileForm(props) {
     props.setAccount(updatedProfile)
   }
   
-  const deleteProfile = () => profileService.deleteOne(props.account._id);
+  // const deleteProfile = () => profileService.deleteOne(props.account._id);
 
   const dummyData = [
     "Tarrant County, TX",
