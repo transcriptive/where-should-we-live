@@ -1,10 +1,11 @@
-const BASE_URL = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=20&prop=extracts&gsrsearch=`
-// `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts&gsrsearch=`
+const BASE_URL = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=1&prop=extracts&gsrsearch=`
+
 export function fetchCountyInfo(selectedCounty) {
-  console.log()
-  return fetch(BASE_URL + selectedCounty, {
+  const spaceReplace = selectedCounty.replaceAll(' ', '_')
+  const fullReplace = spaceReplace.replaceAll(',', '%2C')
+  console.log(fullReplace)
+  return fetch(BASE_URL + fullReplace, {
     method:"GET",
-    cache: "no-cache",
     headers:{
       "Content-Type":"application/json",
       "Access-Control-Allow-Credentials": true,
