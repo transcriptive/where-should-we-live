@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import About from "../About/About";
+import Team from "../Team/Team";
 import UserProfile from "../UserProfile/UserProfile";
 import authService from "../../services/authService";
 import SearchForm from "../SearchForm/SearchForm";
@@ -59,16 +60,16 @@ function App (props) {
             />
           )}
         />
-        {/* <Route
+        <Route
           exact
-          path="/profile"
+          path="/team"
           render={({ history }) => (
-            <UserProfile
+            <Team
               history={history}
               
             />
           )}
-        /> */}
+        />
         {/* christians profile routing below */}
         <Route
           exact
