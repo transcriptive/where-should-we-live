@@ -11,7 +11,7 @@ const Team =()=>{
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
             <div>
-                <img className="object-center object-cover h-auto w-full" src="" alt="photo"/>
+                <img className="object-center object-cover h-auto w-full" src="/images/JohnR.jpg" alt="photo"/>
             </div>
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">John Raymond</p>
@@ -33,7 +33,7 @@ const Team =()=>{
             </div>
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Juliana Antoninus</p>
-                <p className="text-base text-gray-400 font-normal">Team Lead - Data Scientist</p>
+                <p className="text-base text-gray-400 font-normal">Data Scientist</p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
