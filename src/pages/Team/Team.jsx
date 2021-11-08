@@ -16,6 +16,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">John Raymond</p>
                 <p className="text-base text-gray-400 font-normal">Project Manager - Software Engineer</p>
+                <p className="hidden ">
+                  About John
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -25,6 +28,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Kevin Urban</p>
                 <p className="text-base text-gray-400 font-normal">Team Lead - UX Designer</p>
+                <p className="hidden ">
+                  About Keith
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -34,6 +40,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Juliana Antoninus</p>
                 <p className="text-base text-gray-400 font-normal">Data Scientist</p>
+                <p className="hidden ">
+                  About Juliana
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -43,6 +52,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Christian Mosley</p>
                 <p className="text-base text-gray-400 font-normal">Software Engineer</p>
+                <p className="hidden ">
+                  About Christian
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -66,6 +78,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Maxwell Scheinholtz</p>
                 <p className="text-base text-gray-400 font-normal">UX Designer</p>
+                <p className="hidden ">
+                  About Max
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -75,6 +90,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Patrice Brooks</p>
                 <p className="text-base text-gray-400 font-normal">Software Engineer</p>
+                <p className="hidden ">
+                  About Patrice
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -84,6 +102,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">John Bruscella</p>
                 <p className="text-base text-gray-400 font-normal">Data Scientist</p>
+                <p className="hidden ">
+                  About John
+                </p>
             </div>
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
@@ -93,6 +114,9 @@ const Team =()=>{
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Aaron Prince</p>
                 <p className="text-base text-gray-400 font-normal">Software Engineer</p>
+                <p className="hidden ">
+                  About Aaron
+                </p>
             </div>
         </div>
     </div>

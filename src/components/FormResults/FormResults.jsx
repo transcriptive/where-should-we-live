@@ -11,7 +11,6 @@ export default function FormResults( {user, results, selected} ) {
     const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
     
-    
     const countyTEST = "Westchester_County"
 
     useEffect(() => {
@@ -29,6 +28,7 @@ export default function FormResults( {user, results, selected} ) {
       fetchWiki()
     }, [])
 
+
     useEffect(() => {
       setCounty(results[selected])
       }, [selected]
@@ -43,7 +43,6 @@ export default function FormResults( {user, results, selected} ) {
     return (
       <div>
         <div className="grid grid-cols-1">
-            
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
                 <CountyMap county={county} setPhotos={setPhotos} />

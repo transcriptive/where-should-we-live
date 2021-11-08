@@ -8,7 +8,7 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
 import { Wrapper } from "@googlemaps/react-wrapper";
-
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export default function Search({user}) {
   const [modelData, setModelData] = useState([]);
@@ -43,13 +43,12 @@ export default function Search({user}) {
     setModelData(results)
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 1500);
   }
 
   
   return (
-    <>
-        
+    <>  
       <SearchForm 
         slider={state}
         results={modelData}
@@ -57,11 +56,11 @@ export default function Search({user}) {
         handleChange={handleChange}
       />
       <Wrapper 
-          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
+          apiKey={GOOGLE_API} 
           version="weekly"
           libraries={["places"]}
         >
-
+          
       {!completed ? (
         <>
           {!loading ? (
