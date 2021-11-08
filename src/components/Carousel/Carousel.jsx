@@ -24,7 +24,6 @@ const responsive = {
 };
 
 
-
 const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
   const { carouselState: { currentSlide } } = rest;
   return (
@@ -89,7 +88,6 @@ export default function ResultsCarousel( {results, setSelected} ) {
             </div>
           )
         })}
-
         </Carousel>
       </div>
     </>

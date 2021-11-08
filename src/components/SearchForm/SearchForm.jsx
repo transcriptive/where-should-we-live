@@ -10,8 +10,6 @@ export default function SearchForm({slider, handleChange, handleSubmit}) {
       <img src={usMap} 
         alt={'img'} 
         className="mapPic -my-6" />
-
-        
       <div id="container" className="mx-auto">
         <div className='mb-6'>
           <h1>Use the sliders to search for a county</h1>
@@ -124,7 +122,6 @@ export default function SearchForm({slider, handleChange, handleSubmit}) {
 
         </form>
       </div>
-      
     </div>
   )
 }

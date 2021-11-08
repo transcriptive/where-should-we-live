@@ -9,6 +9,7 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 export default function FormResults( {user, results, selected} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
+    const [countyFacts, SetCountyFacts] = useState(null)
     
     const countyTEST = "Westchester_County"
 
@@ -80,6 +81,5 @@ export default function FormResults( {user, results, selected} ) {
               </div>
             </div>
       </div>
-    </div>
     );
 }
