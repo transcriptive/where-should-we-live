@@ -11,7 +11,7 @@ export default function FormResults(props) {
     const [countyFacts, SetCountyFacts] = useState(null)
 
     // console.log(props.modelData, 'form result props')
-    const countyTEST = "Tarrant County,"
+    const countyTEST = "Westchester_County"
     // console.log(selectedID, "Waiting for ID...")
 
     useEffect(() => {
@@ -19,7 +19,8 @@ export default function FormResults(props) {
       const searchQuery = countyTEST
       try {
         const results = await fetchCountyInfo(searchQuery);
-        SetCountyFacts(results);
+        const textToShow = results.substring(0, 500) + "...  ";
+        SetCountyFacts(textToShow);
       } catch (err) {
         console.log(err);
         alert('Failed to search wikipedia');
@@ -67,7 +68,7 @@ export default function FormResults(props) {
                   </div>
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p></p>
+                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/Westchester_County%2C_New_York" target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
