@@ -82,6 +82,5 @@ export default function FormResults( {user, results, selected} ) {
               </div>
             </div>
       </div>
-    </div>
     );
 }
