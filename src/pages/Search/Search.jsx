@@ -43,13 +43,12 @@ export default function Search({user}) {
     setModelData(results)
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 1500);
   }
 
   
   return (
-    <>
-        
+    <>  
       <SearchForm 
         slider={state}
         results={modelData}
@@ -61,7 +60,7 @@ export default function Search({user}) {
           version="weekly"
           libraries={["places"]}
         >
-
+          
       {!completed ? (
         <>
           {!loading ? (
