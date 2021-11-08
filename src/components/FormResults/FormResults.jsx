@@ -9,26 +9,7 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 export default function FormResults( {user, results, selected} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
-    const [countyFacts, SetCountyFacts] = useState(null)
     
-
-
-    const countyTEST = "Tarrant County,"
-
-    useEffect(() => {
-    const fetchWiki = async() => {
-      const searchQuery = countyTEST
-      try {
-        const results = await fetchCountyInfo(searchQuery);
-        SetCountyFacts(results);
-      } catch (err) {
-        console.log(err);
-        alert('Failed to search wikipedia');
-      }
-    }
-      fetchWiki()
-    }, [])
-
     useEffect(() => {
       setCounty(results[selected])
       }, [selected]
@@ -43,7 +24,6 @@ export default function FormResults( {user, results, selected} ) {
     return (
       <div>
         <div className="grid grid-cols-1">
-            
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
                 <CountyMap county={county} setPhotos={setPhotos} />
