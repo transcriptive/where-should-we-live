@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { GoogleMap, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
-const GOOGLE_API = process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+import React, { useState, useEffect } from "react";
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { fetchCountyID, fetchCoords } from "../../services/googleService";
 
 
 const containerStyle = {
@@ -15,9 +15,27 @@ const center = {
 
 const libraries = ["places"]
 
-function TestMap() {
-  const [searchResult, setSearchResult] = useState(null);
+export default function CountyMap({county}) {
+  const [placeID, setPlaceID] = useState(null);
   const [placesBox, setPlacesChanged] = useState(null);
+
+  const test_county = "Tarrant County, TX"
+
+
+  // useEffect(() => {
+  //   // const name = encodeURI(county?.county)
+  //   // console.log(name, 'name')
+  //   async function getPlaceID() {
+  //     const countyPlaceID = await fetchCountyID(test_county)
+  //     console.log(countyPlaceID, "returning county Place ID")
+  //     setPlaceID(countyPlaceID)
+  //   }
+  //   // if (county?.county) 
+  //   getPlaceID()
+  // }, [test_county])
+
+
+
 
   return (
     <LoadScript
@@ -29,12 +47,6 @@ function TestMap() {
         center={center}
         zoom={5}
       >
-        <StandaloneSearchBox
-        onLoad={setSearchResult}
-        onPlacesChanged={
-          setPlacesChanged
-        }
-        > 
           <input
           type="text"
           placeholder="Customized your placeholder"
@@ -54,10 +66,8 @@ function TestMap() {
             marginLeft: "-120px"
           }}
         />
-        </StandaloneSearchBox> 
       </GoogleMap>
     </LoadScript>
   )
 }
 
-export default React.memo(TestMap)

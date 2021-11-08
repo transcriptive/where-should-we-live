@@ -14,9 +14,6 @@ export default function Search({user}) {
   const [completed, setCompleted] = useState(false);
   const [selected, setSelected] =useState(0);
 
-  console.log(loading, 'loading ')
-  console.log(completed, 'completed ')
-
   const [state, handleChange] = useForm({
     income: 250000,
     climate: 75,  
