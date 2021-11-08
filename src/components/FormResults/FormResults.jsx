@@ -8,7 +8,11 @@ import ResultsCarousel from "../../components/Carousel/Carousel"
 
 export default function FormResults( {user, results, selected} ) {
     const [county, setCounty] = useState()
+    const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
+    
+
+
     const countyTEST = "Tarrant County,"
 
     useEffect(() => {
@@ -42,7 +46,7 @@ export default function FormResults( {user, results, selected} ) {
             
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
-                <CountyMap county={county} />
+                <CountyMap county={county} setPhotos={setPhotos} />
               </div>
               <div className="result-info-div col-span-1">
                 <div className="info-div">

@@ -7,10 +7,8 @@ input {
 }
 
 .mapPic {
-  background: url(usMap.webp) no-repeat;
-  background-position: center;
-  height: 50vh;
-  zoom: 140%;
+  margin: 0 auto;
+  width: 80%;
 }
 
 .searchDiv {

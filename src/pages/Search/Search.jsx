@@ -7,12 +7,14 @@ import FormResults from "../../components/FormResults/FormResults";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
+import { Wrapper } from "@googlemaps/react-wrapper";
+
 
 export default function Search({user}) {
   const [modelData, setModelData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [selected, setSelected] =useState(0);
+  const [selected, setSelected] =useState(null);
 
   const [state, handleChange] = useForm({
     income: 250000,
@@ -23,6 +25,7 @@ export default function Search({user}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault() 
+    setSelected(null)
     setCompleted(false)
     setLoading(true)
     const json = await fetchData(state) 
@@ -53,6 +56,11 @@ export default function Search({user}) {
         handleSubmit={handleSubmit} 
         handleChange={handleChange}
       />
+      <Wrapper 
+          apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
+          version="weekly"
+          libraries={["places"]}
+        >
 
       {!completed ? (
         <>
@@ -70,11 +78,13 @@ export default function Search({user}) {
               results={modelData}
               setSelected={setSelected}
             />
+            {selected != null && 
             <FormResults 
               results={modelData}
               selected={selected}
               user={user}
             />
+            }
           </>
           ) : (
             <PreLoader data={Success} key={'success'}/> 
@@ -82,6 +92,7 @@ export default function Search({user}) {
           
         </>
       )}
+      </Wrapper>
     </>
   )
 }
