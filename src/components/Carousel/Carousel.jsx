@@ -23,9 +23,7 @@ const responsive = {
   }
 };
 
-const Image = ({ url, alt }) => (
-  <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
-)
+
 
 const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
   const { carouselState: { currentSlide } } = rest;
@@ -39,10 +37,11 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
 
 const arr = [1,2,3,4,5,6,7,8]
 
-export default function ResultsCarousel( {modelData} ) {
-  // const imageResults = modelData?.county
+
+
+export default function ResultsCarousel( {results, setSelected} ) {
   
-  // console.log(imageResults)
+  console.log(results, 'modeldata')
 
   return(
     <>
@@ -59,7 +58,7 @@ export default function ResultsCarousel( {modelData} ) {
           showDots={false}
           responsive={responsive}
           ssr={false} // means to render carousel on server-side.
-          infinite={true}
+          infinite={false}
           autoPlay={false}
           autoPlaySpeed={0}
           keyBoardControl={true}
@@ -69,49 +68,27 @@ export default function ResultsCarousel( {modelData} ) {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
+          itemClass="carousel-item-padding-40-px caro-hover"
           customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside={false}
         >
-        {/* {images.slice(0, 5).map(image => {
-                return (
-                  <div>
-                  <Image 
-                    url={image}
-                  />
-                  </div>
-                );
-        })}  */}
-
-        {/* const Image = ({ url, alt }) => (
-          <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
-        ) */}
-
-
-        {arr.map((value, index) => {
+    
+        {results.map((result, index) => {
           return (
-            <div className={"px-4"} key={index}>
-              <img 
-                src={MapOne}
-                className={'single-result'}
-                alt={index} 
-                key={index} 
-              ></img>
-              <p className={'ml-4 flex justify-start'}>County {value}</p>
+            <div 
+              className={"px-4"} 
+              key={index} 
+              onClick={() => setSelected(index)}>
+                <img 
+                  src={MapOne}
+                  className={'single-result'}
+                  alt={index} 
+                  key={index} 
+                ></img>
+              <p className={'ml-4 flex justify-start'}>{result.county}</p>
             </div>
           )
         })}
-
-
-         {/* {props.modelData?.county.map((value, index) => {
-            return ( 
-              <div className="single-result" key={index}>
-                  <p>{value.county}</p>
-              </div>
-                   );
-                 })
-          } */}
-                
 
         </Carousel>
       </div>

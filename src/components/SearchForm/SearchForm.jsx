@@ -1,12 +1,17 @@
 import React, {  } from "react";
 import "./SearchForm.css";
+import usMap from "./usMap.webp";
 
 export default function SearchForm({slider, handleChange, handleSubmit}) {
    
 
   return (
     <div className="container mx-auto">
-      <div className="mapPic -my-6"></div>
+      <img src={usMap} 
+        alt={'img'} 
+        className="mapPic -my-6" />
+
+        
       <div id="container" className="mx-auto">
         <div className='mb-6'>
           <h1>Use the sliders to search for a county</h1>

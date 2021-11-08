@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link,  } from "react-router-dom";
-import GoogleMap from "../../components/GoogleMap/GoogleMap";
+import CountyMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
 import { fetchCountyID } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
 import ResultsCarousel from "../../components/Carousel/Carousel"
 
-export default function FormResults(props) {
-    const [selectedID, SetSelectedID] = useState(null)
+export default function FormResults( {user, results, selected} ) {
+    const [county, setCounty] = useState()
+    const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
+    
+
 
     const countyTEST = "Tarrant County,"
 
@@ -26,6 +29,16 @@ export default function FormResults(props) {
       fetchWiki()
     }, [])
 
+    useEffect(() => {
+      setCounty(results[selected])
+      }, [selected]
+
+    )
+
+    const money = new Intl.NumberFormat('en-US',
+      { style: 'currency', currency: 'USD', maximumFractionDigits:0 }
+    ) 
+    const number = new Intl.NumberFormat('en-US' , {maximumFractionDigits:0})
 
     return (
       <div>
@@ -33,15 +46,15 @@ export default function FormResults(props) {
             
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
-                <GoogleMap countyResults={props.modelData} />
+                <CountyMap county={county} setPhotos={setPhotos} />
               </div>
               <div className="result-info-div col-span-1">
                 <div className="info-div">
-                  <h1>County Info</h1>
-                  <p>Median Income: $123,123</p>
-                  <p>Average Yearly Temperature: 55</p>
-                  <p>Population: 435,435</p>
-                  <p>Elevation: +100ft</p>
+                  <h1>{county?.county}</h1>
+                  <p>Median Income:  {money.format(county?.median_income)}</p>
+                  <p>Average Yearly Temperature: {county?.temp}&#8457;</p>
+                  <p>Population: {number.format(county?.total_population)}</p>
+                  <p>Elevation: {number.format(county?.elev_in_ft)}ft</p>
                 </div>
                 <div className="facts-div">
                   <h1>Quick Facts</h1>
@@ -56,7 +69,7 @@ export default function FormResults(props) {
               <div className="col-span-1 saved-div">
                 <h1>Saved Cities</h1>
                 {/* conditional render for logged in/out users */}
-                {props.user ? 
+                {user ? 
                 <div>Pull in saved cities to display here</div>
                 : 
                 <div className="mt-14  text-xl italic">
