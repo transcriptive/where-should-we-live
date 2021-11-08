@@ -7,9 +7,8 @@ input {
 }
 
 .mapPic {
-  background: url(usMap.webp) no-repeat;
-  background-position: center;
-  height: 50vh;
+  margin: 0 auto;
+  width: 80%;
 }
 
 .searchDiv {
@@ -22,7 +21,7 @@ input {
 
 .buttonDiv {
   background-color: lightgray;
-  text-align: right;
+  text-align: center;
 }
 
 button {

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link,  } from "react-router-dom";
-import GoogleMap from "../../components/GoogleMap/GoogleMap";
+import CountyMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
 import { fetchCountyID } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
 import ResultsCarousel from "../../components/Carousel/Carousel"
 
-export default function FormResults(props) {
-    const [selectedID, SetSelectedID] = useState(null)
+export default function FormResults( {user, results, selected} ) {
+    const [county, setCounty] = useState()
+    const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
-
-    // console.log(props.modelData, 'form result props')
+    
+    
     const countyTEST = "Westchester_County"
-    // console.log(selectedID, "Waiting for ID...")
 
     useEffect(() => {
     const fetchWiki = async() => {
@@ -29,100 +29,50 @@ export default function FormResults(props) {
       fetchWiki()
     }, [])
 
-    
+    useEffect(() => {
+      setCounty(results[selected])
+      }, [selected]
+
+    )
+
+    const money = new Intl.NumberFormat('en-US',
+      { style: 'currency', currency: 'USD', maximumFractionDigits:0 }
+    ) 
+    const number = new Intl.NumberFormat('en-US' , {maximumFractionDigits:0})
+
     return (
       <div>
         <div className="grid grid-cols-1">
-            <div className=" mb-2">
-              <h1>Your County Results</h1>
-              <h2>Click to preview </h2>
-            </div>
-            <div className='results-div my-10'>
-            <ResultsCarousel results={props.modelData}/>
-            </div>
             
-              {/* <div className="results-div grid grid-flow-col">
-              {props.modelData
-               ? props.modelData.map((value, index) => {
-                   return ( 
-                     <div  className="county-card col-span-1" key={index}>
-                         <p className="smallMap"></p>
-                         <p>{value.county}</p>
-                     </div>
-                   );
-                 })
-               : "searching..."}
-             </div> */}
-
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
-                <GoogleMap countyResults={props.modelData} />
+                <CountyMap county={county} setPhotos={setPhotos} />
+              </div>
+              <div className="result-info-div col-span-1">
+                <div className="info-div">
+                  <h1>{county?.county}</h1>
+                  <p>Median Income:  {money.format(county?.median_income)}</p>
+                  <p>Average Yearly Temperature: {county?.temp}&#8457;</p>
+                  <p>Population: {number.format(county?.total_population)}</p>
+                  <p>Elevation: {number.format(county?.elev_in_ft)}ft</p>
                 </div>
-                <div className="result-info-div col-span-1">
-                  <div className="info-div">
-                    <h1>County Info</h1>
-                    <p>Median Income: $123,123</p>
-                    <p>Average Yearly Temperature: 55</p>
-                    <p>Population: 435,435</p>
-                    <p>Elevation: +100ft</p>
-                  </div>
+
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
                     <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/Westchester_County%2C_New_York" target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
+
                 </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1">
-              {/* <div className="col-span-1 pics-div">
-              <div className="carousel relative shadow-2xl bg-white">
-                <div className="carousel-inner relative overflow-hidden w-full">
-
-                  <input className="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked" />
-                  <div className="carousel-item absolute opacity-0">
-                    <div className="block h-full w-full bg-indigo-500 text-white text-5xl text-center">Slide 1</div>
-                  </div>
-                  <label for="carousel-3" className="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-                  <label for="carousel-2" className="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-
-                  <input className="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden=""c/>
-                  <div className="carousel-item absolute opacity-0">
-                    <div className="block h-full w-full bg-orange-500 text-white text-5xl text-center">Slide 2</div>
-                  </div>
-                  <label for="carousel-1" className="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-                  <label for="carousel-3" className="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label> 
-
-
-                  <input className="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="" />
-                  <div className="carousel-item absolute opacity-0">
-                    <div className="block h-full w-full bg-green-500 text-white text-5xl text-center">Slide 3</div>
-                  </div>
-                  <label for="carousel-2" className="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-                  <label for="carousel-1" className="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-
-
-                  <ol className="carousel-indicators">
-                    <li className="inline-block mr-3">
-                      <label for="carousel-1" className="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-                    </li>
-                    <li className="inline-block mr-3">
-                      <label for="carousel-2" className="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-                    </li>
-                    <li className="inline-block mr-3">
-                      <label for="carousel-3" className="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
-                    </li>
-                  </ol>
-
-                </div>
-                </div>
-                
-                </div> */}
+            <div className="grid grid-cols-1">  
               <div className="col-span-1 saved-div">
                 <h1>Saved Cities</h1>
                 {/* conditional render for logged in/out users */}
-                {props.user ? 
+                {user ? 
                 <div>Pull in saved cities to display here</div>
                 : 
                 <div className="mt-14  text-xl italic">
@@ -131,9 +81,6 @@ export default function FormResults(props) {
                 }
               </div>
             </div>
-        {/* <div className="grid grid-cols-1">
-          <div className="col-span-1 recent-div">Recently Browsed</div>
-        </div> */}
       </div>
     </div>
     );

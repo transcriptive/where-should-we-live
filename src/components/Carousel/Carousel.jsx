@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
 import MapOne from './stockMapOne.jpg';
+
 
 const responsive = {
   desktop: {
@@ -21,24 +23,6 @@ const responsive = {
   }
 };
 
-const Image = ({ url, alt }) => (
-  <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
-)
-
-const images = [
-  "https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1549396535-c11d5c55b9df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550133730-695473e544be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550338861-b7cfeaf8ffd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550223640-23097fc71cb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550353175-a3611868086b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550330039-a54e15ed9d33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1549737328-8b9f3252b927?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1549985908-597a09ef0a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-];
 
 
 const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
@@ -51,13 +35,21 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
     );
   };
 
-  const arr = [1,2,3,4,5,6,7,8]
+const arr = [1,2,3,4,5,6,7,8]
 
 
-export default function ResultsCarousel(props) {
+
+export default function ResultsCarousel( {results, setSelected} ) {
+  
+  console.log(results, 'modeldata')
 
   return(
-      // <div className='outside-container w-full'>
+    <>
+      <div className='my-10 outside-container w-full'>
+      <div className="mb-2">
+              <h1>Your County Results</h1>
+              <h2>Click to preview </h2>
+      </div>
         <Carousel
           centerMode={true}
           arrows={true}	
@@ -66,7 +58,7 @@ export default function ResultsCarousel(props) {
           showDots={false}
           responsive={responsive}
           ssr={false} // means to render carousel on server-side.
-          infinite={true}
+          infinite={false}
           autoPlay={false}
           autoPlaySpeed={0}
           keyBoardControl={true}
@@ -76,51 +68,30 @@ export default function ResultsCarousel(props) {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
+          itemClass="carousel-item-padding-40-px caro-hover"
           customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside={false}
         >
-        {/* {images.slice(0, 5).map(image => {
-                return (
-                  <div>
-                  <Image 
-                    url={image}
-                  />
-                  </div>
-                );
-        })}  */}
-
-        {/* const Image = ({ url, alt }) => (
-          <img draggable={false} style={{padding: '1rem', width: '100%', position: 'relative'}} src={url} alt={alt} />
-        ) */}
-
-
-        {arr.map((value, index) => {
+    
+        {results.map((result, index) => {
           return (
-            <div className={"px-4"}>
-              <img 
-                src={MapOne}
-                className={'single-result'}
-                alt={index} 
-                key={index} 
-              ></img>
-              <p className={'ml-4 flex justify-start'}>County {value}</p>
+            <div 
+              className={"px-4"} 
+              key={index} 
+              onClick={() => setSelected(index)}>
+                <img 
+                  src={MapOne}
+                  className={'single-result'}
+                  alt={index} 
+                  key={index} 
+                ></img>
+              <p className={'ml-4 flex justify-start'}>{result.county}</p>
             </div>
           )
         })}
 
-
-         {props.modelData?.county.map((value, index) => {
-            return ( 
-              <div className="single-result" key={index}>
-                  <p>{value.county}</p>
-              </div>
-                   );
-                 })
-          }
-                
-
         </Carousel>
-    // </div>
+      </div>
+    </>
   )
 }
