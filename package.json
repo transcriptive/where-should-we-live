@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
+    "@googlemaps/react-wrapper": "^1.1.11",
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
     "@react-google-maps/api": "^2.5.0",
