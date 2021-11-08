@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from '../../hooks/useForm'
 import { fetchData } from "../../services/modelService"
+import { fetchCountyInfo } from "../../services/wikiService";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsCarousel from "../../components/Carousel/Carousel";
 import FormResults from "../../components/FormResults/FormResults";
@@ -15,6 +16,7 @@ export default function Search({user}) {
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [selected, setSelected] =useState(null);
+  const [countyFacts, SetCountyFacts] = useState(null)
 
   const [state, handleChange] = useForm({
     income: 250000,
@@ -22,6 +24,23 @@ export default function Search({user}) {
     pop: 500000,
     elevation: 100
   })
+
+  // useEffect(() => {
+  //   const fetchWiki = async() => {
+  //     const searchQuery = selected
+  //     console.log(selected)
+  //     console.log(searchQuery)
+  //     try {
+  //       const results = await fetchCountyInfo(searchQuery);
+  //       const textToShow = results.substring(0, 500) + "...  ";
+  //       SetCountyFacts(textToShow);
+  //     } catch (err) {
+  //       console.log(err);
+  //       console.log('Failed to search wikipedia');
+  //     }
+  //   }
+  //   fetchWiki()
+  //   }, [countyFacts])
 
   const handleSubmit = async (e) => {
     e.preventDefault() 
