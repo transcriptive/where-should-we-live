@@ -8,10 +8,11 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
 
-export default function Search() {
+export default function Search({user}) {
   const [modelData, setModelData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [selected, setSelected] =useState(0);
 
   console.log(loading, 'loading ')
   console.log(completed, 'completed ')
@@ -70,9 +71,12 @@ export default function Search() {
           <>
             <ResultsCarousel 
               results={modelData}
+              setSelected={setSelected}
             />
             <FormResults 
               results={modelData}
+              selected={selected}
+              user={user}
             />
           </>
           ) : (
