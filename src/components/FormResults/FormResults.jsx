@@ -14,26 +14,29 @@ export default function FormResults( {user, results, selected} ) {
     const countyTEST = "Westchester_County"
 
     useEffect(() => {
+      setCounty(results[selected])
+      }, [selected]
+    )
+    
+    useEffect(() => {
     const fetchWiki = async() => {
-      const searchQuery = countyTEST
+      const searchQuery = Object.values(results[selected])[1]
+      console.log(searchQuery)
       try {
         const results = await fetchCountyInfo(searchQuery);
+        console.log(results)
         const textToShow = results.substring(0, 500) + "...  ";
         SetCountyFacts(textToShow);
       } catch (err) {
         console.log(err);
-        alert('Failed to search wikipedia');
+        console.log('Failed wiki fetch');
       }
     }
-      fetchWiki()
-    }, [])
+    fetchWiki()
+    console.log(countyFacts)
+    }, [selected])
 
 
-    useEffect(() => {
-      setCounty(results[selected])
-      }, [selected]
-
-    )
 
     const money = new Intl.NumberFormat('en-US',
       { style: 'currency', currency: 'USD', maximumFractionDigits:0 }
@@ -58,7 +61,7 @@ export default function FormResults( {user, results, selected} ) {
 
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/Westchester_County%2C_New_York" target="_blank">Read More</a></p>
+                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/{}" target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
