@@ -18,7 +18,8 @@ const Team =()=>{
                 <p className="text-xl text-gray-700 font-bold mb-2">John Raymond</p>
                 <p className="text-base text-gray-400 font-normal">Project Manager - Software Engineer</p>
                 <p className="text-left hover-target ">
-                  About John
+                    John is Software Engineer and Project Manager with interests in video games, travel, motorcycles, and biotechnology. 
+                    He seeks to bring out the best in himself and others and always tries to provide as much support as possible to everyone on his team.
                 </p>
             </div>
         </div>
@@ -28,9 +29,9 @@ const Team =()=>{
             </div>
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Kevin Urban</p>
-                <p className="text-base text-gray-400 font-normal">Team Lead - UX Designer</p>
+                <p className="text-base text-gray-400 font-normal">UX Team Lead - UX Designer</p>
                 <p className="text-left hover-target">
-                  About Keith
+                  About Kevin
                 </p>
             </div>
         </div>
