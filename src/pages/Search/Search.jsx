@@ -25,24 +25,8 @@ export default function Search({user}) {
     elevation: 100
   })
 
-  // useEffect(() => {
-  //   const fetchWiki = async() => {
-  //     const searchQuery = selected
-  //     console.log(selected)
-  //     console.log(searchQuery)
-  //     try {
-  //       const results = await fetchCountyInfo(searchQuery);
-  //       const textToShow = results.substring(0, 500) + "...  ";
-  //       SetCountyFacts(textToShow);
-  //     } catch (err) {
-  //       console.log(err);
-  //       console.log('Failed to search wikipedia');
-  //     }
-  //   }
-  //   fetchWiki()
-  //   }, [countyFacts])
-
   const handleSubmit = async (e) => {
+    console.log(state, 'submit fire')
     e.preventDefault() 
     setSelected(null)
     setCompleted(false)

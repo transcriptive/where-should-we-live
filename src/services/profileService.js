@@ -32,8 +32,9 @@ export function deleteProfile(id) {
   .then(res => res.json())
 }
 
-export function update(profile) {
-  return fetch(`${BASE_URL}${profile._id}`, {
+export function update(userid, profile) {
+  console.log(userid, profile, "userid, profile")
+  return fetch(`${BASE_URL}${userid}`, {
       method: "PUT", 
       headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
       body: JSON.stringify(profile)

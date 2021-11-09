@@ -9,7 +9,7 @@ router.get('/user/:userid', profileCtrl.getCurrentProfile)
 /*---------- Protected Routes ----------*/
 router.use(require('../config/auth'));
 router.post('/', checkAuth, profileCtrl.create);
-router.put('/', checkAuth, profileCtrl.update);
+router.put('/:id', checkAuth, profileCtrl.update);
 router.delete('/:id', checkAuth, profileCtrl.delete);
 
 

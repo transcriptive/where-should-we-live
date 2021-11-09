@@ -6,6 +6,7 @@ const profileSchema = new Schema(
     name: {
       type: String,
       required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -18,6 +19,10 @@ const profileSchema = new Schema(
       enum: ["DD-MM-YYYY", "MM-DD-YYYY", ],
     },
     groups: [String],
+    photo: {
+      data: Buffer, 
+      contentType: String
+    },
     byUser: [{type: Schema.Types.ObjectId, ref: 'User'}],    
   },
   {

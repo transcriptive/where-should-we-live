@@ -6,59 +6,54 @@ import * as profileService from "../../services/profileService";
 import ProfileForm from "../../components/ProfileForm/ProfileForm";
 
 export default function Profile(props) {
-  //  allow us history access for routing
-  const history = useHistory();
-  // initialize form as invalid
-  const [formInvalid, setValidForm] = useState(true);
-  // initialize object for form validation
-  const formRef = useRef();
-  //  custom hook to initialize state
-  const [state, handleChange] = useForm({
-    name: "" ,
-    email: "",
-    movingFrom: "", 
-    language: "",
-    recentCounties: [],
-    dateFormat: "DD-MM-YYYY",
-    groups: [],
-  });
-
-  
+  const [profile, setProfile] = useState(null);
 
 
-  // function to handle profile create via api
-  async function handleAddProfile(newProfileData) {
-    const newProfile = await profileService.create(newProfileData);
-    console.log(newProfile)
-    history.push("/");
-  }
-  
-  // function to determine if user has profile already, if yes, redirect to edit page
+
+  // const [state, handleChange] = useForm({
+  //   name: "",
+  //   email: "",
+  //   movingFrom: "", 
+  //   language: "",
+  //   recentCounties: [],
+  //   dateFormat: "DD-MM-YYYY",
+  //   groups: [],
+  // })
+
+
+
+  // function to determine if user has profile already, if no, open modal to gather information
   useEffect(() => {
     const hasProfile = async () => {
-      console.log(props.user._id)
+      console.log('check for profile')
       const hasData = await profileService.getAllByCurrentUser(props.user._id)
-      if (!hasData?.name)
+      setProfile(hasData)
+      if (!hasData._id) {
       setShowModal(true)
+      }
     } 
     hasProfile()
   }, []);
 
-  // pass form data via submit to handleAddprofile func
-  async function handleSubmit(e) {
-    e.preventDefault();
-    handleAddProfile(state);
+  // function to handle profile create via api
+  async function handleAddProfile(newProfileData) {
+    console.log(newProfileData , 'handleAddprofile')
+    const newProfile = await profileService.create(newProfileData);
+    console.log(newProfile)
+    setShowModal(false)
   }
+
+  
+  
+  // pass form data via submit to handleAddprofile func
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   handleAddProfile(state);
+  //   console.log(state, 'submit fire')
+  // }
 
   // For Modal
   const [showModal, setShowModal] = useState(false)
-
-  const dummyData = [
-    "Tarrant County, TX",
-    "Dallas County, TX",
-    "Los Angeles County, CA",
-    "New York County, NY"
-  ]
 
   return (
     <main className="mx-auto flex justify-center items-center">
@@ -67,14 +62,13 @@ export default function Profile(props) {
 
         <ProfileForm 
         setShowModal={setShowModal}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        state={state}
+        profile={profile}
+        setProfile={setProfile}
+        handleAddProfile={handleAddProfile}
+        key={profile?._id}
         />
 
       ) : null}
-
-
 
       {/* Left User Info Section */}
       <div className="grid grid-flow-col gap-4 ">
@@ -82,15 +76,15 @@ export default function Profile(props) {
         <div className="w-full flex flex-col justify-start gap-4 ">
           <div className="image drop-shadow">
             <img className="h-48 w-48 rounded-full object-cover mx-auto" 
-                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="User Image" />
+                src={profile?.photo} alt="User Image" />
           </div>
 
           <div className=" ">
-            <span className="md:text-sm text-28 font-bold leading-8 ">Hi,{props.user.name}! </span>
+            <span className="md:text-sm text-28 font-bold leading-8 ">Hi,{profile?.name}! </span>
 
             <div className="md:text-xs pt-2">
                 <span className="text-base md:text-xs">Hometown: </span>
-                <span className="text-base md:text-xs">Santiago, Chile</span>
+                <span className="text-base md:text-xs">{profile?.movingFrom}</span>
                 <div className='border-b border-black w-1/2 mx-auto mt-2'></div>
             </div>   
 
@@ -135,7 +129,7 @@ export default function Profile(props) {
           </div>
 
           {/* Map over recentCountries db field for user */}
-          <div className="sm:col-span-1 flex justify-center">
+          {/* <div className="sm:col-span-1 flex justify-center">
           { dummyData ? dummyData.map((item, key) => {
               return (
                 <div className="py-2 px-2 ml-6 h-28 border border-black hover:underline" key={key}>
@@ -145,7 +139,7 @@ export default function Profile(props) {
             })
           : "Click HERE to start search..."
           }  
-          </div>
+          </div> */}
         </div>
       <div>
       {/* Preference Section */}

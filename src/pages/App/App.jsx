@@ -77,7 +77,9 @@ function App (props) {
           render={({ history }) => (
             authService.getUser() ? (
             <Profile
-              history={history} user={user}
+              history={history} 
+              user={user}
+              key={user}
             />
             ):(
             <Redirect to="/login" />

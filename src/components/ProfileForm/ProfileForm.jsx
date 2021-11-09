@@ -2,16 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { useForm } from '../../hooks/useForm';
 import * as profileService from "../../services/profileService";
 
-export default function ProfileForm( {state, setShowModal, handleSubmit, handleChange} ) {
+export default function ProfileForm( props ) {
   const formRef = useRef();
+  const [state, setState] = useForm(props.profile)
 
-
-  // pass form data via submit to handleAddProfile func 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   const updatedProfile = await profileService.update(state)
-  //   props.setAccount(updatedProfile)
-  // }
+  async function handleSubmit(e) {
+    // console.log(state, 'submit fire')
+    // handleAddProfile(state);
+    const updatedProfile = await profileService.update(props.profile._id, state)
+    props.setShowModal(false)
+    props.setProfile(updatedProfile)
+    // handleChange(updatedProfile)
+  }
   
   // const deleteProfile = () => profileService.deleteOne(props.account._id);
 
@@ -30,9 +32,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                 Edit your account details below 
               </div>
               {/* FORM START */}
-              <form ref={formRef} onSubmit={handleSubmit}
-              className=""
-              >
+              <form ref={formRef} onSubmit={handleSubmit}>
               {/* Styling for FORM divs begins */}
 
               <div className="">
@@ -51,8 +51,8 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                           type="text"
                           name="name"
                           id="name"
-                          value={state.name}
-                          onChange={handleChange}
+                          value={state?.name}
+                          onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
                       </div>
@@ -70,7 +70,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                           name="email"
                           id="email"
                           value={state.email}
-                          onChange={handleChange}
+                          onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
                       </div>
@@ -89,7 +89,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                           name="movingFrom"
                           id="movingFrom"
                           value={state?.movingFrom}
-                          onChange={handleChange}
+                          onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
                       
@@ -108,7 +108,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                           name="photo"
                           id="photo"
                           value={state.photo}
-                          onChange={handleChange}
+                          onChange={setState}
                           className="max-w-lg block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-none"
                       />
                       </div>
@@ -141,7 +141,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                           name="language"
                           id="language"
                           value={state?.language}
-                          onChange={handleChange}>
+                          onChange={setState}>
                       <option value="english"> English </option>
                       <option value="arabic"> Arabic </option>
                       <option value="chinese"> Chinese </option>
@@ -161,7 +161,7 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
                       id="dateFormat"
                       name="dateFormat"
                       value={state.dateFormat}
-                      onChange={handleChange}
+                      onChange={setState}
                       className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm "
                       >
                       <option value='DD-MM-YYYY'>DD-MM-YYYY</option>
@@ -179,11 +179,13 @@ export default function ProfileForm( {state, setShowModal, handleSubmit, handleC
             {/* <!--footer--> */}
             <div class="p-3  mt-2 text-center space-x-4 md:block">
                 <button class="mb-2 md:mb-0 bg-red-600 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-white rounded-full hover:shadow-lg hover:bg-red-900" type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => props.setShowModal(false)}>
                     Cancel
                 </button>
-                <button class="mb-2 md:mb-0 bg-primary border border-primary px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-yolk hover:text-black" type="button"
-                    onClick={() => setShowModal(false)}>Save</button>
+                <button class="mb-2 md:mb-0 bg-primary border border-primary px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-yolk hover:text-black" 
+                    onClick={() => handleSubmit()}>
+                Save
+                </button>
             </div>
           </div>
         </div>
