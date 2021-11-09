@@ -37,13 +37,13 @@ const arr = [1,2,3,4,5,6,7,8]
 
 
 
-export default function ResultsCarousel( {results, setSelected} ) {
+export default function ResultsCarousel( {selectedRef, handleScroll, results, setSelected} ) {
   
   console.log(results, 'modeldata')
 
   return(
     <>
-      <div className='my-10 outside-container w-full'>
+      <div className='my-10'>
       <div className="mb-2">
               <h1>Your County Results</h1>
               <h2>Click to preview </h2>
@@ -69,6 +69,7 @@ export default function ResultsCarousel( {results, setSelected} ) {
           itemClass="carousel-item-padding-40-px caro-hover"
           customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside={false}
+          // onClick={() => handleScroll(selectedRef)}
         >
     
         {results.map((result, index) => {

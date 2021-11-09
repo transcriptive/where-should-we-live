@@ -10,7 +10,7 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 
 
 
-export default function FormResults( {user, results, selected} ) {
+export default function FormResults( {user, results, selected, resultsRef} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
@@ -18,7 +18,6 @@ export default function FormResults( {user, results, selected} ) {
     const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState()
     
-    const countyTEST = "Westchester_County"
 
     useEffect(() => {
       setCounty(results[selected])
@@ -28,19 +27,15 @@ export default function FormResults( {user, results, selected} ) {
     useEffect(() => {
     const fetchWiki = async() => {
       const searchQuery = Object.values(results[selected])[1]
-      console.log(searchQuery)
       try {
         const results = await fetchCountyInfo(searchQuery);
-        console.log(results)
         const textToShow = results.substring(0, 500) + "...  ";
         SetCountyFacts(textToShow);
       } catch (err) {
         console.log(err);
-        console.log('Failed wiki fetch');
       }
     }
     fetchWiki()
-    console.log(countyFacts)
     }, [selected])
 
     // async function handleSaveCounty(e) {
@@ -62,10 +57,10 @@ export default function FormResults( {user, results, selected} ) {
     const number = new Intl.NumberFormat('en-US' , {maximumFractionDigits:0})
 
     return (
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1">
+      <div className="container mx-auto" >
+        <div className="grid grid-cols-1" id='scroll'>
             <div className="grid grid-cols-3">
-              <div className="col-span-2 result-map-div">
+              <div className="col-span-2 result-map-div" >
                 <CountyMap setLoading={setLoading} county={county} setPhotos={setPhotos} />
               </div>
               <div className="result-info-div col-span-1">
@@ -91,7 +86,7 @@ export default function FormResults( {user, results, selected} ) {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-1"> 
+            <div className="photos mt-6 grid grid-cols-1"> 
             <h1>Photos From the County</h1>
             {!loading ? ( 
             <Photos photos={photos}/>
