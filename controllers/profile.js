@@ -5,7 +5,8 @@ const Profile = require('../models/profile');
 // create a new profile
 function create(req, res) {  
   // identify user creating the profile                           
-  req.body.byUser = req.user._id;                      
+  req.body.byUser = req.user._id;  
+  console.log(req.body.byUser, req.user._id, 'byuser, _id')                    
   Profile.create(req.body)                              
     .then(profile => {res.json(profile)})              
     .catch(err => {res.json(err)});

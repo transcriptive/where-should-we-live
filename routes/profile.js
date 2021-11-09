@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const profilesCtrl = require('../controllers/profiles');
+const profileCtrl = require('../controllers/profile');
 
 /*---------- Public Routes ----------*/
 // router.get('/', profilesCtrl.index); awaiting clarification 
-router.get('/:id', profilesCtrl.getOneProfile);
-router.get('/user/:userid', profilesCtrl.getCurrentProfile)
+router.get('/:id', profileCtrl.getOneProfile);
+router.get('/user/:userid', profileCtrl.getCurrentProfile)
 
 /*---------- Protected Routes ----------*/
 router.use(require('../config/auth'));
-router.post('/', checkAuth, profilesCtrl.create);
-router.put('/:id', checkAuth, profilesCtrl.update);
-router.delete('/:id', checkAuth, profilesCtrl.delete);
+router.post('/', checkAuth, profileCtrl.create);
+router.put('/', checkAuth, profileCtrl.update);
+router.delete('/:id', checkAuth, profileCtrl.delete);
 
 
 /*--- HELPER FUNCTIONS  ---*/

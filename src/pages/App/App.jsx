@@ -21,6 +21,8 @@ function App (props) {
     history.push("/");
   };
 
+  console.log(user, 'user object')
+
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
@@ -73,9 +75,13 @@ function App (props) {
           exact
           path="/profile"
           render={({ history }) => (
+            authService.getUser() ? (
             <Profile
-              history={history}
+              history={history} user={user}
             />
+            ):(
+            <Redirect to="/login" />
+            )
           )}
         />
         <Route

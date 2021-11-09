@@ -51,7 +51,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "autoprefixer": "^9.8.6",

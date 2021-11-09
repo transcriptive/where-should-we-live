@@ -1,5 +1,5 @@
 import tokenService from '../services/tokenService';
-const BASE_URL = '/api/profiles/';
+const BASE_URL = '/api/profile/';
 
 export function create(profile) {
   return fetch(BASE_URL, {
