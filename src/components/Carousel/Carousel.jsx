@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
-import MapOne from './stockMapOne.jpg';
+import Texas from './states/TX.png'
 
+
+function importAll(r) {
+  return r.keys().map(r);
+}
+
+const images = importAll(require.context('./states', false, /\.(png|jpe?g|svg)$/));
+console.log(images)
+
+
+// {default: '/static/media/AK.0ec8becd.png', __esModule: true, Symbol(Symbol.toStringTag): 'Module'}
 
 const responsive = {
   desktop: {
@@ -22,24 +33,81 @@ const responsive = {
   }
 };
 
-
-const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-  const { carouselState: { currentSlide } } = rest;
-  return (
-    <div className="carousel-button-group"> 
-      <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} />
-      <button onClick={() => next()} />
-    </div>
-    );
-  };
-
-const arr = [1,2,3,4,5,6,7,8]
-
-
-
-export default function ResultsCarousel( {selectedRef, handleScroll, results, setSelected} ) {
+ 
   
-  console.log(results, 'modeldata')
+  export default function ResultsCarousel( {resultsRef, handleScroll, results, setSelected} ) {
+  
+
+  
+  const stateLabels = [
+    { label: 'Alabama', value: 'AL' },
+    { label: 'Alaska', value: 'AK' },
+    { label: 'American Samoa', value: 'AS' },
+    { label: 'Arizona', value: 'AZ' },
+    { label: 'Arkansas', value: 'AR' },
+    { label: 'California', value: 'CA' },
+    { label: 'Colorado', value: 'CO' },
+    { label: 'Connecticut', value: 'CT' },
+    { label: 'Delaware', value: 'DE' },
+    { label: 'District of Columbia', value: 'DC' },
+    { label: 'Florida', value: 'FL' },
+    { label: 'Georgia', value: 'GA' },
+    { label: 'Guam', value: 'GU' },
+    { label: 'Hawaii', value: 'HI' },
+    { label: 'Idaho', value: 'ID' },
+    { label: 'Illinois', value: 'IL' },
+    { label: 'Indiana', value: 'IN' },
+    { label: 'Iowa', value: 'IA' },
+    { label: 'Kansas', value: 'KS' },
+    { label: 'Kentucky', value: 'KY' },
+    { label: 'Louisiana', value: 'LA' },
+    { label: 'Maine', value: 'ME' },
+    { label: 'Maryland', value: 'MD' },
+    { label: 'Massachusetts', value: 'MA' },
+    { label: 'Michigan', value: 'MI' },
+    { label: 'Minnesota', value: 'MN' },
+    { label: 'Mississippi', value: 'MS' },
+    { label: 'Missouri', value: 'MO' },
+    { label: 'Montana', value: 'MT' },
+    { label: 'Nebraska', value: 'NE' },
+    { label: 'Nevada', value: 'NV' },
+    { label: 'New Hampshire', value: 'NH' },
+    { label: 'New Jersey', value: 'NJ' },
+    { label: 'New Mexico', value: 'NM' },
+    { label: 'New York', value: 'NY' },
+    { label: 'North Carolina', value: 'NC' },
+    { label: 'North Dakota', value: 'ND' },
+    { label: 'Ohio', value: 'OH' },
+    { label: 'Oklahoma', value: 'OK' },
+    { label: 'Oregon', value: 'OR' },
+    { label: 'Pennsylvania', value: 'PA' },
+    { label: 'Puerto Rico', value: 'PR' },
+    { label: 'Rhode Island', value: 'RI' },
+    { label: 'South Carolina', value: 'SC' },
+    { label: 'South Dakota', value: 'SD' },
+    { label: 'Tennessee', value: 'TN' },
+    { label: 'Texas', value: 'TX' },
+    { label: 'Utah', value: 'UT' },
+    { label: 'Vermont', value: 'VT' },
+    { label: 'Virgin Islands', value: 'VI' },
+    { label: 'Virginia', value: 'VA' },
+    { label: 'Washington', value: 'WA' },
+    { label: 'West Virginia', value: 'WV' },
+    { label: 'Wisconsin', value: 'WI' },
+    { label: 'Wyoming', value: 'WY' },
+  ];
+
+  const findState = (countyString) => {
+      if(!countyString) return
+      const state = countyString.split(',')[1].trim()
+      console.log(state, 'state')
+      const abbrev = stateLabels.find(s => s.label === state).value
+      const srcImg = images.find(img => {
+        return abbrev === img.default.split('/')[3].split('.')[0]
+      }) 
+      return srcImg?.default
+  }
+    
 
   return(
     <>
@@ -51,7 +119,7 @@ export default function ResultsCarousel( {selectedRef, handleScroll, results, se
         <Carousel
           centerMode={true}
           arrows={true}	
-          swipeable={false}
+          swipeable={true}
           draggable={false}
           showDots={false}
           responsive={responsive}
@@ -60,31 +128,32 @@ export default function ResultsCarousel( {selectedRef, handleScroll, results, se
           autoPlay={false}
           autoPlaySpeed={0}
           keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
+          customTransition="transform 300ms ease-in-out"
+          transitionDuration={300}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px caro-hover"
-          customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside={false}
+          sliderClass='carousel-track'
           // onClick={() => handleScroll(selectedRef)}
         >
     
         {results.map((result, index) => {
           return (
             <div 
-              className={"px-4"} 
+              className={""} 
               key={index} 
               onClick={() => setSelected(index)}>
                 <img 
-                  src={MapOne}
+                  src={findState(result.county)              
+                    }
                   className={'single-result'}
                   alt={index} 
                   key={index} 
                 ></img>
-              <p className={'ml-4 flex justify-start'}>{result.county}</p>
+              <p className={'mt-4'}>{result.county.split(',')[0]}</p>
             </div>
           )
         })}

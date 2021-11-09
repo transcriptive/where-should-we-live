@@ -22,13 +22,16 @@ const Search = ({user}) => {
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [selected, setSelected] =useState(null);
-
+  const [converted, setConversion] = useState();
   const [state, handleChange] = useForm({
     income: 250000,
     climate: 75,  
     pop: 500000,
     elevation: 100
   })
+
+
+
 
   const handleSubmit = async (e) => {
     console.log(state, 'submit fire')
@@ -58,9 +61,9 @@ const Search = ({user}) => {
   const selectedRef = useRef()
 
   // function handleScroll(ref) {
-  //   console.log(loading, 'onsubmit loading')
-  //   if (!loading)return;
-  //   resultsRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   console.log(ref, 'onsubmit loading')
+  //   // if (!loading) return;
+  //   ref.current?.scrollTop({top:295, behavior: 'smooth' });
   //   }
 
   // function handleScroll(ref) {
@@ -99,14 +102,16 @@ const Search = ({user}) => {
         <>
           {!loading ? (
             <>
-            <div ref={resultsRef}/>
+            <div ref={resultsRef} id='resultsRef'>
             <ResultsCarousel 
+              setConversion={setConversion}
               results={modelData}
               setSelected={setSelected}
+              // ref={resultsRef}
               // handleScroll={handleScroll}
 
             />
-            
+            </div>
             {selected != null && 
             <>
             <div ref={selectedRef}/>

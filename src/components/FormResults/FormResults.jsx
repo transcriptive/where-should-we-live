@@ -82,7 +82,7 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
 
-                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a></p>
+                    <p>{countyFacts}<a className="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     
                     {/* <p><button name="savedCounties" className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded" onClick={handleSaveCounty}>Save County</button></p> */}
@@ -96,12 +96,7 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
 
             <div className="photos mt-6 grid grid-cols-1"> 
             <h1>Photos From the County</h1>
-            {!loading ? ( 
             <Photos photos={photos}/>
-            ):(
-            <PreLoader data={LoadPhoto} key={'photo'}/>
-            )
-            } 
             </div>
       </div>
     );

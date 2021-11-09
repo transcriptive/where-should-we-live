@@ -118,7 +118,7 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
           <div className="buttonDiv">
             {/* <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button> */}
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-            // onClick={() => handleScroll(resultsRef)}
+            // onClick={() => handleScroll()}
             >Search</button>
           </div>
 
