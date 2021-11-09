@@ -17,12 +17,24 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState()
+    const [countyFacts, setCountyFacts] = useState(null)
+    const [wikiLink, setWikiLink] = useState(null)
     
 
     useEffect(() => {
       setCounty(results[selected])
+      const selectedCounty = Object.values(results[selected])[1]
+      const spaceReplace = selectedCounty.replaceAll(' ', '_')
+      const fullReplace = spaceReplace.replaceAll(',', '%2C')
+      const wikiLinkChange = `https://en.wikipedia.org/wiki/${fullReplace}`
+      setWikiLink(wikiLinkChange)
       }, [selected]
     )
+
+    // useEffect(() => {
+    //   setWikiLink()
+    // }, [selected]
+    // )
     
     useEffect(() => {
     const fetchWiki = async() => {
@@ -30,7 +42,7 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
       try {
         const results = await fetchCountyInfo(searchQuery);
         const textToShow = results.substring(0, 500) + "...  ";
-        SetCountyFacts(textToShow);
+        setCountyFacts(textToShow);
       } catch (err) {
         console.log(err);
       }
@@ -74,7 +86,8 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
 
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/{}" target="_blank" rel="noreferrer" >Read More</a></p>
+
+                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
                     
                     {/* <p><button name="savedCounties" className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded" onClick={handleSaveCounty}>Save County</button></p> */}
