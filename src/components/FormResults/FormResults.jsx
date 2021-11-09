@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link,  } from "react-router-dom";
 import CountyMap from "../../components/GoogleMap/GoogleMap";
 import "./FormResults.css"
-import { fetchCountyID } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
-import ResultsCarousel from "../../components/Carousel/Carousel"
 import * as profileService from "../../services/profileService";
 import Signup from "../../pages/Signup/Signup";
+import Photos from "../../components/Photos/Photos"
+import LoadPhoto from '../../media/photo.json';
+import PreLoader from "../../components/PreLoader/PreLoader";
+
+
 
 export default function FormResults( {user, results, selected} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState()
     
     const countyTEST = "Westchester_County"
@@ -59,11 +62,11 @@ export default function FormResults( {user, results, selected} ) {
     const number = new Intl.NumberFormat('en-US' , {maximumFractionDigits:0})
 
     return (
-      <div>
+      <div className="container mx-auto">
         <div className="grid grid-cols-1">
             <div className="grid grid-cols-3">
               <div className="col-span-2 result-map-div">
-                <CountyMap county={county} setPhotos={setPhotos} />
+                <CountyMap setLoading={setLoading} county={county} setPhotos={setPhotos} />
               </div>
               <div className="result-info-div col-span-1">
                 <div className="info-div">
@@ -88,11 +91,14 @@ export default function FormResults( {user, results, selected} ) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1">  
-            <PhotoCarousel 
-              // results={modelData}
-              // setSelected={setSelected}
-            />
+            <div className="mt-6 grid grid-cols-1"> 
+            <h1>Photos From the County</h1>
+            {!loading ? ( 
+            <Photos photos={photos}/>
+            ):(
+            <PreLoader data={LoadPhoto} key={'photo'}/>
+            )
+            } 
             </div>
       </div>
     );

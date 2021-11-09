@@ -26,6 +26,7 @@
     "react-google-places-autocomplete": "^3.3.2",
     "react-lottie-loader": "^1.0.0",
     "react-multi-carousel": "^2.6.5",
+    "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "use-places-autocomplete": "^1.10.0"

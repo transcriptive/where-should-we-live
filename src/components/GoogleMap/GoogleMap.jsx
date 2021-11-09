@@ -5,7 +5,7 @@ const containerStyle = {
   height: '100%'
 };
 
-export default function CountyMap({county , setPhotos}) {
+export default function CountyMap({setLoading, county , setPhotos}) {
   const [placeID, setPlaceID] = useState(null);
   const [map, setMap] = useState(null);
   
@@ -27,6 +27,7 @@ export default function CountyMap({county , setPhotos}) {
   },[])
 
   useEffect(() => {
+    setLoading(true)
     const geocoder = new window.google.maps.Geocoder()
     geocoder.geocode({ address: county?.county})
       .then((response) => {
@@ -42,8 +43,9 @@ export default function CountyMap({county , setPhotos}) {
       if(response.photos.length){
         const photoURLS = response.photos.map(photo => photo.getUrl())
         setPhotos(photoURLS)
-        console.log(photoURLS, 'urls bitch')
+        console.log(photoURLS, 'urls')
       }
+      setLoading(false)
       })
     
   },[county])
