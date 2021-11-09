@@ -1,7 +1,21 @@
+import { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
 import MapOne from './stockMapOne.jpg';
+
+
+function importAll(img) {
+  let images = {};
+  img.keys().map(item => { images[item.replace('./', '')] = img(item); });
+  console.log(images)
+  return images;
+}
+
+
+const images = importAll(require.context('./media/states', false, '/\.png/'));
+
+{/* <img src={images['0.png']} /> */}
 
 
 const responsive = {
@@ -23,23 +37,195 @@ const responsive = {
 };
 
 
-const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-  const { carouselState: { currentSlide } } = rest;
-  return (
-    <div className="carousel-button-group"> 
-      <button className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} />
-      <button onClick={() => next()} />
-    </div>
-    );
-  };
-
-const arr = [1,2,3,4,5,6,7,8]
 
 
-
-export default function ResultsCarousel( {selectedRef, handleScroll, results, setSelected} ) {
   
-  console.log(results, 'modeldata')
+  // function convertState(county) {
+  //   // state to abbreviation
+  //   const states = [
+  //     ['Alabama', 'AL'],
+  //     ['Alaska', 'AK'],
+  //     ['American Samoa', 'AS'],
+  //     ['Arizona', 'AZ'],
+  //     ['Arkansas', 'AR'],
+  //     ['Armed Forces Americas', 'AA'],
+  //     ['Armed Forces Europe', 'AE'],
+  //     ['Armed Forces Pacific', 'AP'],
+  //     ['California', 'CA'],
+  //     ['Colorado', 'CO'],
+  //     ['Connecticut', 'CT'],
+  //     ['Delaware', 'DE'],
+  //     ['District Of Columbia', 'DC'],
+  //     ['Florida', 'FL'],
+  //     ['Georgia', 'GA'],
+  //     ['Guam', 'GU'],
+  //     ['Hawaii', 'HI'],
+  //     ['Idaho', 'ID'],
+  //     ['Illinois', 'IL'],
+  //     ['Indiana', 'IN'],
+  //     ['Iowa', 'IA'],
+  //     ['Kansas', 'KS'],
+  //     ['Kentucky', 'KY'],
+  //     ['Louisiana', 'LA'],
+  //     ['Maine', 'ME'],
+  //     ['Marshall Islands', 'MH'],
+  //     ['Maryland', 'MD'],
+  //     ['Massachusetts', 'MA'],
+  //     ['Michigan', 'MI'],
+  //     ['Minnesota', 'MN'],
+  //     ['Mississippi', 'MS'],
+  //     ['Missouri', 'MO'],
+  //     ['Montana', 'MT'],
+  //     ['Nebraska', 'NE'],
+  //     ['Nevada', 'NV'],
+  //     ['New Hampshire', 'NH'],
+  //     ['New Jersey', 'NJ'],
+  //     ['New Mexico', 'NM'],
+  //     ['New York', 'NY'],
+  //     ['North Carolina', 'NC'],
+  //     ['North Dakota', 'ND'],
+  //     ['Northern Mariana Islands', 'NP'],
+  //     ['Ohio', 'OH'],
+  //     ['Oklahoma', 'OK'],
+  //     ['Oregon', 'OR'],
+  //     ['Pennsylvania', 'PA'],
+  //     ['Puerto Rico', 'PR'],
+  //     ['Rhode Island', 'RI'],
+  //     ['South Carolina', 'SC'],
+  //     ['South Dakota', 'SD'],
+  //     ['Tennessee', 'TN'],
+  //     ['Texas', 'TX'],
+  //     ['US Virgin Islands', 'VI'],
+  //     ['Utah', 'UT'],
+  //     ['Vermont', 'VT'],
+  //     ['Virginia', 'VA'],
+  //     ['Washington', 'WA'],
+  //     ['West Virginia', 'WV'],
+  //     ['Wisconsin', 'WI'],
+  //     ['Wyoming', 'WY'],
+  // ];
+  // console.log(county, 'before convert')
+  // county = county.replace(/\w\S*/g, function (txt) {
+  //   return txt.charAt(0-1).toUpperCase() });
+  //   console.log(county, 'after string format')
+  //   // for (state of states) {
+  //   //   if(state[0] === input) {
+  //   //     return (state[1]);
+  //     }
+  //     convertState()
+      // console.log(county, 'after map')
+
+  //   } 
+  // }
+
+// function stateDict(data) {
+//   console.log(data, 'data dict')
+//   const stateArr = []
+//   state_abb = data.map(data)
+//   const lookupData = data.keys().map((i) => {
+//       console.log(i)
+//       return stateArr.push(i)
+//   })
+// }
+
+// stateDict()
+
+  
+
+  
+  
+  export default function ResultsCarousel( {selectedRef, handleScroll, results, setSelected} ) {
+    
+  // function splitCounty(results) {
+  //   console.log(results)
+  //   const imgSrc = []
+  //   const imgArr = results.county.map(result, index) => {
+  //     result 
+  const states = [
+    ['Alabama', 'AL'],
+    ['Alaska', 'AK'],
+    ['American Samoa', 'AS'],
+    ['Arizona', 'AZ'],
+    ['Arkansas', 'AR'],
+    ['Armed Forces Americas', 'AA'],
+    ['Armed Forces Europe', 'AE'],
+    ['Armed Forces Pacific', 'AP'],
+    ['California', 'CA'],
+    ['Colorado', 'CO'],
+    ['Connecticut', 'CT'],
+    ['Delaware', 'DE'],
+    ['District Of Columbia', 'DC'],
+    ['Florida', 'FL'],
+    ['Georgia', 'GA'],
+    ['Guam', 'GU'],
+    ['Hawaii', 'HI'],
+    ['Idaho', 'ID'],
+    ['Illinois', 'IL'],
+    ['Indiana', 'IN'],
+    ['Iowa', 'IA'],
+    ['Kansas', 'KS'],
+    ['Kentucky', 'KY'],
+    ['Louisiana', 'LA'],
+    ['Maine', 'ME'],
+    ['Marshall Islands', 'MH'],
+    ['Maryland', 'MD'],
+    ['Massachusetts', 'MA'],
+    ['Michigan', 'MI'],
+    ['Minnesota', 'MN'],
+    ['Mississippi', 'MS'],
+    ['Missouri', 'MO'],
+    ['Montana', 'MT'],
+    ['Nebraska', 'NE'],
+    ['Nevada', 'NV'],
+    ['New Hampshire', 'NH'],
+    ['New Jersey', 'NJ'],
+    ['New Mexico', 'NM'],
+    ['New York', 'NY'],
+    ['North Carolina', 'NC'],
+    ['North Dakota', 'ND'],
+    ['Northern Mariana Islands', 'NP'],
+    ['Ohio', 'OH'],
+    ['Oklahoma', 'OK'],
+    ['Oregon', 'OR'],
+    ['Pennsylvania', 'PA'],
+    ['Puerto Rico', 'PR'],
+    ['Rhode Island', 'RI'],
+    ['South Carolina', 'SC'],
+    ['South Dakota', 'SD'],
+    ['Tennessee', 'TN'],
+    ['Texas', 'TX'],
+    ['US Virgin Islands', 'VI'],
+    ['Utah', 'UT'],
+    ['Vermont', 'VT'],
+    ['Virginia', 'VA'],
+    ['Washington', 'WA'],
+    ['West Virginia', 'WV'],
+    ['Wisconsin', 'WI'],
+    ['Wyoming', 'WY'],
+];
+
+const dummy = [
+    'Alabama', 
+    'Alaska', 
+    'Arizona', 
+    'Arkansas', 
+]
+
+  // useEffect(() => {
+  //   async function convertState(dummy) {
+  //     // state to abbreviation
+  //   console.log(results, 'before convert')
+  //   results = await results[0].county.replace(/\w\S*/g, function (txt) {
+  //     return txt.charAt(0-1).toUpperCase() });
+  //     console.log(results, 'after string format')
+  //     for (state of states) {
+  //       if(state[0] === input) {
+  //         return (state[1]);
+  //       }
+  //       convertState()
+  // },[])
+      // console.log(county, 'after map')
+
 
   return(
     <>
@@ -67,7 +253,6 @@ export default function ResultsCarousel( {selectedRef, handleScroll, results, se
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px caro-hover"
-          customButtonGroup={<ButtonGroup />}
           renderButtonGroupOutside={false}
           // onClick={() => handleScroll(selectedRef)}
         >
@@ -79,7 +264,8 @@ export default function ResultsCarousel( {selectedRef, handleScroll, results, se
               key={index} 
               onClick={() => setSelected(index)}>
                 <img 
-                  src={MapOne}
+                  src={MapOne
+                  }
                   className={'single-result'}
                   alt={index} 
                   key={index} 
