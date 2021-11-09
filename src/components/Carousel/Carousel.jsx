@@ -2,21 +2,18 @@ import { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
-import MapOne from './stockMapOne.jpg';
 import Texas from './states/TX.png'
 
-// function importAll(img) {
-//   let images = {};
-//   img.keys().map(item => { images[item.replace('./', '')] = img(item); });
-//   console.log(images)
-//   return images;
-// }
+
+function importAll(r) {
+  return r.keys().map(r);
+}
+
+const images = importAll(require.context('./states', false, /\.(png|jpe?g|svg)$/));
+console.log(images)
 
 
-// const images = importAll(require.context('./media/states', false, '/\.png/'));
-
-{/* <img src={images['0.png']} /> */}
-
+// {default: '/static/media/AK.0ec8becd.png', __esModule: true, Symbol(Symbol.toStringTag): 'Module'}
 
 const responsive = {
   desktop: {
@@ -36,133 +33,81 @@ const responsive = {
   }
 };
 
-
-
-
+ 
   
-  
-  // console.log(county, 'before convert')
-  // county = county.replace(/\w\S*/g, function (txt) {
-  //   return txt.charAt(0-1).toUpperCase() });
-  //   console.log(county, 'after string format')
-  //   // for (state of states) {
-  //   //   if(state[0] === input) {
-  //   //     return (state[1]);
-  //     }
-  //     convertState()
-      // console.log(county, 'after map')
-
-  //   } 
-  // }
-
-// function stateDict(data) {
-//   console.log(data, 'data dict')
-//   const stateArr = []
-//   state_abb = data.map(data)
-//   const lookupData = data.keys().map((i) => {
-//       console.log(i)
-//       return stateArr.push(i)
-//   })
-// }
-
-// stateDict()
-
+  export default function ResultsCarousel( {resultsRef, handleScroll, results, setSelected} ) {
   
 
   
-  
-  export default function ResultsCarousel( {selectedRef, handleScroll, results, setSelected} ) {
+  const stateLabels = [
+    { label: 'Alabama', value: 'AL' },
+    { label: 'Alaska', value: 'AK' },
+    { label: 'American Samoa', value: 'AS' },
+    { label: 'Arizona', value: 'AZ' },
+    { label: 'Arkansas', value: 'AR' },
+    { label: 'California', value: 'CA' },
+    { label: 'Colorado', value: 'CO' },
+    { label: 'Connecticut', value: 'CT' },
+    { label: 'Delaware', value: 'DE' },
+    { label: 'District of Columbia', value: 'DC' },
+    { label: 'Florida', value: 'FL' },
+    { label: 'Georgia', value: 'GA' },
+    { label: 'Guam', value: 'GU' },
+    { label: 'Hawaii', value: 'HI' },
+    { label: 'Idaho', value: 'ID' },
+    { label: 'Illinois', value: 'IL' },
+    { label: 'Indiana', value: 'IN' },
+    { label: 'Iowa', value: 'IA' },
+    { label: 'Kansas', value: 'KS' },
+    { label: 'Kentucky', value: 'KY' },
+    { label: 'Louisiana', value: 'LA' },
+    { label: 'Maine', value: 'ME' },
+    { label: 'Maryland', value: 'MD' },
+    { label: 'Massachusetts', value: 'MA' },
+    { label: 'Michigan', value: 'MI' },
+    { label: 'Minnesota', value: 'MN' },
+    { label: 'Mississippi', value: 'MS' },
+    { label: 'Missouri', value: 'MO' },
+    { label: 'Montana', value: 'MT' },
+    { label: 'Nebraska', value: 'NE' },
+    { label: 'Nevada', value: 'NV' },
+    { label: 'New Hampshire', value: 'NH' },
+    { label: 'New Jersey', value: 'NJ' },
+    { label: 'New Mexico', value: 'NM' },
+    { label: 'New York', value: 'NY' },
+    { label: 'North Carolina', value: 'NC' },
+    { label: 'North Dakota', value: 'ND' },
+    { label: 'Ohio', value: 'OH' },
+    { label: 'Oklahoma', value: 'OK' },
+    { label: 'Oregon', value: 'OR' },
+    { label: 'Pennsylvania', value: 'PA' },
+    { label: 'Puerto Rico', value: 'PR' },
+    { label: 'Rhode Island', value: 'RI' },
+    { label: 'South Carolina', value: 'SC' },
+    { label: 'South Dakota', value: 'SD' },
+    { label: 'Tennessee', value: 'TN' },
+    { label: 'Texas', value: 'TX' },
+    { label: 'Utah', value: 'UT' },
+    { label: 'Vermont', value: 'VT' },
+    { label: 'Virgin Islands', value: 'VI' },
+    { label: 'Virginia', value: 'VA' },
+    { label: 'Washington', value: 'WA' },
+    { label: 'West Virginia', value: 'WV' },
+    { label: 'Wisconsin', value: 'WI' },
+    { label: 'Wyoming', value: 'WY' },
+  ];
+
+  const findState = (countyString) => {
+      if(!countyString) return
+      const state = countyString.split(',')[1].trim()
+      console.log(state, 'state')
+      const abbrev = stateLabels.find(s => s.label === state).value
+      const srcImg = images.find(img => {
+        return abbrev === img.default.split('/')[3].split('.')[0]
+      }) 
+      return srcImg?.default
+  }
     
-  // function splitCounty(results) {
-  //   console.log(results)
-  //   const imgSrc = []
-  //   const imgArr = results.county.map(result, index) => {
-  //     result 
-  const states = [
-    ['Alabama', 'AL'],
-    ['Alaska', 'AK'],
-    ['American Samoa', 'AS'],
-    ['Arizona', 'AZ'],
-    ['Arkansas', 'AR'],
-    ['Armed Forces Americas', 'AA'],
-    ['Armed Forces Europe', 'AE'],
-    ['Armed Forces Pacific', 'AP'],
-    ['California', 'CA'],
-    ['Colorado', 'CO'],
-    ['Connecticut', 'CT'],
-    ['Delaware', 'DE'],
-    ['District Of Columbia', 'DC'],
-    ['Florida', 'FL'],
-    ['Georgia', 'GA'],
-    ['Guam', 'GU'],
-    ['Hawaii', 'HI'],
-    ['Idaho', 'ID'],
-    ['Illinois', 'IL'],
-    ['Indiana', 'IN'],
-    ['Iowa', 'IA'],
-    ['Kansas', 'KS'],
-    ['Kentucky', 'KY'],
-    ['Louisiana', 'LA'],
-    ['Maine', 'ME'],
-    ['Marshall Islands', 'MH'],
-    ['Maryland', 'MD'],
-    ['Massachusetts', 'MA'],
-    ['Michigan', 'MI'],
-    ['Minnesota', 'MN'],
-    ['Mississippi', 'MS'],
-    ['Missouri', 'MO'],
-    ['Montana', 'MT'],
-    ['Nebraska', 'NE'],
-    ['Nevada', 'NV'],
-    ['New Hampshire', 'NH'],
-    ['New Jersey', 'NJ'],
-    ['New Mexico', 'NM'],
-    ['New York', 'NY'],
-    ['North Carolina', 'NC'],
-    ['North Dakota', 'ND'],
-    ['Northern Mariana Islands', 'NP'],
-    ['Ohio', 'OH'],
-    ['Oklahoma', 'OK'],
-    ['Oregon', 'OR'],
-    ['Pennsylvania', 'PA'],
-    ['Puerto Rico', 'PR'],
-    ['Rhode Island', 'RI'],
-    ['South Carolina', 'SC'],
-    ['South Dakota', 'SD'],
-    ['Tennessee', 'TN'],
-    ['Texas', 'TX'],
-    ['US Virgin Islands', 'VI'],
-    ['Utah', 'UT'],
-    ['Vermont', 'VT'],
-    ['Virginia', 'VA'],
-    ['Washington', 'WA'],
-    ['West Virginia', 'WV'],
-    ['Wisconsin', 'WI'],
-    ['Wyoming', 'WY'],
-];
-
-const dummy = [
-    'Alabama', 
-    'Alaska', 
-    'Arizona', 
-    'Arkansas', 
-]
-
-  // useEffect(() => {
-  //   async function convertState(dummy) {
-  //     // state to abbreviation
-  //   console.log(results, 'before convert')
-  //   results = await results[0].county.replace(/\w\S*/g, function (txt) {
-  //     return txt.charAt(0-1).toUpperCase() });
-  //     console.log(results, 'after string format')
-  //     for (state of states) {
-  //       if(state[0] === input) {
-  //         return (state[1]);
-  //       }
-  //       convertState()
-  // },[])
-      // console.log(county, 'after map')
-
 
   return(
     <>
@@ -202,13 +147,13 @@ const dummy = [
               key={index} 
               onClick={() => setSelected(index)}>
                 <img 
-                  src={Texas
-                  }
+                  src={findState(result.county)              
+                    }
                   className={'single-result'}
                   alt={index} 
                   key={index} 
                 ></img>
-              <p className={'mt-4'}>{result.county}</p>
+              <p className={'mt-4'}>{result.county.split(',')[0]}</p>
             </div>
           )
         })}

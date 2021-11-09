@@ -13,16 +13,6 @@ function create(req, res) {
     .catch(err => {res.json(err)});
 }
 
-// Dorment function until we decide on profile visibility of users
-
-// return all profiles in the database
-// function index(req, res) {                               
-//   Profile.find({})                                       
-//     .populate('addedBy')
-//     .then(profiles => res.json(profiles))
-//     .catch(err => {res.json(err)})
-// }
-
 // return profile created by the current user
 function getCurrentProfile(req, res) {                   
   Profile.findOne({byUser: req.params.userid})

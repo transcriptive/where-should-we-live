@@ -30,84 +30,6 @@ const Search = ({user}) => {
     elevation: 100
   })
 
-//   const states = [
-//     ['Alabama', 'AL'],
-//     ['Alaska', 'AK'],
-//     ['American Samoa', 'AS'],
-//     ['Arizona', 'AZ'],
-//     ['Arkansas', 'AR'],
-//     ['Armed Forces Americas', 'AA'],
-//     ['Armed Forces Europe', 'AE'],
-//     ['Armed Forces Pacific', 'AP'],
-//     ['California', 'CA'],
-//     ['Colorado', 'CO'],
-//     ['Connecticut', 'CT'],
-//     ['Delaware', 'DE'],
-//     ['District Of Columbia', 'DC'],
-//     ['Florida', 'FL'],
-//     ['Georgia', 'GA'],
-//     ['Guam', 'GU'],
-//     ['Hawaii', 'HI'],
-//     ['Idaho', 'ID'],
-//     ['Illinois', 'IL'],
-//     ['Indiana', 'IN'],
-//     ['Iowa', 'IA'],
-//     ['Kansas', 'KS'],
-//     ['Kentucky', 'KY'],
-//     ['Louisiana', 'LA'],
-//     ['Maine', 'ME'],
-//     ['Marshall Islands', 'MH'],
-//     ['Maryland', 'MD'],
-//     ['Massachusetts', 'MA'],
-//     ['Michigan', 'MI'],
-//     ['Minnesota', 'MN'],
-//     ['Mississippi', 'MS'],
-//     ['Missouri', 'MO'],
-//     ['Montana', 'MT'],
-//     ['Nebraska', 'NE'],
-//     ['Nevada', 'NV'],
-//     ['New Hampshire', 'NH'],
-//     ['New Jersey', 'NJ'],
-//     ['New Mexico', 'NM'],
-//     ['New York', 'NY'],
-//     ['North Carolina', 'NC'],
-//     ['North Dakota', 'ND'],
-//     ['Northern Mariana Islands', 'NP'],
-//     ['Ohio', 'OH'],
-//     ['Oklahoma', 'OK'],
-//     ['Oregon', 'OR'],
-//     ['Pennsylvania', 'PA'],
-//     ['Puerto Rico', 'PR'],
-//     ['Rhode Island', 'RI'],
-//     ['South Carolina', 'SC'],
-//     ['South Dakota', 'SD'],
-//     ['Tennessee', 'TN'],
-//     ['Texas', 'TX'],
-//     ['US Virgin Islands', 'VI'],
-//     ['Utah', 'UT'],
-//     ['Vermont', 'VT'],
-//     ['Virginia', 'VA'],
-//     ['Washington', 'WA'],
-//     ['West Virginia', 'WV'],
-//     ['Wisconsin', 'WI'],
-//     ['Wyoming', 'WY'],
-// ];
-
-
-  // function stateConvert(results, callback) {
-  //   // state to abbreviation
-  //   console.log(results, 'before convert')
-  //   results = results[0].county.replace(/\w\S*/g, function (txt) {
-  //     return txt.charAt(0-1).toUpperCase() });
-  //     console.log(results, 'after string format')
-  //     for (state of states) {
-  //       if(state[0] === results) {
-  //         return (state[1]);
-  //       }
-  //     }    
-  //     setConversion(results)
-  // }
-
 
 
 
@@ -139,9 +61,9 @@ const Search = ({user}) => {
   const selectedRef = useRef()
 
   // function handleScroll(ref) {
-  //   console.log(loading, 'onsubmit loading')
-  //   if (!loading)return;
-  //   resultsRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   console.log(ref, 'onsubmit loading')
+  //   // if (!loading) return;
+  //   ref.current?.scrollTop({top:295, behavior: 'smooth' });
   //   }
 
   // function handleScroll(ref) {
@@ -180,15 +102,16 @@ const Search = ({user}) => {
         <>
           {!loading ? (
             <>
-            <div ref={resultsRef}/>
+            <div ref={resultsRef} id='resultsRef'>
             <ResultsCarousel 
               setConversion={setConversion}
               results={modelData}
               setSelected={setSelected}
+              // ref={resultsRef}
               // handleScroll={handleScroll}
 
             />
-            
+            </div>
             {selected != null && 
             <>
             <div ref={selectedRef}/>
