@@ -14,6 +14,7 @@ const profileSchema = new Schema(
     movingFrom: String, 
     language: String,
     recentCounties: [String],
+    savedCounties: [String],
     dateFormat: {
       type: [String],
       enum: ["DD-MM-YYYY", "MM-DD-YYYY", ],

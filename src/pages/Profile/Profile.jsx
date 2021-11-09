@@ -7,24 +7,12 @@ import ProfileForm from "../../components/ProfileForm/ProfileForm";
 
 export default function Profile(props) {
   const [profile, setProfile] = useState(null);
-  const [showModal, setShowModal] = useState()
-
-
-  // const [state, handleChange] = useForm({
-  //   name: "",
-  //   email: "",
-  //   movingFrom: "", 
-  //   language: "",
-  //   recentCounties: [],
-  //   dateFormat: "DD-MM-YYYY",
-  //   groups: [],
-  // })
-
-
+  const [showModal, setShowModal] = useState();
+  const [register, setRegister] = useState();
+ 
   // function to determine if user has profile already, if no, open modal to gather information
   useEffect(() => {
     const hasProfile = async () => {
-      console.log('check for profile')
       const hasData = await profileService.getAllByCurrentUser(props.user._id)
       setProfile(hasData)
       if (!hasData._id) {
@@ -63,6 +51,7 @@ export default function Profile(props) {
         setShowModal={setShowModal}
         profile={profile}
         setProfile={setProfile}
+        setRegister={setRegister}
         handleAddProfile={handleAddProfile}
         />
 

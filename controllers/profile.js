@@ -44,6 +44,8 @@ function update(req, res) {
     .catch(err => res.json(err))
 }
 
+
+
 function deleteOne(req, res) {
   Profile.findByIdAndDelete(req.params.id)
     .then(profile => res.json(profile))

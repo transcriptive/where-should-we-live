@@ -5,11 +5,15 @@ import "./FormResults.css"
 import { fetchCountyID } from "../../services/googleService";
 import { fetchCountyInfo } from "../../services/wikiService";
 import ResultsCarousel from "../../components/Carousel/Carousel"
+import * as profileService from "../../services/profileService";
+import Signup from "../../pages/Signup/Signup";
 
 export default function FormResults( {user, results, selected} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
     const [countyFacts, SetCountyFacts] = useState(null)
+    const [open, setOpen] = useState(false)
+    const [profile, setProfile] = useState()
     
     const countyTEST = "Westchester_County"
 
@@ -36,6 +40,17 @@ export default function FormResults( {user, results, selected} ) {
     console.log(countyFacts)
     }, [selected])
 
+    // async function handleSaveCounty(e) {
+    //   e.preventDefault()
+    //   console.log(user, 'user')
+    //   if (!user) {
+    //     setOpen(true) 
+    //     const hasData = await profileService.getAllByCurrentUser(user._id)
+    //     setProfile(hasData)
+    //   }
+    // }
+    
+
 
 
     const money = new Intl.NumberFormat('en-US',
@@ -61,27 +76,23 @@ export default function FormResults( {user, results, selected} ) {
 
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
-                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/{}" target="_blank">Read More</a></p>
+                    <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/{}" target="_blank" rel="noreferrer" >Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
-                    <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
+                    
+                    {/* <p><button name="savedCounties" className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded" onClick={handleSaveCounty}>Save County</button></p> */}
                   </div>
-
+                {/* {open ? (
+                <Signup/>
+                ) : null } */}
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1">  
-              <div className="col-span-1 saved-div">
-                <h1>Saved Cities</h1>
-                {/* conditional render for logged in/out users */}
-                {user ? 
-                <div>Pull in saved cities to display here</div>
-                : 
-                <div className="mt-14  text-xl italic">
-                  <Link to="/profile" className='text-blue-500 underline'>Sign up</Link> to save your county results
-                </div>
-                }
-              </div>
+            <PhotoCarousel 
+              // results={modelData}
+              // setSelected={setSelected}
+            />
             </div>
       </div>
     );

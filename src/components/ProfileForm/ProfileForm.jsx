@@ -7,11 +7,10 @@ export default function ProfileForm( props ) {
   const [state, setState] = useForm(props.profile)
 
   async function handleSubmit(e) {
-    // console.log(state, 'submit fire')
     // handleAddProfile(state);
+    props.setShowModal(false)
     const updatedProfile = await profileService.update(props.profile._id, state)
     props.setProfile(updatedProfile)
-    props.setShowModal(false)
     window.location.reload(false);
 
     // handleChange(updatedProfile)

@@ -33,7 +33,6 @@ export function deleteProfile(id) {
 }
 
 export function update(userid, profile) {
-  console.log(userid, profile, "userid, profile")
   return fetch(`${BASE_URL}${userid}`, {
       method: "PUT", 
       headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
@@ -41,3 +40,5 @@ export function update(userid, profile) {
   }, {mode: 'cors'})
   .then(res => res.json());
 }
+
+
