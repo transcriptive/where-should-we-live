@@ -10,8 +10,10 @@ export default function ProfileForm( props ) {
     // console.log(state, 'submit fire')
     // handleAddProfile(state);
     const updatedProfile = await profileService.update(props.profile._id, state)
-    props.setShowModal(false)
     props.setProfile(updatedProfile)
+    props.setShowModal(false)
+    window.location.reload(false);
+
     // handleChange(updatedProfile)
   }
   
@@ -69,7 +71,7 @@ export default function ProfileForm( props ) {
                           type="text"
                           name="email"
                           id="email"
-                          value={state.email}
+                          value={state?.email}
                           onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
@@ -107,7 +109,7 @@ export default function ProfileForm( props ) {
                           type="file"
                           name="photo"
                           id="photo"
-                          value={state.photo}
+                          value={state?.photo}
                           onChange={setState}
                           className="max-w-lg block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-none"
                       />
@@ -160,7 +162,7 @@ export default function ProfileForm( props ) {
                       <select
                       id="dateFormat"
                       name="dateFormat"
-                      value={state.dateFormat}
+                      value={state?.dateFormat}
                       onChange={setState}
                       className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm "
                       >

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Route, Redirect, useHistory } from "react-router-dom";
 import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
@@ -21,12 +21,12 @@ function App (props) {
     history.push("/");
   };
 
-  console.log(user, 'user object')
-
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
 
+
+ 
     return (
       <>
         <NavBar user={user} handleLogout={handleLogout}/>
@@ -79,7 +79,6 @@ function App (props) {
             <Profile
               history={history} 
               user={user}
-              key={user}
             />
             ):(
             <Redirect to="/login" />

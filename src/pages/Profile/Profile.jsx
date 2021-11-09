@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Dialog, Transition } from '@headlessui/react';
 import { useForm } from "../../hooks/useForm";
@@ -7,7 +7,7 @@ import ProfileForm from "../../components/ProfileForm/ProfileForm";
 
 export default function Profile(props) {
   const [profile, setProfile] = useState(null);
-
+  const [showModal, setShowModal] = useState()
 
 
   // const [state, handleChange] = useForm({
@@ -19,7 +19,6 @@ export default function Profile(props) {
   //   dateFormat: "DD-MM-YYYY",
   //   groups: [],
   // })
-
 
 
   // function to determine if user has profile already, if no, open modal to gather information
@@ -53,7 +52,7 @@ export default function Profile(props) {
   // }
 
   // For Modal
-  const [showModal, setShowModal] = useState(false)
+  
 
   return (
     <main className="mx-auto flex justify-center items-center">
@@ -65,7 +64,6 @@ export default function Profile(props) {
         profile={profile}
         setProfile={setProfile}
         handleAddProfile={handleAddProfile}
-        key={profile?._id}
         />
 
       ) : null}
@@ -76,7 +74,7 @@ export default function Profile(props) {
         <div className="w-full flex flex-col justify-start gap-4 ">
           <div className="image drop-shadow">
             <img className="h-48 w-48 rounded-full object-cover mx-auto" 
-                src={profile?.photo} alt="User Image" />
+                src={profile?.photo} alt="user" />
           </div>
 
           <div className=" ">
@@ -89,7 +87,7 @@ export default function Profile(props) {
             </div>   
 
             <div className="flex justify-center mt-5 ">
-              <img className="w-10 h-10" src="https://img.icons8.com/ios/100/000000/city-block.png"/>
+              <img className="w-10 h-10" src="https://img.icons8.com/ios/100/000000/city-block.png" alt='cities'/>
               <span className="bg-breakingRed rounded-full w-4 h-4 flex justify-center items-center text-white text-12">3</span>
               <span className="text-base">Cities<br/>Explored</span>
             </div>
