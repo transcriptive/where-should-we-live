@@ -22,21 +22,24 @@ export default function CountyMap({setLoading, county , setPhotos}) {
       clickableIcons: false,
       streetViewControl: false,
       mapTypeControl: false,
+      height: 70,
     })
     setMap(map)
   },[])
 
   useEffect(() => {
+    async function fetchGoogleData(){
     setLoading(true)
     const geocoder = new window.google.maps.Geocoder()
     geocoder.geocode({ address: county?.county})
-      .then((response) => {
-      console.log("response", response)
-      if (response.results[0]) {
-        setPlaceID(response.results[0].place_id)
-        map.fitBounds(response.results[0].geometry.bounds)
-      }
-    }) 
+    .then((response) => {
+        console.log("response", response)
+        if (response.results[0]) {
+          setPlaceID(response.results[0].place_id)
+          map.fitBounds(response.results[0].geometry.bounds)
+        }
+      })
+    } {
     const places = new window.google.maps.places.PlacesService(map)
     places.getDetails({placeId: placeID}, 
       response => {
@@ -47,7 +50,8 @@ export default function CountyMap({setLoading, county , setPhotos}) {
       }
       setLoading(false)
       })
-    
+    }
+    fetchGoogleData();
   },[county])
 
 

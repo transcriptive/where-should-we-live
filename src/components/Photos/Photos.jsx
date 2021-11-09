@@ -7,9 +7,8 @@ export default function Photos({photos}) {
     
         return (
             <Carousel
-            autoPlay={true}
             centerMode={true}
-            centerSlidePercentage={40}            >
+            centerSlidePercentage={35}            >
               {photos?.map((result, index) => {
                   return (
                     <div>
