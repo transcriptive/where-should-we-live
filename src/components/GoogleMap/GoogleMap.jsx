@@ -5,7 +5,7 @@ const containerStyle = {
   height: '100%'
 };
 
-export default function CountyMap({county , setPhotos}) {
+export default function CountyMap({setLoading, county , setPhotos}) {
   const [placeID, setPlaceID] = useState(null);
   const [map, setMap] = useState(null);
   
@@ -22,30 +22,36 @@ export default function CountyMap({county , setPhotos}) {
       clickableIcons: false,
       streetViewControl: false,
       mapTypeControl: false,
+      height: 70,
     })
     setMap(map)
   },[])
 
   useEffect(() => {
+    async function fetchGoogleData(){
+    setLoading(true)
     const geocoder = new window.google.maps.Geocoder()
     geocoder.geocode({ address: county?.county})
-      .then((response) => {
-      console.log("response", response)
-      if (response.results[0]) {
-        setPlaceID(response.results[0].place_id)
-        map.fitBounds(response.results[0].geometry.bounds)
-      }
-    }) 
+    .then((response) => {
+        console.log("response", response)
+        if (response.results[0]) {
+          setPlaceID(response.results[0].place_id)
+          map.fitBounds(response.results[0].geometry.bounds)
+        }
+      })
+    } {
     const places = new window.google.maps.places.PlacesService(map)
     places.getDetails({placeId: placeID}, 
       response => {
       if(response.photos.length){
         const photoURLS = response.photos.map(photo => photo.getUrl())
         setPhotos(photoURLS)
-        console.log(photoURLS, 'urls bitch')
+        console.log(photoURLS, 'urls')
       }
+      setLoading(false)
       })
-    
+    }
+    fetchGoogleData();
   },[county])
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, forwardRef, useRef, useState } from "react";
 import { useForm } from '../../hooks/useForm'
 import { fetchData } from "../../services/modelService"
 import { fetchCountyInfo } from "../../services/wikiService";
@@ -8,15 +8,20 @@ import FormResults from "../../components/FormResults/FormResults";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
+import LoadPhoto from '../../media/photo.json';
+import ScrollTo from 'react-scroll-into-view'
+import ReactDOM from 'react-dom';
+
+
+
 import { Wrapper } from "@googlemaps/react-wrapper";
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-export default function Search({user}) {
+const Search = ({user}) => {
   const [modelData, setModelData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [selected, setSelected] =useState(null);
-  const [countyFacts, SetCountyFacts] = useState(null)
 
   const [state, handleChange] = useForm({
     income: 250000,
@@ -25,24 +30,8 @@ export default function Search({user}) {
     elevation: 100
   })
 
-  // useEffect(() => {
-  //   const fetchWiki = async() => {
-  //     const searchQuery = selected
-  //     console.log(selected)
-  //     console.log(searchQuery)
-  //     try {
-  //       const results = await fetchCountyInfo(searchQuery);
-  //       const textToShow = results.substring(0, 500) + "...  ";
-  //       SetCountyFacts(textToShow);
-  //     } catch (err) {
-  //       console.log(err);
-  //       console.log('Failed to search wikipedia');
-  //     }
-  //   }
-  //   fetchWiki()
-  //   }, [countyFacts])
-
   const handleSubmit = async (e) => {
+    console.log(state, 'submit fire')
     e.preventDefault() 
     setSelected(null)
     setCompleted(false)
@@ -65,12 +54,30 @@ export default function Search({user}) {
     }, 1500);
   }
 
-  
+  const resultsRef = useRef()
+  const selectedRef = useRef()
+
+  // function handleScroll(ref) {
+  //   console.log(loading, 'onsubmit loading')
+  //   if (!loading)return;
+  //   resultsRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   }
+
+  // function handleScroll(ref) {
+  //   if(selected != null) return;
+  //   ref.current.scrollIntoView({ behavior: "smooth" });
+  // }
+
+
+
   return (
-    <>  
+    <> 
+    <main className='container mx-auto'> 
       <SearchForm 
         slider={state}
         results={modelData}
+        resultsRef={resultsRef}
+        // handleScroll={handleScroll}
         handleSubmit={handleSubmit} 
         handleChange={handleChange}
       />
@@ -91,26 +98,36 @@ export default function Search({user}) {
       ) : (
         <>
           {!loading ? (
-          <>
+            <>
+            <div ref={resultsRef}/>
             <ResultsCarousel 
               results={modelData}
               setSelected={setSelected}
+              // handleScroll={handleScroll}
+
             />
+            
             {selected != null && 
+            <>
+            <div ref={selectedRef}/>
             <FormResults 
               results={modelData}
               selected={selected}
-              user={user}
+              user={user} 
             />
+            </>
             }
           </>
           ) : (
-            <PreLoader data={Success} key={'success'}/> 
+            <PreLoader data={LoadPhoto} key={'success'}/> 
           )}
           
         </>
       )}
       </Wrapper>
+    </main>
     </>
   )
 }
+
+export default Search;

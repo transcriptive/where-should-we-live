@@ -4,8 +4,10 @@ const Profile = require('../models/profile');
 
 // create a new profile
 function create(req, res) {  
-  // identify user creating the profile                           
-  req.body.byUser = req.user._id;                      
+  // identify user creating the profile   
+  console.log('create function')                        
+  req.body.byUser = req.user._id;  
+  console.log(req.body.byUser, req.user._id, 'byuser, _id')                    
   Profile.create(req.body)                              
     .then(profile => {res.json(profile)})              
     .catch(err => {res.json(err)});
@@ -23,7 +25,7 @@ function create(req, res) {
 
 // return profile created by the current user
 function getCurrentProfile(req, res) {                   
-  Profile.findOne({addedBy: req.params.userid})
+  Profile.findOne({byUser: req.params.userid})
     .then(profiles => res.json(profiles))
     .catch(err => {res.json(err)})
 }
@@ -35,11 +37,14 @@ function getOneProfile(req, res) {
     .catch(err => res.json(err))
 }
 
-function update(req, res) {                              
+function update(req, res) {  
+  console.log(req.body, 'req body')                            
   Profile.findByIdAndUpdate(req.params.id, req.body)
     .then(profile => {res.json(profile)})
     .catch(err => res.json(err))
 }
+
+
 
 function deleteOne(req, res) {
   Profile.findByIdAndDelete(req.params.id)

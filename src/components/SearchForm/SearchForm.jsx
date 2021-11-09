@@ -2,11 +2,11 @@ import React, {  } from "react";
 import "./SearchForm.css";
 import usMap from "./usMap.webp";
 
-export default function SearchForm({slider, handleChange, handleSubmit}) {
+export default function SearchForm({slider, handleChange, handleSubmit, handleScroll, resultsRef}) {
    
 
   return (
-    <div className="container mx-auto">
+    <div className="">
       <img src={usMap} 
         alt={'img'} 
         className="mapPic -my-6" />
@@ -116,8 +116,10 @@ export default function SearchForm({slider, handleChange, handleSubmit}) {
 
           {/* Reset / Search Buttons */}
           <div className="buttonDiv">
-            <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+            {/* <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button> */}
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+            // onClick={() => handleScroll(resultsRef)}
+            >Search</button>
           </div>
 
         </form>

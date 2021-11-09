@@ -6,11 +6,8 @@ const BASE_URL = `https://en.wikipedia.org/w/api.php?format=json&action=query&ge
 export async function fetchCountyInfo(selectedCounty) {
   const spaceReplace = selectedCounty.replaceAll(' ', '_')
   const fullReplace = spaceReplace.replaceAll(',', '%2C')
-  // console.log(fullReplace)
   const endpoint = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&origin=*&exchar=250&gsrlimit=1&prop=extracts&gsrsearch=${fullReplace}`;
-
   const response = await fetch(endpoint);
-      // console.log(response, 'response from wiki')
       if (!response.ok) {
         throw Error(response.statusText);
       }
@@ -20,6 +17,5 @@ export async function fetchCountyInfo(selectedCounty) {
       let pageId = Object.keys(json.query.pages)[0]
       let extract = data[pageId].extract
       let fixExtract = extract.replace(/<\/?[^>]+(>|$)/g, "");
-      // console.log(fixExtract)
       return fixExtract;
     }

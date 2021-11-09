@@ -47,13 +47,13 @@ const Team =()=>{
         </div>
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
             <div>
-                <img className="object-center object-cover h-auto w-full" src="" alt="photo"/>
+                <img className="object-center object-cover h-auto w-full" src="/images/cmosley.jpg" alt="photo"/>
             </div>
             <div className="text-center py-8 sm:py-6">
                 <p className="text-xl text-gray-700 font-bold mb-2">Christian Mosley</p>
                 <p className="text-base text-gray-400 font-normal">Software Engineer</p>
                 <p className="hidden ">
-                  About Christian
+                Christian is a web developer from Fort Worth, TX. With a passion for business, sports and technology, Christian decided on a career change during COVID when he found the time to cultivate his passion for web development
                 </p>
             </div>
         </div>

@@ -19,14 +19,17 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.3",
     "react": "^17.0.2",
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
     "react-google-places-autocomplete": "^3.3.2",
     "react-lottie-loader": "^1.0.0",
     "react-multi-carousel": "^2.6.5",
+    "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
+    "react-scroll-into-view": "^1.10.1",
     "use-places-autocomplete": "^1.10.0"
   },
   "scripts": {
@@ -51,7 +54,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "autoprefixer": "^9.8.6",
