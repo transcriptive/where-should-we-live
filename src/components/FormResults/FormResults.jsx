@@ -13,11 +13,10 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 export default function FormResults( {user, results, selected, resultsRef} ) {
     const [county, setCounty] = useState()
     const [photos, setPhotos] = useState([]);
-    const [countyFacts, SetCountyFacts] = useState(null)
+    const [countyFacts, setCountyFacts] = useState(null)
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState()
-    const [countyFacts, setCountyFacts] = useState(null)
     const [wikiLink, setWikiLink] = useState(null)
     
 
@@ -31,11 +30,7 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
       }, [selected]
     )
 
-    // useEffect(() => {
-    //   setWikiLink()
-    // }, [selected]
-    // )
-    
+      
     useEffect(() => {
     const fetchWiki = async() => {
       const searchQuery = Object.values(results[selected])[1]
