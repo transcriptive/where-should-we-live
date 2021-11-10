@@ -7,7 +7,7 @@ import "./NavBar.css";
 const navigation = [
   { name: 'Search', href: '/', current: false, loggedIn: [true, false] },
   { name: 'About', href: '/about', current: false, loggedIn: [true, false] },
-  { name: 'Resources', href: '/resources', current: false, loggedIn: [true, false] },
+  // { name: 'Resources', href: '/resources', current: false, loggedIn: [true, false] },
   { name: 'Our Team', href: '/team', current: false, loggedIn: [true, false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
@@ -28,7 +28,7 @@ export default function NavBar(props) {
   }, [props.user]);
 
   return (
-    <Disclosure as="nav" className="bg-white shadow-md">
+    <Disclosure as="nav" className="bg-primary shadow-md">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  bg-primary font-montserrat-semibold text-white ">

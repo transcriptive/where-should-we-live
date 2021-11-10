@@ -5,7 +5,7 @@ const containerStyle = {
   height: '100%'
 };
 
-export default function CountyMap({county , setPhotos}) {
+export default function CountyMap({setLoading, county , setPhotos}) {
   const [placeID, setPlaceID] = useState(null);
   const [map, setMap] = useState(null);
   
@@ -27,25 +27,37 @@ export default function CountyMap({county , setPhotos}) {
   },[])
 
   useEffect(() => {
-    const geocoder = new window.google.maps.Geocoder()
-    geocoder.geocode({ address: county?.county})
-      .then((response) => {
-      console.log("response", response)
+    const fetchGoogleData = async () => {
+      setLoading(true)
+      const geocoder = new window.google.maps.Geocoder()
+      // send county.county string to Google Geocoder service
+      const response = await geocoder.geocode({ address: county?.county})
+      console.log("geocoder response", response)
       if (response.results[0]) {
+        // results found, update placeID state, change map bounds
         setPlaceID(response.results[0].place_id)
         map.fitBounds(response.results[0].geometry.bounds)
+        // send placeID to PlacesPhotos function, only called after PlaceID found
+        fetchPlacesPhotos(response.results[0].place_id)
       }
-    }) 
-    const places = new window.google.maps.places.PlacesService(map)
-    places.getDetails({placeId: placeID}, 
-      response => {
-      if(response.photos.length){
-        const photoURLS = response.photos.map(photo => photo.getUrl())
-        setPhotos(photoURLS)
-        console.log(photoURLS, 'urls bitch')
-      }
+      else { console.log("no geocode results found") }
+    }
+  
+    const fetchPlacesPhotos = async (placeId) => {
+      // new placesService object, takes current map object (stored in state)
+      const placeService = new window.google.maps.places.PlacesService(map)
+      placeService.getDetails( { placeId }, 
+        // callback function for API request
+        response => {
+          if(response.photos.length){
+            // call getUrl() on each photo object, map to new array, update state
+            const photoURLS = response.photos.map(photo => photo.getUrl())
+            setPhotos(photoURLS)
+            console.log("Places Photo URLS:", photoURLS)
+          } else { console.log("no places photos found") }
       })
-    
+    }
+    if (county?.county) fetchGoogleData()
   },[county])
 
 

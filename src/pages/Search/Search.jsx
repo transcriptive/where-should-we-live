@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, forwardRef, useRef, useState } from "react";
 import { useForm } from '../../hooks/useForm'
 import { fetchData } from "../../services/modelService"
+import { fetchCountyInfo } from "../../services/wikiService";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsCarousel from "../../components/Carousel/Carousel";
 import FormResults from "../../components/FormResults/FormResults";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
+import LoadPhoto from '../../media/photo.json';
+import ScrollTo from 'react-scroll-into-view'
+import ReactDOM from 'react-dom';
+
+
+
 import { Wrapper } from "@googlemaps/react-wrapper";
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-export default function Search({user}) {
+const Search = ({user}) => {
   const [modelData, setModelData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [selected, setSelected] =useState(null);
-
+  const [converted, setConversion] = useState();
   const [state, handleChange] = useForm({
     income: 250000,
     climate: 75,  
@@ -23,7 +30,11 @@ export default function Search({user}) {
     elevation: 100
   })
 
+
+
+
   const handleSubmit = async (e) => {
+    console.log(state, 'submit fire')
     e.preventDefault() 
     setSelected(null)
     setCompleted(false)
@@ -46,12 +57,30 @@ export default function Search({user}) {
     }, 1500);
   }
 
-  
+  const resultsRef = useRef()
+  const selectedRef = useRef()
+
+  // function handleScroll(ref) {
+  //   console.log(ref, 'onsubmit loading')
+  //   // if (!loading) return;
+  //   ref.current?.scrollTop({top:295, behavior: 'smooth' });
+  //   }
+
+  // function handleScroll(ref) {
+  //   if(selected != null) return;
+  //   ref.current.scrollIntoView({ behavior: "smooth" });
+  // }
+
+
+
   return (
-    <>  
+    <> 
+    <main className='container mx-auto'> 
       <SearchForm 
         slider={state}
         results={modelData}
+        resultsRef={resultsRef}
+        // handleScroll={handleScroll}
         handleSubmit={handleSubmit} 
         handleChange={handleChange}
       />
@@ -72,26 +101,38 @@ export default function Search({user}) {
       ) : (
         <>
           {!loading ? (
-          <>
+            <>
+            <div ref={resultsRef} id='resultsRef'>
             <ResultsCarousel 
+              setConversion={setConversion}
               results={modelData}
               setSelected={setSelected}
+              // ref={resultsRef}
+              // handleScroll={handleScroll}
+
             />
+            </div>
             {selected != null && 
+            <>
+            <div ref={selectedRef}/>
             <FormResults 
               results={modelData}
               selected={selected}
-              user={user}
+              user={user} 
             />
+            </>
             }
           </>
           ) : (
-            <PreLoader data={Success} key={'success'}/> 
+            <PreLoader data={LoadPhoto} key={'success'}/> 
           )}
           
         </>
       )}
       </Wrapper>
+    </main>
     </>
   )
 }
+
+export default Search;
