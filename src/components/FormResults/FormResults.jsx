@@ -60,7 +60,7 @@ export default function FormResults( {user, results, selected} ) {
                     <h1>Quick Facts</h1>
                     <p>{countyFacts}<a class="underline" style={{display: "table-cell"}} href="https://en.wikipedia.org/wiki/Westchester_County%2C_New_York" target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
-                    <p><button className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded">Save County</button></p>
+                    <p><button className="fav-btn bg-blue-500 text-white font-bold py-2 px-4 rounded">Save County</button></p>
                   </div>
 
                 </div>
