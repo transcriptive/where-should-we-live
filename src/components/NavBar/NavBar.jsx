@@ -7,7 +7,6 @@ import "./NavBar.css";
 const navigation = [
   { name: 'Search', href: '/', current: false, loggedIn: [true, false] },
   { name: 'About', href: '/about', current: false, loggedIn: [true, false] },
-  // { name: 'Resources', href: '/resources', current: false, loggedIn: [true, false] },
   { name: 'Our Team', href: '/team', current: false, loggedIn: [true, false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
@@ -31,8 +30,8 @@ export default function NavBar(props) {
     <Disclosure as="nav" className="bg-primary shadow-md">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  bg-primary font-montserrat-semibold text-white ">
-            <div className="relative flex justify-between h-16">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 font-montserrat-semibold text-white ">
+            <div className="relative flex justify-end h-16 mr-10">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -44,14 +43,12 @@ export default function NavBar(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="md:flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="connect flex-shrink-0 md:flex-1 items-center">
+              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mr-2">
+                <div className="flex-shrink-0 flex items-center mr-14">
                   <Link to="/">
-                    <img
-                      src="../images/Connect.us-trans.png"
-                      alt="Connect.Us"
-                      className="w-28"
-                    />
+        
+                  <p className="logo ">Connect.US</p>
+               
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -59,7 +56,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-asphalt text-white' : 'text-white inline-flex items-center px-1 pt-1 pl-8 text-lg font-normal leading-snug hover:underline'
+                            item.current ? 'bg-primary text-white items-center' :  'border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
@@ -67,46 +64,23 @@ export default function NavBar(props) {
                         </a>
                       ))}
                 </div>
-                {/*<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                   Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
-                </div> */}
               </div>
 
               {loggedIn ? (
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  {/* commented out notification bell icon - can be used to add future functionality  */}
-
-                  {/* <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button> */}
-
+                <div className="absolute  flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  
                   {/* Profile dropdown */}
-                  <Menu as="div" className="ml-3 relative">
+                  <Menu as="div" className="ml-3 relative ">
                     {({ open }) => (
                       <>
                         <div>
-                          <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <Menu.Button className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span className="sr-only">Open user menu</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-6 w-6"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                              />
-                            </svg>
-                            {/* <img
-                            className="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          /> */}
+                            <img
+                            className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100"
+                            src="../images/DefaultUserImage.png"
+                            alt="Login"
+                            />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -121,7 +95,7 @@ export default function NavBar(props) {
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className=" origin-top-right absolute mt-2 w-40 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             <Menu.Item>
                               {({ active }) => (
@@ -136,23 +110,10 @@ export default function NavBar(props) {
                                 </a>
                               )}
                             </Menu.Item>
-                            {/* <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="/"
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700'
-                                )}
-                              >
-                                Settings
-                              </a>
-                            )}
-                          </Menu.Item> */}
                             <Menu.Item>
                               {({ active }) => (
                                 <a
-                                  href="/signout"
+                                  href="/"
                                   onClick={props.handleLogout}
                                   className={classNames(
                                     active ? "bg-gray-100" : "",
@@ -170,9 +131,9 @@ export default function NavBar(props) {
                   </Menu>
                 </div>
               ) : (
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 leading-none">
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                   <a href="/login">
-                    <button className="p-1 text-asphalt rounded-full">
+                  <button  className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                       <span className="sr-only">Login</span>
                       <img
                         className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100"
@@ -180,7 +141,7 @@ export default function NavBar(props) {
                         alt="Login"
                       />
                     </button>
-                    <p>Login</p>
+                  
                   </a>
                 </div>
               )}
@@ -194,25 +155,25 @@ export default function NavBar(props) {
                 href="/"
                 className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >
-                Dashboard
+                Search
               </a>
               <a
-                href="/"
+                href="/about"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >
-                Sales
+                About
               </a>
               <a
-                href="/"
+                href="/team"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >
-                Goals
+                Our Team
               </a>
               <a
-                href="/"
+                href="/profile"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
               >
-                KPI
+                Profile
               </a>
             </div>
           </Disclosure.Panel>

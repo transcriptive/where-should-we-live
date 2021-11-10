@@ -12,7 +12,9 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
         className="mapPic -my-6" />
       <div id="container" className="mx-auto">
         <div className='mb-6'>
-          <h1>Use the sliders to search for a county</h1>
+          <h1>Move the sliders to your desired preferences</h1>
+          <h2>Move the sliders to your desired preferences</h2>
+
         </div>
         <form onSubmit={handleSubmit} >
 
@@ -35,8 +37,8 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
                       onChange={handleChange} 
                       value={slider.income}
                     />
-                    <p><span className="sliderLeft">&#36;</span><span id="demo"></span><span>&#36;&#36;&#36;</span></p>
-                    <p>{slider.income}</p>
+                    <p><span className="sliderLeft">💲</span><span id="demo"></span><span>💲💲💲</span></p>
+                    {/* <p>{slider.income}</p> */}
                   </div>
             </div>
             </div>
@@ -59,8 +61,8 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
                       onChange={handleChange} 
                       value={slider.climate}
                     />
-                    <p><span className="sliderLeft">0&#176;F</span><span>100&#176;F</span></p>
-                    <p>{slider.climate}</p>
+                    <p><span className="sliderLeft">&#x2744;&#xfe0f;</span><span>&#127774;</span></p>
+                    {/* <p>{slider.climate}</p> */}
                   </div>
               </div>
             </div>
@@ -77,14 +79,14 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
                       type="range"
                       name="pop" 
                       min="265000" 
-                      max="10000000" 
+                      max="5000000" 
                       className="slider" 
                       id="myRange" 
                       onChange={handleChange}
                       value={slider.pop} 
                     />
                     <p><span className="sliderLeft">&#128100;</span><span>&#128101;</span></p>
-                    <p>{slider.pop}</p>
+                    {/* <p>{slider.pop}</p> */}
                   </div>
               </div>
             </div>
@@ -101,14 +103,14 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
                       type="range"
                       name="elevation" 
                       min="-620" 
-                      max="11400" 
+                      max="10000" 
                       className="slider" 
                       id="myRange" 
                       onChange={handleChange}
                       value={slider.elevation} 
                     />
-                    <p><span className="sliderLeft">&#12336;</span><span>&#128507;</span></p>
-                    <p>{slider.elevation}</p>
+                    <p><span className="sliderLeft">🌊</span><span>&#128507;</span></p>
+                    {/* <p>{slider.elevation}</p> */}
                   </div>
               </div>
             </div>
@@ -116,12 +118,10 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
 
           {/* Reset / Search Buttons */}
           <div className="buttonDiv">
-            {/* <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button> */}
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-            // onClick={() => handleScroll()}
-            >Search</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white  font-bold py-3 px-6 rounded">
+              <p className='text-4xl'>Search</p>
+            </button>
           </div>
-
         </form>
       </div>
     </div>

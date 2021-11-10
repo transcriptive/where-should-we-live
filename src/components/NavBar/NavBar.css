@@ -1,7 +1,11 @@
-.connect {
-  max-width: 15%;
+.logo {
+  font-size:2rem;
+  font-family:Montserrat-Bold, Montserrat;
+  font-weight:400;
 }
 
-.bg-current {
-  
+.logo-div{
+  width: 150px;
 }
+
+

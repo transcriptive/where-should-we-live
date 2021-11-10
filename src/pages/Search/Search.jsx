@@ -1,7 +1,6 @@
 import React, { useEffect, forwardRef, useRef, useState } from "react";
 import { useForm } from '../../hooks/useForm'
 import { fetchData } from "../../services/modelService"
-import { fetchCountyInfo } from "../../services/wikiService";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsCarousel from "../../components/Carousel/Carousel";
 import FormResults from "../../components/FormResults/FormResults";
@@ -9,8 +8,6 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
 import LoadPhoto from '../../media/photo.json';
-import ScrollTo from 'react-scroll-into-view'
-import ReactDOM from 'react-dom';
 
 
 
@@ -30,9 +27,7 @@ const Search = ({user}) => {
     elevation: 100
   })
 
-
-
-
+  
   const handleSubmit = async (e) => {
     console.log(state, 'submit fire')
     e.preventDefault() 
@@ -59,19 +54,6 @@ const Search = ({user}) => {
 
   const resultsRef = useRef()
   const selectedRef = useRef()
-
-  // function handleScroll(ref) {
-  //   console.log(ref, 'onsubmit loading')
-  //   // if (!loading) return;
-  //   ref.current?.scrollTop({top:295, behavior: 'smooth' });
-  //   }
-
-  // function handleScroll(ref) {
-  //   if(selected != null) return;
-  //   ref.current.scrollIntoView({ behavior: "smooth" });
-  // }
-
-
 
   return (
     <> 

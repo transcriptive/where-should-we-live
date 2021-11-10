@@ -47,10 +47,10 @@ const Team =()=>{
                 </div>
             </a>
         </div>
-        <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center hover-trigger">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center hover-trigger">
             <a href="https://www.linkedin.com/in/christian-mosley/">
                 <div>
-                    <img className="object-center object-cover h-auto w-full" src="/images/cmosley.jpg" alt="photo"/>
+                    <img className="object-center object-cover h-auto w-full" src="/images/cmosley.jpg" alt="photo" />
                 </div>
                 <div className="text-center py-8 sm:py-6">
                     <p className="text-xl text-gray-700 font-bold mb-2">Christian Mosley</p>
