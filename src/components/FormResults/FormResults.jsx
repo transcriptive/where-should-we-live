@@ -45,15 +45,7 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
     fetchWiki()
     }, [selected])
 
-    // async function handleSaveCounty(e) {
-    //   e.preventDefault()
-    //   console.log(user, 'user')
-    //   if (!user) {
-    //     setOpen(true) 
-    //     const hasData = await profileService.getAllByCurrentUser(user._id)
-    //     setProfile(hasData)
-    //   }
-    // }
+   
     
 
 
@@ -82,20 +74,20 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
                   <div className="facts-div">
                     <h1>Quick Facts</h1>
 
-                    <p>{countyFacts}<a className="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a></p>
-                    {/* <button onClick={getFacts()}>See Facts</button> */}
-                    <p><button className="fav-btn bg-blue-500 text-white font-bold py-2 px-4 rounded">Save County</button></p>
+                    <p>{countyFacts}</p>
+                      <div className='mt-2 flex justify-center'>
+                        <a className="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a>
+                      </div>
+                    
 
                   </div>
-                {/* {open ? (
-                <Signup/>
-                ) : null } */}
+               
                 </div>
               </div>
             </div>
 
             <div className="photos mt-6 grid grid-cols-1"> 
-            <h1>Photos From the County</h1>
+            <h1 className='mb-4'>Photos from {county?.county}</h1>
             <Photos photos={photos}/>
             </div>
       </div>
