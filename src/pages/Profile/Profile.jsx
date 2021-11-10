@@ -63,7 +63,7 @@ export default function Profile(props) {
         <div className="w-full flex flex-col justify-start gap-4 ">
           <div className="image drop-shadow">
             <img className="h-48 w-48 rounded-full object-cover mx-auto" 
-                src={profile?.photo} alt="user" />
+                src='./images/DefaultUserImage.png' alt="user" />
           </div>
 
           <div className=" ">
