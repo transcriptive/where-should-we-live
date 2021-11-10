@@ -27,8 +27,7 @@ const Search = ({user}) => {
     elevation: 100
   })
 
-
-
+  
   const handleSubmit = async (e) => {
     console.log(state, 'submit fire')
     e.preventDefault() 
@@ -55,19 +54,6 @@ const Search = ({user}) => {
 
   const resultsRef = useRef()
   const selectedRef = useRef()
-
-  // function handleScroll(ref) {
-  //   console.log(ref, 'onsubmit loading')
-  //   // if (!loading) return;
-  //   ref.current?.scrollTop({top:295, behavior: 'smooth' });
-  //   }
-
-  // function handleScroll(ref) {
-  //   if(selected != null) return;
-  //   ref.current.scrollIntoView({ behavior: "smooth" });
-  // }
-
-
 
   return (
     <> 

@@ -7,7 +7,6 @@ import "./NavBar.css";
 const navigation = [
   { name: 'Search', href: '/', current: false, loggedIn: [true, false] },
   { name: 'About', href: '/about', current: false, loggedIn: [true, false] },
-  // { name: 'Resources', href: '/resources', current: false, loggedIn: [true, false] },
   { name: 'Our Team', href: '/team', current: false, loggedIn: [true, false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
@@ -31,8 +30,8 @@ export default function NavBar(props) {
     <Disclosure as="nav" className="bg-primary shadow-md">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  bg-primary font-montserrat-semibold text-white ">
-            <div className="relative flex justify-between h-16">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 font-montserrat-semibold text-white ">
+            <div className="relative flex justify-end h-16 mr-10">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -44,17 +43,12 @@ export default function NavBar(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mr-2">
+                <div className="flex-shrink-0 flex items-center mr-14">
                   <Link to="/">
-                  <p className="logo">Connect.US</p>
-
-                    {/* <img
-                      width="150"
-                      src="../images/Connect-Text.png"
-                      alt="Connect.Us"
-                      className=""
-                    /> */}
+        
+                  <p className="logo ">Connect.US</p>
+               
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -62,7 +56,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-white text-white' :  'border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                            item.current ? 'bg-primary text-white items-center' :  'border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
@@ -70,27 +64,23 @@ export default function NavBar(props) {
                         </a>
                       ))}
                 </div>
-                {/*<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                   Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
-                </div> */}
               </div>
 
               {loggedIn ? (
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                 
-
+                <div className="absolute  flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  
                   {/* Profile dropdown */}
-                  <Menu as="div" className="ml-3 relative">
+                  <Menu as="div" className="ml-3 relative ">
                     {({ open }) => (
                       <>
                         <div>
-                        <Menu.Button className="bg-white  rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <Menu.Button className="bg-gray-50 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span className="sr-only">Open user menu</span>
                             <img
-                        className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100"
-                        src="../images/DefaultUserImage.png"
-                        alt="Login"
-                      />
+                            className="h-8 w-8 bg-blue-100 rounded-full ring ring-blue-100"
+                            src="../images/DefaultUserImage.png"
+                            alt="Login"
+                            />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -105,7 +95,7 @@ export default function NavBar(props) {
                         >
                           <Menu.Items
                             static
-                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            className=" origin-top-right absolute mt-2 w-40 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                           >
                             <Menu.Item>
                               {({ active }) => (

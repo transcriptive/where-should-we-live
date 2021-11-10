@@ -12,7 +12,9 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
         className="mapPic -my-6" />
       <div id="container" className="mx-auto">
         <div className='mb-6'>
-          <h1>Use the sliders to search for a county</h1>
+          <h1>Move the sliders to your desired preferences</h1>
+          <h2>Move the sliders to your desired preferences</h2>
+
         </div>
         <form onSubmit={handleSubmit} >
 
@@ -116,12 +118,10 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
 
           {/* Reset / Search Buttons */}
           <div className="buttonDiv">
-            {/* <button className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">Reset</button> */}
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-            // onClick={() => handleScroll()}
-            >Search</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white  font-bold py-3 px-6 rounded">
+              <p className='text-4xl'>Search</p>
+            </button>
           </div>
-
         </form>
       </div>
     </div>
