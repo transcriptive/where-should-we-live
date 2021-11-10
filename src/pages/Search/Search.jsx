@@ -1,7 +1,6 @@
 import React, { useEffect, forwardRef, useRef, useState } from "react";
 import { useForm } from '../../hooks/useForm'
 import { fetchData } from "../../services/modelService"
-import { fetchCountyInfo } from "../../services/wikiService";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsCarousel from "../../components/Carousel/Carousel";
 import FormResults from "../../components/FormResults/FormResults";
@@ -9,8 +8,6 @@ import PreLoader from "../../components/PreLoader/PreLoader";
 import MapPinLocation from '../../media/map-pin-location.json';
 import Success from '../../media/success-check.json';
 import LoadPhoto from '../../media/photo.json';
-import ScrollTo from 'react-scroll-into-view'
-import ReactDOM from 'react-dom';
 
 
 
@@ -29,7 +26,6 @@ const Search = ({user}) => {
     pop: 500000,
     elevation: 100
   })
-
 
 
 
