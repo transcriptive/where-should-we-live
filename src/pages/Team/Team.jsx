@@ -114,16 +114,27 @@ const Team =()=>{
                 </div>
             </a>
         </div>
-        <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center hover-trigger">
-            <a href="https://www.linkedin.com/in/aaron-prince-409a1bbb/">
-                <div>
-                    <img className="object-center object-cover h-auto w-full" src="/images/aaronp.jpeg" alt="photo"/>
-                </div>
-                <div className="text-center py-8 sm:py-6">
-                    <p className="text-xl text-gray-700 font-bold mb-2">Aaron Prince</p>
-                    <p className="text-base text-gray-400 font-normal">Software Engineer</p>
-                </div>
-            </a>
+        <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
+            <div>
+                <img className="object-center object-cover h-auto w-full" src="/images/AaronP.png" alt="photo"/>
+            </div>
+            <div className="text-center py-8 sm:py-6">
+                <p className="text-xl text-gray-700 font-bold mb-2">Aaron Prince</p>
+                <p className="text-base text-gray-400 font-normal">Software Engineer</p>
+                <p className="hidden ">
+                Aaron is a software engineer from Pooler Georgia. He has a long history of problem solving and working well under pressure. He likes fast cars, motorcycles, bass guitar and everything he can learn related to computers and technology
+                </p>
+            </div>
+//         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center hover-trigger">
+//             <a href="https://www.linkedin.com/in/aaron-prince-409a1bbb/">
+//                 <div>
+//                     <img className="object-center object-cover h-auto w-full" src="/images/aaronp.jpeg" alt="photo"/>
+//                 </div>
+//                 <div className="text-center py-8 sm:py-6">
+//                     <p className="text-xl text-gray-700 font-bold mb-2">Aaron Prince</p>
+//                     <p className="text-base text-gray-400 font-normal">Software Engineer</p>
+//                 </div>
+//             </a>
         </div>
     </div>
 </section>

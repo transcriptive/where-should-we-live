@@ -107,7 +107,7 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
                       onChange={handleChange}
                       value={slider.elevation} 
                     />
-                    <p><span className="sliderLeft">&#128100;</span><span>&#128101;</span></p>
+                    <p><span className="sliderLeft">&#12336;</span><span>&#128507;</span></p>
                     <p>{slider.elevation}</p>
                   </div>
               </div>

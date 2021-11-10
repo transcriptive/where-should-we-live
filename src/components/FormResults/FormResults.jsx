@@ -84,8 +84,8 @@ export default function FormResults( {user, results, selected, resultsRef} ) {
 
                     <p>{countyFacts}<a className="underline" style={{display: "table-cell"}} href={wikiLink} target="_blank">Read More</a></p>
                     {/* <button onClick={getFacts()}>See Facts</button> */}
-                    
-                    {/* <p><button name="savedCounties" className="fav-btn bg-blue-500 font-bold py-2 px-4 rounded" onClick={handleSaveCounty}>Save County</button></p> */}
+                    <p><button className="fav-btn bg-blue-500 text-white font-bold py-2 px-4 rounded">Save County</button></p>
+
                   </div>
                 {/* {open ? (
                 <Signup/>
