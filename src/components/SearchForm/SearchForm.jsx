@@ -12,11 +12,11 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
         className="mapPic -my-6" />
       <div id="container" className="mx-auto">
         <div className='mb-6'>
-          <h1>Move the sliders to your desired preferences</h1>
-          <h2>Move the sliders to your desired preferences</h2>
+          
 
         </div>
         <form onSubmit={handleSubmit} >
+        <h1>Move the sliders to your desired preferences</h1>
 
           <div className="searchDiv flex flex-row sm:flex-row">
             {/* Median Income Slider */}
