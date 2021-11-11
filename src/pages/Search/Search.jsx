@@ -49,7 +49,7 @@ const Search = ({user}) => {
     setModelData(results)
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 2500);
   }
 
   const resultsRef = useRef()
@@ -77,7 +77,7 @@ const Search = ({user}) => {
           {!loading ? (
             <></>
           ) : (
-            <PreLoader data={MapPinLocation} key={'map'} />     
+            <></>
           )}
         </>
       ) : (
@@ -106,7 +106,7 @@ const Search = ({user}) => {
             }
           </>
           ) : (
-            <PreLoader data={LoadPhoto} key={'success'}/> 
+            <PreLoader data={MapPinLocation} key={'success'}/> 
           )}
           
         </>
