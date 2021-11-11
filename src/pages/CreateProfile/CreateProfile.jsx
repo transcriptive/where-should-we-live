@@ -27,7 +27,7 @@ export default function CreateProfile(props) {
     async function handleAddProfile(newProfileData) {
       const newProfile = await profileService.create(newProfileData);
       console.log(newProfile)
-      history.push("/");
+      history.push("/profile");
     }
     // pass form data via submit to handleAddprofile func
     async function handleSubmit(e) {
