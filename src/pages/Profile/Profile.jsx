@@ -6,38 +6,21 @@ import * as profileService from "../../services/profileService";
 import ProfileForm from "../../components/ProfileForm/ProfileForm";
 
 export default function Profile(props) {
+  const history = useHistory();
   const [profile, setProfile] = useState(null);
-  const [showModal, setShowModal] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [register, setRegister] = useState();
  
   // function to determine if user has profile already, if no, open modal to gather information
   useEffect(() => {
     const hasProfile = async () => {
       const hasData = await profileService.getAllByCurrentUser(props.user._id)
+      if (!hasData?.name)history.push('/create')
       setProfile(hasData)
-      if (!hasData._id) {
-      setShowModal(true)
-      }
     } 
+    
     hasProfile()
   }, []);
-
-  // function to handle profile create via api
-  async function handleAddProfile(newProfileData) {
-    console.log(newProfileData , 'handleAddprofile')
-    const newProfile = await profileService.create(newProfileData);
-    console.log(newProfile)
-    setShowModal(false)
-  }
-
-  
-  
-  // pass form data via submit to handleAddprofile func
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   handleAddProfile(state);
-  //   console.log(state, 'submit fire')
-  // }
 
   // For Modal
   
@@ -52,7 +35,6 @@ export default function Profile(props) {
         profile={profile}
         setProfile={setProfile}
         setRegister={setRegister}
-        handleAddProfile={handleAddProfile}
         />
 
       ) : null}
@@ -89,11 +71,11 @@ export default function Profile(props) {
         </div>
 
         {/* Edit Button */}
-        <div class="w-1/5 h-auto mb-0 float-right">
-          <div class="flex-1 h-full">
-            <div class="flex items-center justify-center flex-1 h-full p-2 text-white shadow rounded-lg bg-primary hover:bg-yolk focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yolk">
-              <button class="relative" type="button" onClick={() => setShowModal(true)}>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black-800" viewBox="0 0 20 20" fill="currentColor">
+        <div className="w-1/5 h-auto mb-0 float-right">
+          <div className="flex-1 h-full">
+            <div className="flex items-center justify-center flex-1 h-full p-2 text-white shadow rounded-lg bg-primary hover:bg-yolk focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yolk">
+              <button className="relative" type="button" onClick={() => setShowModal(true)}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black-800" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                 </svg>
               </button>
@@ -141,26 +123,26 @@ export default function Profile(props) {
 
                           <div className="flex items-center items-start mb-4">
                               <input id="checkbox-1" aria-describedby="checkbox-1" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                              <label for="checkbox-1" class="text-sm ml-3 font-medium text-gray-900">Arts & Entertainment</label>
+                              <label htmlFor="checkbox-1" className="text-sm ml-3 font-medium text-gray-900">Arts & Entertainment</label>
                           </div>
 
                           <div className="flex items-start items-center mb-4">
                               <input id="checkbox-2" aria-describedby="checkbox-2" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                              <label for="checkbox-2" class="text-sm ml-3 font-medium text-gray-900">Good For Kids</label>
+                              <label htmlFor="checkbox-2" className="text-sm ml-3 font-medium text-gray-900">Good For Kids</label>
                           </div>
 
                           <div className="flex items-start items-center mb-4">
                               <input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                              <label for="checkbox-3" class="text-sm ml-3 font-medium text-gray-900">Entrepreneurs</label>
+                              <label htmlFor="checkbox-3" className="text-sm ml-3 font-medium text-gray-900">Entrepreneurs</label>
                           </div>
                           
                           <div className="flex items-start items-center mb-4">
                               <input id="checkbox-4" aria-describedby="checkbox-4" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                              <label for="checkbox-4" class="text-sm ml-3 font-medium text-gray-900">Restaurants</label>
+                              <label htmlFor="checkbox-4" className="text-sm ml-3 font-medium text-gray-900">Restaurants</label>
                           </div>
                           <div className="flex items-start items-center mb-4">
                               <input id="checkbox-5" aria-describedby="checkbox-5" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                              <label for="checkbox-5" class="text-sm ml-3 font-medium text-gray-900">Faith Services</label>
+                              <label htmlFor="checkbox-5" className="text-sm ml-3 font-medium text-gray-900">Faith Services</label>
                           </div>
                       </fieldset>
                     </div>
@@ -171,17 +153,17 @@ export default function Profile(props) {
                             <span className="justify-center underline">Distance to Work</span>
                             <div className="flex items-center items-start mb-4">
                                 <input id="checkbox-6" aria-describedby="checkbox-6" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-6" class="text-sm ml-3 font-medium text-gray-900">Less than 1 mile</label>
+                                <label htmlFor="checkbox-6" className="text-sm ml-3 font-medium text-gray-900">Less than 1 mile</label>
                             </div>
 
                             <div className="flex items-start items-center mb-4">
                                 <input id="checkbox-7" aria-describedby="checkbox-7" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-7" class="text-sm ml-3 font-medium text-gray-900">Less than 10 miles</label>
+                                <label htmlFor="checkbox-7" className="text-sm ml-3 font-medium text-gray-900">Less than 10 miles</label>
                             </div>
 
                             <div className="flex items-start items-center mb-4">
                                 <input id="checkbox-8" aria-describedby="checkbox-8" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-8" class="text-sm ml-3 font-medium text-gray-900">20 - 30 miles </label>
+                                <label htmlFor="checkbox-8" className="text-sm ml-3 font-medium text-gray-900">20 - 30 miles </label>
                             </div>
                         
                         </fieldset>
@@ -192,22 +174,22 @@ export default function Profile(props) {
                             <span className="justify-center underline">Transit Options</span>
                             <div className="flex items-center items-start mb-4">
                                 <input id="checkbox-9" aria-describedby="checkbox-9" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-9" class="text-sm ml-3 font-medium text-gray-900">Walking </label>
+                                <label htmlFor="checkbox-9" className="text-sm ml-3 font-medium text-gray-900">Walking </label>
                             </div>
 
                             <div className="flex items-start items-center mb-4">
                                 <input id="checkbox-10" aria-describedby="checkbox-10" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-10" class="text-sm ml-3 font-medium text-gray-900">Bike</label>
+                                <label htmlFor="checkbox-10" className="text-sm ml-3 font-medium text-gray-900">Bike</label>
                             </div>
 
                             <div className="flex items-start items-center mb-4">
                                 <input id="checkbox-11" aria-describedby="checkbox-11" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-11" class="text-sm ml-3 font-medium text-gray-900"> City Bus </label>
+                                <label htmlFor="checkbox-11" className="text-sm ml-3 font-medium text-gray-900"> City Bus </label>
                             </div>
 
                             <div className="flex items-start items-center mb-4">
                                 <input id="checkbox-12" aria-describedby="checkbox-12" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-                                <label for="checkbox-12" class="text-sm ml-3 font-medium text-gray-900"> Taxi </label>
+                                <label htmlFor="checkbox-12" className="text-sm ml-3 font-medium text-gray-900"> Taxi </label>
                             </div>
                         
                         </fieldset>

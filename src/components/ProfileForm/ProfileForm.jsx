@@ -4,16 +4,15 @@ import * as profileService from "../../services/profileService";
 
 export default function ProfileForm( props ) {
   const formRef = useRef();
-  const [state, setState] = useForm(props.profile)
+  const [state, setState] = useForm(props.profile);
 
   async function handleSubmit(e) {
-    // handleAddProfile(state);
+    e.preventDefault();
+    const updatedProfile = await profileService.update(state)
+    console.log(updatedProfile)
     props.setShowModal(false)
-    const updatedProfile = await profileService.update(props.profile._id, state)
     props.setProfile(updatedProfile)
     window.location.reload(false);
-
-    // handleChange(updatedProfile)
   }
   
   // const deleteProfile = () => profileService.deleteOne(props.account._id);
@@ -21,14 +20,14 @@ export default function ProfileForm( props ) {
   return (
      <>
       {/* Modal for Profile content change */}
-      <div class="min-w-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"  id="modal-id">
-        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
-        <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+      <div className="min-w-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"  id="modal-id">
+        <div className="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div className="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
           {/* <!--content--> */}
-          <div class="">
+          <div className="">
             {/* <!--body--> */}
-            <div class="text-center flex-auto justify-center">
-              <h2 class="text-xl font-bold p-2 ">Profile Settings</h2>
+            <div className="text-center flex-auto justify-center">
+              <h2 className="text-xl font-bold p-2 ">Profile Settings</h2>
               <div className="mt-1 sm:mt-0 sm:col-span-2">
                 Edit your account details below 
               </div>
@@ -52,7 +51,7 @@ export default function ProfileForm( props ) {
                           type="text"
                           name="name"
                           id="name"
-                          value={state?.name}
+                          value={state.name}
                           onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
@@ -70,7 +69,7 @@ export default function ProfileForm( props ) {
                           type="text"
                           name="email"
                           id="email"
-                          value={state?.email}
+                          value={state.email}
                           onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
@@ -89,7 +88,7 @@ export default function ProfileForm( props ) {
                           type="text"
                           name="movingFrom"
                           id="movingFrom"
-                          value={state?.movingFrom}
+                          value={state.movingFrom}
                           onChange={setState}
                           className="px-2 max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                       />
@@ -108,7 +107,7 @@ export default function ProfileForm( props ) {
                           type="file"
                           name="photo"
                           id="photo"
-                          value={state?.photo}
+                          value={state.photo}
                           onChange={setState}
                           className="max-w-lg block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-none"
                       />
@@ -138,10 +137,10 @@ export default function ProfileForm( props ) {
                     </label>
                   <div className="mt-1 sm:mt-0 sm:col-span-2">
                     <select
-                          type="text"
                           name="language"
                           id="language"
-                          value={state?.language}
+                          multiple={false}
+                          value={state.language}
                           onChange={setState}>
                       <option value="english"> English </option>
                       <option value="arabic"> Arabic </option>
@@ -159,14 +158,15 @@ export default function ProfileForm( props ) {
                   </label>
                   <div className="mt-1 sm:mt-0 sm:col-span-2">
                       <select
-                      id="dateFormat"
-                      name="dateFormat"
-                      value={state?.dateFormat}
-                      onChange={setState}
-                      className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm "
+                        id="dateFormat"
+                        name="dateFormat"
+                        value={state.dateFormat}
+                        onChange={setState}
+                        multiple={false}
+                        className="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm "
                       >
-                      <option value='DD-MM-YYYY'>DD-MM-YYYY</option>
-                      <option value='MM-DD-YYYY'>MM-DD-YYYY</option>
+                        <option value='DD-MM-YYYY'>DD-MM-YYYY</option>
+                        <option value='MM-DD-YYYY'>MM-DD-YYYY</option>
                       </select>
                   </div>
                   </div>   
@@ -174,21 +174,22 @@ export default function ProfileForm( props ) {
                 </div>
               </div>
               {/* Styling for FORM divs ends */}
-            </form>
+            
               {/* FORM END */}
-            </div>
-            {/* <!--footer--> */}
-            <div class="p-3  mt-2 text-center space-x-4 md:block">
-                <button class="mb-2 md:mb-0 bg-red-600 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-white rounded-full hover:shadow-lg hover:bg-red-900" type="button"
+              <div className="p-3  mt-2 text-center space-x-4 md:block">
+                <button className="mb-2 md:mb-0 bg-red-600 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-white rounded-full hover:shadow-lg hover:bg-red-900" type="button"
                     onClick={() => props.setShowModal(false)}>
                     Cancel
                 </button>
-                <button class="mb-2 md:mb-0 bg-primary border border-primary px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-yolk hover:text-black" 
-                    onClick={() => handleSubmit()}>
+                <button className="mb-2 md:mb-0 bg-primary border border-primary px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-yolk hover:text-black" 
+                    >
                 Save
                 </button>
             </div>
+            </form>
+            </div>
           </div>
+            {/* <!--footer--> */}
         </div>
       </div>
     </>

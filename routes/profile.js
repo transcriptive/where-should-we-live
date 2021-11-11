@@ -4,7 +4,7 @@ const profileCtrl = require('../controllers/profile');
 /*---------- Public Routes ----------*/
 // router.get('/', profilesCtrl.index); awaiting clarification 
 router.get('/:id', profileCtrl.getOneProfile);
-router.get('/user/:userid', profileCtrl.getCurrentProfile)
+router.get('/user/:userid', profileCtrl.indexCurrentUser)
 
 /*---------- Protected Routes ----------*/
 router.use(require('../config/auth'));

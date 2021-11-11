@@ -10,10 +10,7 @@ function importAll(r) {
 }
 
 const images = importAll(require.context('./states', false, /\.(png|jpe?g|svg)$/));
-console.log(images)
 
-
-// {default: '/static/media/AK.0ec8becd.png', __esModule: true, Symbol(Symbol.toStringTag): 'Module'}
 
 const responsive = {
   desktop: {

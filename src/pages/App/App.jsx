@@ -10,6 +10,7 @@ import authService from "../../services/authService";
 import Search from "..//Search/Search";
 import Footer from "../../components/Footer/Footer";
 import Profile from "../Profile/Profile"
+import Create from "../CreateProfile/CreateProfile"
 
 function App (props) {
   const [user, setUser] = useState(authService.getUser())
@@ -77,6 +78,20 @@ function App (props) {
           render={({ history }) => (
             authService.getUser() ? (
             <Profile
+              history={history} 
+              user={user}
+            />
+            ):(
+            <Redirect to="/login" />
+            )
+          )}
+        />
+        <Route
+          exact
+          path="/create"
+          render={({ history }) => (
+            authService.getUser() ? (
+            <Create
               history={history} 
               user={user}
             />

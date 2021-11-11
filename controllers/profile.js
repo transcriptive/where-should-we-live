@@ -6,25 +6,34 @@ const Profile = require('../models/profile');
 function create(req, res) {  
   // identify user creating the profile   
   console.log('create function')                        
-  req.body.byUser = req.user._id;  
-  console.log(req.body.byUser, req.user._id, 'byuser, _id')                    
+  req.body.byUser = req.user._id 
+  console.log(req, 'byuser, _id')                    
   Profile.create(req.body)                              
     .then(profile => {res.json(profile)})              
     .catch(err => {res.json(err)});
 }
 
-// return profile created by the current user
-function getCurrentProfile(req, res) {                   
+function indexCurrentUser(req, res) {                   
   Profile.findOne({byUser: req.params.userid})
     .then(profiles => res.json(profiles))
     .catch(err => {res.json(err)})
 }
 
+// return profile created by the current user
+function getCurrentProfile(req, res) { 
+  console.log(req.params.userid, 'byuser, _id')                           
+  Profile.findOne({byUser: req.params.userid})
+    .then(profiles => res.json(profiles))
+    console.log(res.json)
+    .catch(err => {res.json(err)})
+}
+
 // return one profile by document id
-function getOneProfile(req, res) {                        
-  Profile.findById(req.params.id)
-    .then(profile => res.json(profile))
-    .catch(err => res.json(err))
+function getOneProfile(req, res) {  
+  console.log(req.params.id, 'req controller')                      
+  Profile.findOne({byUser: req.params.id})
+    .then(profile => res.json(profile)
+    .catch(err => res.json(err)))
 }
 
 function update(req, res) {  
@@ -35,7 +44,6 @@ function update(req, res) {
 }
 
 
-
 function deleteOne(req, res) {
   Profile.findByIdAndDelete(req.params.id)
     .then(profile => res.json(profile))
@@ -44,7 +52,7 @@ function deleteOne(req, res) {
 
 module.exports = {
   create,                                                                       
-  // index, awaiting further clarification
+  indexCurrentUser, 
   getCurrentProfile,
   getOneProfile,     
   update,                                                                      
