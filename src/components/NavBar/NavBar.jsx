@@ -54,7 +54,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-primary text-white items-center' :  'border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                            item.current ? 'bg-primary text-white items-center' :  'bg-primary text-white inline-flex items-center px-1 pt-1 text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
