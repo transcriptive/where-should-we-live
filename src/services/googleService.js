@@ -5,7 +5,6 @@ const BASE_URL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/j
 const EXT_URL = `&inputtype=textquery&key=AIzaSyDD6p-ZVUZ6NEM4m365ERb0MgpFPnTas74`
 
 export function fetchCountyID(selectedCounty) {
-  console.log(selectedCounty, 'selected')
   return fetch(BASE_URL + selectedCounty + EXT_URL, {
     method:"GET",
     cache: "no-cache",

@@ -21,17 +21,13 @@ export default function CreateProfile(props) {
       dateFormat: "DD-MM-YYYY",
     });
   
-
-
     // function to handle profile create via api
     async function handleAddProfile(newProfileData) {
       const newProfile = await profileService.create(newProfileData);
-      console.log(newProfile)
       history.push("/profile");
     }
     // pass form data via submit to handleAddprofile func
     async function handleSubmit(e) {
-      console.log(e)
       e.preventDefault();
       handleAddProfile(state);
     }
@@ -40,7 +36,6 @@ export default function CreateProfile(props) {
     useEffect(() => {
       formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
       }, [state]);
-  
     
     return (
       <div>

@@ -24,7 +24,6 @@ const Search = ({user}) => {
 
   // To render the preloader, we are setting conditional logic on loading and completed. After the model improvements, we are setting the timeout at 2500 ms, in order to show the model "thinking". // The results array comes back in a illformated dict object, so we map over the results to reform into an easier to tranverse object
   const handleSubmit = async (e) => {
-    console.log(state, 'submit fire')
     e.preventDefault() 
     setSelected(null)
     setCompleted(false)

@@ -10,7 +10,6 @@ export default function ProfileForm( props ) {
   async function handleSubmit(e) {
     e.preventDefault();
     const updatedProfile = await profileService.update(state)
-    console.log(updatedProfile)
     props.setShowModal(false)
     props.setProfile(updatedProfile)
     window.location.reload(false);

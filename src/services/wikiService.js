@@ -12,7 +12,6 @@ export async function fetchCountyInfo(selectedCounty) {
         throw Error(response.statusText);
       }
       const json = await response.json();
-      // console.log(json, 'wiki response')
       let data = json.query.pages
       let pageId = Object.keys(json.query.pages)[0]
       let extract = data[pageId].extract

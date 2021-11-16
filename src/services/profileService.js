@@ -2,7 +2,6 @@ import tokenService from '../services/tokenService';
 const BASE_URL = '/api/profile/';
 
 export function create(profile) {
-  console.log(profile, 'profile create')
   return fetch(BASE_URL, {
       method: "POST",
       headers: {
@@ -21,7 +20,6 @@ export function getAllByCurrentUser(userid) {
 }
 
 export function getCurrentUserProfile(id) {
-  console.log(id, 'id in profile service')
   return fetch(`${BASE_URL}${id}`, {mode: 'cors'})
       .then(res => res.json())
 }

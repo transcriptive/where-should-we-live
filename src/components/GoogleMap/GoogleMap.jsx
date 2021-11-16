@@ -52,7 +52,6 @@ export default function CountyMap({setLoading, county , setPhotos}) {
             // call getUrl() on each photo object, map to new array, update state
             const photoURLS = response.photos.map(photo => photo.getUrl())
             setPhotos(photoURLS)
-            console.log("Places Photo URLS:", photoURLS)
           } else { console.log("no places photos found") }
       })
     }

@@ -91,7 +91,6 @@ export default function ResultsCarousel( {resultsRef, handleScroll, results, set
   const findState = (countyString) => {
       if(!countyString) return
       const state = countyString.split(',')[1].trim()
-      console.log(state, 'state')
       const abbrev = stateLabels.find(s => s.label === state).value
       const srcImg = images.find(img => {
         return abbrev === img.default.split('/')[3].split('.')[0]
