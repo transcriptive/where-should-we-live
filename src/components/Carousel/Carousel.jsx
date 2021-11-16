@@ -1,16 +1,13 @@
-import { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
-import Texas from './states/TX.png'
 
-
+// bulk image import of states
 function importAll(r) {
   return r.keys().map(r);
 }
 
 const images = importAll(require.context('./states', false, /\.(png|jpe?g|svg)$/));
-
 
 const responsive = {
   desktop: {
@@ -30,12 +27,9 @@ const responsive = {
   }
 };
 
- 
   
-  export default function ResultsCarousel( {resultsRef, handleScroll, results, setSelected} ) {
-  
-
-  
+export default function ResultsCarousel( {resultsRef, handleScroll, results, setSelected} ) {
+    
   const stateLabels = [
     { label: 'Alabama', value: 'AL' },
     { label: 'Alaska', value: 'AK' },
@@ -93,7 +87,7 @@ const responsive = {
     { label: 'Wisconsin', value: 'WI' },
     { label: 'Wyoming', value: 'WY' },
   ];
-
+  // takes the county name from results, splits out the state, matches the state through the above dict to the image imported. 
   const findState = (countyString) => {
       if(!countyString) return
       const state = countyString.split(',')[1].trim()
@@ -105,56 +99,54 @@ const responsive = {
       return srcImg?.default
   }
     
-
-  return(
-    <>
+  return (
+      <>
       <div className='my-10'>
-      <div className="mb-2">
+        <div className="mb-2">
               <h1>Your County Results</h1>
               <h2>Click to preview </h2>
-      </div>
-        <Carousel
-          centerMode={true}
-          arrows={true}	
-          swipeable={true}
-          draggable={false}
-          showDots={false}
-          responsive={responsive}
-          ssr={false} // means to render carousel on server-side.
-          infinite={false}
-          autoPlay={false}
-          autoPlaySpeed={0}
-          keyBoardControl={true}
-          customTransition="transform 300ms ease-in-out"
-          transitionDuration={300}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          // deviceType={this.props.deviceType}
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px caro-hover"
-          renderButtonGroupOutside={false}
-          sliderClass='carousel-track'
-          // onClick={() => handleScroll(selectedRef)}
-        >
-    
-        {results.map((result, index) => {
-          return (
-            <div 
-              className={""} 
-              key={index} 
-              onClick={() => setSelected(index)}>
-                <img 
-                  src={findState(result.county)              
-                    }
-                  className={'single-result'}
-                  alt={index} 
-                  key={index} 
-                ></img>
-              <p className={'mt-4'}>{result.county.split(',')[0]}</p>
-            </div>
-          )
-        })}
-        </Carousel>
+        </div>
+          <Carousel
+            centerMode={true}
+            arrows={true}	
+            swipeable={true}
+            draggable={false}
+            showDots={false}
+            responsive={responsive}
+            ssr={false} // means to render carousel on server-side.
+            infinite={false}
+            autoPlay={false}
+            autoPlaySpeed={0}
+            keyBoardControl={true}
+            customTransition="transform 300ms ease-in-out"
+            transitionDuration={300}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            // deviceType={this.props.deviceType}
+            dotListClass="custom-dot-list-style"
+            itemClass="carousel-item-padding-40-px caro-hover"
+            renderButtonGroupOutside={false}
+            sliderClass='carousel-track'
+          >
+          {/* map the result to the right state img img */}
+          {results.map((result, index) => {
+            return (
+              <div 
+                className={""} 
+                key={index} 
+                onClick={() => setSelected(index)}>
+                  <img 
+                    src={findState(result.county)              
+                      }
+                    className={'single-result'}
+                    alt={index} 
+                    key={index} 
+                  ></img>
+                <p className={'mt-4'}>{result.county.split(',')[0]}</p>
+              </div>
+            )
+          })}
+          </Carousel>
       </div>
     </>
   )

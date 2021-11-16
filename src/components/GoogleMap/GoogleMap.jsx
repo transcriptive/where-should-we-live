@@ -9,7 +9,6 @@ export default function CountyMap({setLoading, county , setPhotos}) {
   const [placeID, setPlaceID] = useState(null);
   const [map, setMap] = useState(null);
   
-  
   const center = {
     lat: 40,
     lng: -101
@@ -26,13 +25,13 @@ export default function CountyMap({setLoading, county , setPhotos}) {
     setMap(map)
   },[])
 
+  // The purpose of this hook is to use the GeoCoder, Places and Photo Google API to retrieve county map bounds in order to set the map, and retrieve county photos to populate the carousel. 
   useEffect(() => {
     const fetchGoogleData = async () => {
       setLoading(true)
       const geocoder = new window.google.maps.Geocoder()
       // send county.county string to Google Geocoder service
       const response = await geocoder.geocode({ address: county?.county})
-      console.log("geocoder response", response)
       if (response.results[0]) {
         // results found, update placeID state, change map bounds
         setPlaceID(response.results[0].place_id)
@@ -42,7 +41,7 @@ export default function CountyMap({setLoading, county , setPhotos}) {
       }
       else { console.log("no geocode results found") }
     }
-  
+  // 
     const fetchPlacesPhotos = async (placeId) => {
       // new placesService object, takes current map object (stored in state)
       const placeService = new window.google.maps.places.PlacesService(map)
@@ -59,7 +58,6 @@ export default function CountyMap({setLoading, county , setPhotos}) {
     }
     if (county?.county) fetchGoogleData()
   },[county])
-
 
   return (
       <div id='map-div' style={containerStyle}>

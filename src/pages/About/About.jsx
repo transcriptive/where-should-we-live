@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = ()=> (
+const About = () => (
     <div className="min-h-screen bg-white flex max-w-7xl  mx-auto">
         <div className="mt-20 relative w-1/2 ">
             <img 

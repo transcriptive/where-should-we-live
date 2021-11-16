@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link, useHistory } from "react-router-dom";
+import {  MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 const navigation = [
@@ -18,7 +18,7 @@ function classNames(...classes) {
 export default function NavBar(props) {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // checks if a user is logged in
+  // checks if a user is logged in to conditional render links
   useEffect(() => {
     (async function () {
       const userLoggedIn = props.user ? true : false;
@@ -46,9 +46,7 @@ export default function NavBar(props) {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mr-2">
                 <div className="flex-shrink-0 flex items-center mr-14">
                   <Link to="/">
-        
-                  <p className="logo ">Connect.US</p>
-               
+                    <p className="logo ">Connect.US</p>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -56,7 +54,7 @@ export default function NavBar(props) {
                         <a key={idx}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-primary text-white items-center' :  'border-indigo-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                            item.current ? 'bg-primary text-white items-center' :  'bg-primary text-white inline-flex items-center px-1 pt-1 text-sm font-medium'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >

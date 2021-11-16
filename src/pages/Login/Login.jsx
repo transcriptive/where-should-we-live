@@ -13,14 +13,8 @@ export default function Login(props) {
     password: "",
   });
 
-  // useEffect(() => {
-  //   formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
-  //   updateMessage('');
-  // }, [formValue]);
-
   const handleSubmit = async (e) => {
     const { handleSignupOrLogin } = props;
-    console.log(loginValue.email, loginValue.password);
     e.preventDefault();
     try {
       await authService.login(loginValue);

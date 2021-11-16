@@ -26,22 +26,6 @@ h1 {
   text-align: left;
 }
 
-.pics-div {
-  height: 300px;
-}
-
-.saved-div {
-  height: 200px;
-}
-
-.recent-div {
-  height: 200px;
-}
-
-.results-div {
-  height: 250px;
-}
-
 .results-card {
   border: 1px solid green;
 }
@@ -54,16 +38,3 @@ h1 {
   margin-bottom: 20px;
 }
 
-.smallMap {
-  background: url(stockMapOne.jpg) no-repeat;
-  background-position: center;
-  height: 25vh;
-}
-
-.fav-btn {
-  margin-top: 25px;
-}
-
-/* .photos {
-  background-color: #3490dc;
-} */
