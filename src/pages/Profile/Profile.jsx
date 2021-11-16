@@ -22,12 +22,10 @@ export default function Profile(props) {
     hasProfile()
   }, []);
 
-  // For Modal
-  
 
   return (
     <main className="mx-auto flex justify-center items-center">
-       
+      {/* Conditional logic to render edit profile modal  */}
       {showModal ? (
 
         <ProfileForm 
@@ -96,19 +94,6 @@ export default function Profile(props) {
               Recently Browsed 
             </label>
           </div>
-
-          {/* Map over recentCountries db field for user */}
-          {/* <div className="sm:col-span-1 flex justify-center">
-          { dummyData ? dummyData.map((item, key) => {
-              return (
-                <div className="py-2 px-2 ml-6 h-28 border border-black hover:underline" key={key}>
-                  <p className='bottom-0'>{item}</p>
-                </div>
-              );
-            })
-          : "Click HERE to start search..."
-          }  
-          </div> */}
         </div>
       <div>
       {/* Preference Section */}

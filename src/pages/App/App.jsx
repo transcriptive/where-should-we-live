@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import { Route, Redirect, useHistory } from "react-router-dom";
 import "./App.css";
+import React, { useState } from "react";
+import { Route, Redirect, useHistory } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
@@ -26,8 +26,6 @@ function App (props) {
     setUser(authService.getUser())
   }
 
-
- 
     return (
       <>
         <NavBar user={user} handleLogout={handleLogout}/>

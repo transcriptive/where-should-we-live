@@ -43,7 +43,7 @@ export default function CreateProfile(props) {
   
     
     return (
-       <div>
+      <div>
         {/* FORM START */}
         <form ref={formRef} onSubmit={handleSubmit}>
         {/* Styling for FORM divs begins */}
@@ -203,5 +203,5 @@ export default function CreateProfile(props) {
         {/* Styling for FORM divs ends */}
         </form>
         {/* FORM END */}
-    </div>
+      </div>
 )}

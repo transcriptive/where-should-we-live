@@ -6,6 +6,7 @@ export default function ProfileForm( props ) {
   const formRef = useRef();
   const [state, setState] = useForm(props.profile);
 
+  // Profile Update function
   async function handleSubmit(e) {
     e.preventDefault();
     const updatedProfile = await profileService.update(state)

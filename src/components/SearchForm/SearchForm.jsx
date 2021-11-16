@@ -11,10 +11,7 @@ export default function SearchForm({slider, handleChange, handleSubmit, handleSc
         alt={'img'} 
         className="mapPic -my-6" />
       <div id="container" className="mx-auto">
-        <div className='mb-6'>
-          
-
-        </div>
+        <div className='mb-6'></div>
         <form onSubmit={handleSubmit} >
         <h1>Move the sliders to your desired preferences</h1>
 
